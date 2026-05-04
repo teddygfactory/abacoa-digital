@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Start a project — Abacoa Digital</title>
+<meta name="description" content="Tell us about your project. We'll get back within one business day." />
+<meta name="robots" content="noindex" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%230e1218'/><g stroke='%23d4af37' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'><path d='M5 32 L17 8 L29 32'/><path d='M10 23 L24 23'/><path d='M17 8 Q34 8 34 20 Q34 32 29 32'/></g></svg>" />
+
+<style>
+:root {
+  --gold: #d4af37;
+  --gold-bright: #e7c560;
+  --gold-deep: #b8951f;
+  --serif: "Fraunces", "Times New Roman", serif;
+  --sans: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --container: 920px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --radius: 6px;
+}
+
+html[data-theme="dark"] {
+  --bg: #0e1218;
+  --bg-2: #131822;
+  --surface: #1a2030;
+  --surface-2: #222a3a;
+  --border: #2a3346;
+  --border-soft: #1d2433;
+  --input-bg: #131822;
+  --text: #f1ece1;
+  --text-dim: #c0b8a5;
+  --text-mute: #7d7565;
+  --gold-glow: rgba(212, 175, 55, 0.18);
+  --gold-glow-strong: rgba(212, 175, 55, 0.4);
+  --grain-opacity: 0.04;
+  --grain-blend: overlay;
+  --shadow-cta: 0 16px 40px -12px rgba(212, 175, 55, 0.45);
+  --error: #ff7b7b;
+}
+html[data-theme="light"] {
+  --bg: #faf7f0;
+  --bg-2: #f4efe2;
+  --surface: #ffffff;
+  --surface-2: #f9f5ea;
+  --border: #e2dac6;
+  --border-soft: #ece4d2;
+  --input-bg: #ffffff;
+  --text: #14181f;
+  --text-dim: #4d5260;
+  --text-mute: #8a8170;
+  --gold-glow: rgba(212, 175, 55, 0.14);
+  --gold-glow-strong: rgba(212, 175, 55, 0.35);
+  --grain-opacity: 0.025;
+  --grain-blend: multiply;
+  --shadow-cta: 0 14px 36px -10px rgba(212, 175, 55, 0.45);
+  --error: #c43d3d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02";
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+body::before {
+  content: ""; position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: var(--grain-blend);
+}
+::selection { background: var(--gold); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative; z-index: 2;
+}
+
+/* ===== Header bar ===== */
+.bar {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border-soft);
+  position: sticky; top: 0;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 50;
+}
+.bar-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.logo {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+  font-weight: 500; letter-spacing: 0.18em;
+  font-size: 12px; text-transform: uppercase;
+  color: var(--text);
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 22px; height: 22px; }
+.logo-text span { color: var(--gold); }
+.bar-back {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.06em;
+  color: var(--text-dim);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 0.2s ease;
+}
+.bar-back:hover { color: var(--gold); }
+
+.bar-actions { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--gold); border-color: var(--gold); }
+.theme-toggle svg { width: 16px; height: 16px; }
+html[data-theme="dark"]  .theme-toggle .icon-light { display: block; }
+html[data-theme="dark"]  .theme-toggle .icon-dark  { display: none; }
+html[data-theme="light"] .theme-toggle .icon-light { display: none; }
+html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
+
+/* ===== Page header ===== */
+.page-head {
+  padding: 80px 0 40px;
+  position: relative;
+}
+.page-head::before {
+  content: ""; position: absolute;
+  top: -10%; right: -15%;
+  width: 50vw; height: 50vw;
+  max-width: 600px; max-height: 600px;
+  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 24px;
+}
+.page-eyebrow .dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--gold-glow-strong);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gold-glow-strong); }
+  50%      { box-shadow: 0 0 0 8px transparent; }
+}
+.page-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+  max-width: 16ch;
+}
+.page-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.page-sub {
+  font-size: 17px;
+  color: var(--text-dim);
+  max-width: 56ch;
+  line-height: 1.6;
+}
+
+/* ===== Form card ===== */
+.form-wrap {
+  padding-bottom: 100px;
+}
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: clamp(28px, 4vw, 48px);
+  position: relative;
+  overflow: hidden;
+}
+.form-card::before {
+  content: ""; position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+/* Progress */
+.progress {
+  margin-bottom: 40px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.progress-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.progress-meta .step-name { color: var(--gold); }
+.progress-bar {
+  height: 3px;
+  background: var(--border-soft);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+/* Form steps */
+.step { display: none; animation: stepIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.step.active { display: block; }
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.step h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.step-desc {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-bottom: 32px;
+  max-width: 56ch;
+}
+
+/* Fields */
+.field { margin-bottom: 24px; }
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
+
+.label {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.label .req { color: var(--gold); font-size: 10px; }
+.label .optional {
+  color: var(--text-mute);
+  font-size: 10px;
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+
+.input, .textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.input::placeholder, .textarea::placeholder { color: var(--text-mute); }
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-glow);
+  background: var(--surface-2);
+}
+.textarea { min-height: 140px; resize: vertical; line-height: 1.55; }
+
+/* Chip groups (multi-select services) */
+.chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.chip {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.chip:hover {
+  border-color: color-mix(in srgb, var(--gold) 50%, var(--border));
+  color: var(--text);
+}
+.chip input {
+  position: absolute; opacity: 0; pointer-events: none;
+}
+.chip .check {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: grid; place-items: center;
+  transition: all 0.2s ease;
+}
+.chip .check svg { width: 10px; height: 10px; opacity: 0; transition: opacity 0.2s ease; }
+.chip:has(input:checked),
+.chip.checked {
+  background: color-mix(in srgb, var(--gold) 12%, var(--input-bg));
+  border-color: var(--gold);
+  color: var(--text);
+}
+.chip:has(input:checked) .check,
+.chip.checked .check {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.chip:has(input:checked) .check svg,
+.chip.checked .check svg { opacity: 1; }
+
+/* Radio cards (budget, timeline) */
+.radio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.radio-card {
+  position: relative;
+  padding: 16px 18px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.radio-card:hover {
+  border-color: color-mix(in srgb, var(--gold) 50%, var(--border));
+}
+.radio-card input {
+  position: absolute; opacity: 0; pointer-events: none;
+}
+.radio-card .rc-label {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text);
+}
+.radio-card .rc-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.radio-card:has(input:checked),
+.radio-card.checked {
+  background: color-mix(in srgb, var(--gold) 10%, var(--input-bg));
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+.radio-card:has(input:checked) .rc-label,
+.radio-card.checked .rc-label { color: var(--gold); }
+
+/* Errors */
+.field-error {
+  color: var(--error);
+  font-size: 12.5px;
+  margin-top: 8px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+  display: none;
+}
+.field.has-error .input,
+.field.has-error .textarea { border-color: var(--error); }
+.field.has-error .field-error { display: block; }
+
+/* Buttons */
+.actions {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-soft);
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: none;
+}
+.btn .arrow { transition: transform 0.25s ease; }
+.btn:hover .arrow { transform: translateX(4px); }
+.btn-back {
+  background: transparent;
+  color: var(--text-dim);
+  padding: 13px 22px;
+  border-radius: 999px;
+}
+.btn-back:hover { color: var(--text); }
+.btn-back svg { transform: rotate(180deg); transition: transform 0.25s ease; }
+.btn-back:hover svg { transform: rotate(180deg) translateX(4px); }
+.btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-back:disabled:hover svg { transform: rotate(180deg); }
+
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+  color: #0e1218;
+  padding: 15px 30px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.15) inset,
+    var(--shadow-cta);
+}
+.btn-primary::before {
+  content: ""; position: absolute; inset: -2px;
+  border-radius: 999px;
+  background: var(--gold);
+  filter: blur(14px);
+  opacity: 0.45;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.15) inset,
+    0 22px 50px -12px rgba(212, 175, 55, 0.6);
+}
+.btn-primary:hover::before { opacity: 0.7; }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* Success state */
+.success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.success.active { display: block; animation: stepIn 0.6s ease; }
+.success-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 28px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px var(--gold-glow), 0 14px 36px -10px var(--gold-glow-strong);
+}
+.success-icon svg { width: 36px; height: 36px; color: #0e1218; }
+.success h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.success h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.success p { color: var(--text-dim); font-size: 16px; max-width: 50ch; margin: 0 auto 28px; line-height: 1.6; }
+.success .ref {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+  padding: 8px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Footer */
+.foot {
+  padding: 28px 0 32px;
+  border-top: 1px solid var(--border-soft);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  text-align: center;
+}
+.foot a { transition: color 0.2s ease; }
+.foot a:hover { color: var(--gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a href="index.html" class="logo" aria-label="Abacoa Digital home">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none">
+          <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M5 32 L17 8 L29 32"/>
+            <path d="M10 23 L24 23"/>
+            <path d="M17 8 Q34 8 34 20 Q34 32 29 32"/>
+          </g>
+        </svg>
+      </span>
+      <span class="logo-text">Abacoa <span>Digital</span></span>
+    </a>
+    <div class="bar-actions">
+      <a href="index.html" class="bar-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to home
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" type="button">
+        <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <div class="page-eyebrow">
+      <span class="dot"></span>
+      <span>Project intake</span>
+    </div>
+    <h1 class="page-title">Tell us what you're <em>building.</em></h1>
+    <p class="page-sub">
+      Four short steps. Two minutes. We'll get back within one business day with a concrete plan and the next available time on the calendar.
+    </p>
+  </div>
+</section>
+
+<section class="form-wrap">
+  <div class="container">
+    <div class="form-card">
+
+      <div class="progress" id="progress">
+        <div class="progress-meta">
+          <span><span id="stepNum">1</span> / 4</span>
+          <span class="step-name" id="stepName">Who you are</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 25%"></div></div>
+      </div>
+
+      <form id="contactForm" novalidate>
+
+        <!-- ============ STEP 1: IDENTITY ============ -->
+        <div class="step active" data-step="1" data-name="Who you are">
+          <h2>First, who's <em>asking?</em></h2>
+          <p class="step-desc">The basics so we know who's reaching out and how to get back to you.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="name">Your name <span class="req">●</span></label>
+              <input type="text" id="name" name="name" class="input" placeholder="Jane Doe" required autocomplete="name" />
+              <div class="field-error">Please enter your name.</div>
+            </div>
+            <div class="field">
+              <label class="label" for="email">Email <span class="req">●</span></label>
+              <input type="email" id="email" name="email" class="input" placeholder="jane@company.com" required autocomplete="email" />
+              <div class="field-error">Please enter a valid email.</div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="company">Company <span class="optional">(optional)</span></label>
+              <input type="text" id="company" name="company" class="input" placeholder="Acme Inc." autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label class="label" for="role">Your role <span class="optional">(optional)</span></label>
+              <input type="text" id="role" name="role" class="input" placeholder="Founder · CEO · Ops Lead" autocomplete="organization-title" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ STEP 2: SERVICES ============ -->
+        <div class="step" data-step="2" data-name="What you need">
+          <h2>What do you need <em>help with?</em></h2>
+          <p class="step-desc">Pick everything that applies. We'll figure out the right combination together — this just helps us prep.</p>
+
+          <div class="field">
+            <div class="chips" id="serviceChips">
+              <label class="chip"><input type="checkbox" name="services" value="AI Agents & Automation" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>AI agents &amp; automation</label>
+              <label class="chip"><input type="checkbox" name="services" value="Web & App Development" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Web &amp; app development</label>
+              <label class="chip"><input type="checkbox" name="services" value="Customer Engagement" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Customer engagement (SMS, voice, chat)</label>
+              <label class="chip"><input type="checkbox" name="services" value="Data & Analytics" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Data &amp; analytics</label>
+              <label class="chip"><input type="checkbox" name="services" value="Brand & Digital Presence" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Brand &amp; digital presence</label>
+              <label class="chip"><input type="checkbox" name="services" value="Workflow Systems" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Workflow &amp; internal tools</label>
+              <label class="chip"><input type="checkbox" name="services" value="Not Sure Yet" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Not sure yet</label>
+            </div>
+            <div class="field-error" id="servicesError">Pick at least one option.</div>
+          </div>
+        </div>
+
+        <!-- ============ STEP 3: SCOPE ============ -->
+        <div class="step" data-step="3" data-name="Scope">
+          <h2>What's the <em>scope?</em></h2>
+          <p class="step-desc">Honest answers help us tell you fast whether we're a fit. No wrong answers — just real ones.</p>
+
+          <div class="field">
+            <label class="label">Budget range <span class="req">●</span></label>
+            <div class="radio-grid" id="budgetGrid">
+              <label class="radio-card"><input type="radio" name="budget" value="Under $10K" required /><span class="rc-label">Under $10K</span><span class="rc-meta">Small project</span></label>
+              <label class="radio-card"><input type="radio" name="budget" value="$10K – $25K" /><span class="rc-label">$10K – $25K</span><span class="rc-meta">Focused build</span></label>
+              <label class="radio-card"><input type="radio" name="budget" value="$25K – $75K" /><span class="rc-label">$25K – $75K</span><span class="rc-meta">Full system</span></label>
+              <label class="radio-card"><input type="radio" name="budget" value="$75K+" /><span class="rc-label">$75K+</span><span class="rc-meta">Multi-phase</span></label>
+              <label class="radio-card"><input type="radio" name="budget" value="Not sure yet" /><span class="rc-label">Not sure</span><span class="rc-meta">We'll help scope</span></label>
+            </div>
+            <div class="field-error">Pick a budget range so we can plan accordingly.</div>
+          </div>
+
+          <div class="field">
+            <label class="label">Timeline <span class="req">●</span></label>
+            <div class="radio-grid" id="timelineGrid">
+              <label class="radio-card"><input type="radio" name="timeline" value="ASAP / urgent" required /><span class="rc-label">ASAP</span><span class="rc-meta">Urgent</span></label>
+              <label class="radio-card"><input type="radio" name="timeline" value="1–3 months" /><span class="rc-label">1–3 months</span><span class="rc-meta">Near-term</span></label>
+              <label class="radio-card"><input type="radio" name="timeline" value="3–6 months" /><span class="rc-label">3–6 months</span><span class="rc-meta">Planned</span></label>
+              <label class="radio-card"><input type="radio" name="timeline" value="Just exploring" /><span class="rc-label">Just exploring</span><span class="rc-meta">Early stage</span></label>
+            </div>
+            <div class="field-error">Pick a timeline so we can be honest about availability.</div>
+          </div>
+        </div>
+
+        <!-- ============ STEP 4: DETAILS ============ -->
+        <div class="step" data-step="4" data-name="Details">
+          <h2>Last thing — <em>tell us more.</em></h2>
+          <p class="step-desc">The more specific, the better. What's the actual problem? What does success look like? Anything we should know going in.</p>
+
+          <div class="field">
+            <label class="label" for="details">Project details <span class="req">●</span></label>
+            <textarea id="details" name="details" class="textarea" placeholder="We run a small HVAC company in South Florida. Half our leads come in after hours and we miss them. Looking for an AI voice agent that can take the call, qualify the job, and text our dispatcher with a summary..." required></textarea>
+            <div class="field-error">Tell us a bit about what you're trying to do (50+ characters).</div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="website">Current website / relevant link <span class="optional">(optional)</span></label>
+            <input type="url" id="website" name="website" class="input" placeholder="https://yourcompany.com" inputmode="url" autocomplete="url" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="referral">How did you hear about us? <span class="optional">(optional)</span></label>
+            <input type="text" id="referral" name="referral" class="input" placeholder="Google, referral from a friend, social, etc." />
+          </div>
+        </div>
+
+        <!-- Action bar -->
+        <div class="actions" id="actions">
+          <button type="button" class="btn btn-back" id="btnBack" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            Back
+          </button>
+          <button type="button" class="btn btn-primary" id="btnNext">
+            <span id="btnNextLabel">Continue</span>
+            <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div class="success" id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>Got it. <em>Talk soon.</em></h2>
+        <p>
+          Your project details are with us. We'll get back within one business day with a concrete next step — usually a 30-minute discovery call on a calendar link.
+        </p>
+        <p style="margin-bottom: 36px;">
+          If anything is urgent, you can reach us directly at <a href="mailto:hello@abacoadigital.com" style="color: var(--gold);">hello@abacoadigital.com</a>.
+        </p>
+        <a href="index.html" class="btn btn-primary">
+          Back to home
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="container">
+    © 2026 Abacoa Digital LLC · Palm Beach, FL · <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
+  </div>
+</footer>
+
+<script>
+  // ===========================================================
+  // CONFIG — edit these two values
+  // ===========================================================
+  // 1) FORMSPREE_ENDPOINT: Sign up free at https://formspree.io,
+  //    create a form, paste its endpoint URL here. Submissions
+  //    will email you instantly. Leave empty to use mailto fallback.
+  const FORMSPREE_ENDPOINT = ''; // e.g. 'https://formspree.io/f/abcdwxyz'
+
+  // 2) Email submissions go to this address either way.
+  const CONTACT_EMAIL = 'hello@abacoadigital.com';
+  // ===========================================================
+
+  // Theme toggle
+  const STORAGE_KEY = 'abacoa-theme';
+  const root = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    root.setAttribute('data-theme', 'light');
+  }
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  // Multi-step controller
+  const steps = document.querySelectorAll('.step');
+  const totalSteps = steps.length;
+  let current = 1;
+
+  const stepNumEl = document.getElementById('stepNum');
+  const stepNameEl = document.getElementById('stepName');
+  const progressFill = document.getElementById('progressFill');
+  const btnBack = document.getElementById('btnBack');
+  const btnNext = document.getElementById('btnNext');
+  const btnNextLabel = document.getElementById('btnNextLabel');
+  const form = document.getElementById('contactForm');
+  const actions = document.getElementById('actions');
+  const success = document.getElementById('success');
+
+  function showStep(n) {
+    steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === n));
+    const active = document.querySelector(`.step[data-step="${n}"]`);
+    stepNumEl.textContent = n;
+    stepNameEl.textContent = active.dataset.name;
+    progressFill.style.width = (n / totalSteps * 100) + '%';
+    btnBack.disabled = n === 1;
+    btnNextLabel.textContent = n === totalSteps ? 'Send it' : 'Continue';
+    window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
+  }
+
+  function clearError(field) {
+    field.classList.remove('has-error');
+  }
+  function showError(field) {
+    field.classList.add('has-error');
+  }
+
+  function validateStep(n) {
+    let valid = true;
+    if (n === 1) {
+      const nameField = document.getElementById('name').closest('.field');
+      const emailField = document.getElementById('email').closest('.field');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!name) { showError(nameField); valid = false; } else clearError(nameField);
+      if (!emailOk) { showError(emailField); valid = false; } else clearError(emailField);
+    }
+    if (n === 2) {
+      const checked = document.querySelectorAll('input[name="services"]:checked').length;
+      const errEl = document.getElementById('servicesError');
+      if (checked === 0) {
+        errEl.style.display = 'block';
+        valid = false;
+      } else {
+        errEl.style.display = 'none';
+      }
+    }
+    if (n === 3) {
+      const budget = document.querySelector('input[name="budget"]:checked');
+      const timeline = document.querySelector('input[name="timeline"]:checked');
+      const budgetField = document.getElementById('budgetGrid').closest('.field');
+      const timelineField = document.getElementById('timelineGrid').closest('.field');
+      if (!budget) { showError(budgetField); valid = false; } else clearError(budgetField);
+      if (!timeline) { showError(timelineField); valid = false; } else clearError(timelineField);
+    }
+    if (n === 4) {
+      const details = document.getElementById('details').value.trim();
+      const detailsField = document.getElementById('details').closest('.field');
+      if (details.length < 50) { showError(detailsField); valid = false; } else clearError(detailsField);
+    }
+    return valid;
+  }
+
+  btnBack.addEventListener('click', () => {
+    if (current > 1) { current--; showStep(current); }
+  });
+
+  btnNext.addEventListener('click', async () => {
+    if (!validateStep(current)) return;
+    if (current < totalSteps) {
+      current++;
+      showStep(current);
+    } else {
+      await submitForm();
+    }
+  });
+
+  // Clear errors as user types/selects
+  form.addEventListener('input', (e) => {
+    const f = e.target.closest('.field');
+    if (f) clearError(f);
+    if (e.target.name === 'services') {
+      document.getElementById('servicesError').style.display = 'none';
+    }
+  });
+  form.addEventListener('change', (e) => {
+    const f = e.target.closest('.field');
+    if (f) clearError(f);
+  });
+
+  function collectData() {
+    const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(i => i.value);
+    return {
+      name:     document.getElementById('name').value.trim(),
+      email:    document.getElementById('email').value.trim(),
+      company:  document.getElementById('company').value.trim(),
+      role:     document.getElementById('role').value.trim(),
+      services: services,
+      budget:   (document.querySelector('input[name="budget"]:checked') || {}).value || '',
+      timeline: (document.querySelector('input[name="timeline"]:checked') || {}).value || '',
+      details:  document.getElementById('details').value.trim(),
+      website:  document.getElementById('website').value.trim(),
+      referral: document.getElementById('referral').value.trim(),
+    };
+  }
+
+  function buildEmailBody(data) {
+    return [
+      `New project inquiry from ${data.name}`,
+      ``,
+      `— Identity —`,
+      `Name:     ${data.name}`,
+      `Email:    ${data.email}`,
+      `Company:  ${data.company || '—'}`,
+      `Role:     ${data.role || '—'}`,
+      ``,
+      `— Project —`,
+      `Services: ${data.services.join(', ') || '—'}`,
+      `Budget:   ${data.budget}`,
+      `Timeline: ${data.timeline}`,
+      ``,
+      `— Details —`,
+      data.details,
+      ``,
+      `— Other —`,
+      `Website:  ${data.website || '—'}`,
+      `Referral: ${data.referral || '—'}`,
+    ].join('\n');
+  }
+
+  async function submitForm() {
+    btnNext.disabled = true;
+    btnNextLabel.textContent = 'Sending…';
+    const data = collectData();
+
+    if (FORMSPREE_ENDPOINT) {
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          showSuccess();
+          return;
+        }
+      } catch (err) {
+        console.error('Formspree submission failed:', err);
+      }
+      // Fall through to mailto on error
+    }
+
+    // Mailto fallback — opens user's mail client with everything filled in
+    const subject = encodeURIComponent(`New project inquiry — ${data.name}`);
+    const body = encodeURIComponent(buildEmailBody(data));
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setTimeout(showSuccess, 400);
+  }
+
+  function showSuccess() {
+    form.style.display = 'none';
+    actions.style.display = 'none';
+    document.getElementById('progress').style.display = 'none';
+    success.classList.add('active');
+    window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
