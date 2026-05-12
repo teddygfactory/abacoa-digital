@@ -454,6 +454,14 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
   padding: 13px 22px;
   border-radius: 999px;
 }
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  padding: 13px 22px;
+  border-radius: 999px;
+  border-color: var(--border);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 .btn-back:hover { color: var(--text); }
 .btn-back svg { transform: rotate(180deg); transition: transform 0.25s ease; }
 .btn-back:hover svg { transform: rotate(180deg) translateX(4px); }
@@ -725,14 +733,17 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
         </div>
         <h2>Got it. <em>Talk soon.</em></h2>
         <p>
-          Your project details are with us. We'll get back within one business day with a concrete next step — usually a 30-minute discovery call on a calendar link.
+          Your project details are with us. We'll get back within one business day with a concrete next step, usually a 30-minute discovery call on a calendar link.
         </p>
         <p style="margin-bottom: 36px;">
           If anything is urgent, you can reach us directly at <a href="mailto:hello@abacoadigital.com" style="color: var(--gold);">hello@abacoadigital.com</a>.
         </p>
-        <a href="index.html" class="btn btn-primary">
-          Back to home
+        <a id="bookingLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="display: none; margin-right: 12px;">
+          Book the call now
           <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="index.html" class="btn btn-secondary">
+          Back to home
         </a>
       </div>
 
@@ -748,16 +759,39 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 
 <script>
   // ===========================================================
-  // CONFIG — edit these two values
+  // CONFIG
   // ===========================================================
-  // 1) FORMSPREE_ENDPOINT: Sign up free at https://formspree.io,
-  //    create a form, paste its endpoint URL here. Submissions
-  //    will email you instantly. Leave empty to use mailto fallback.
-  const FORMSPREE_ENDPOINT = ''; // e.g. 'https://formspree.io/f/abcdwxyz'
+  // Submissions POST to /api/lead, a Vercel Edge function that
+  // forwards to the abacoa-agent /leads webhook on Railway with
+  // the secret header added server-side. Set LEADS_URL and
+  // LEADS_SECRET as Vercel env vars. See api/lead.js.
+  const LEADS_ENDPOINT = '/api/lead';
 
-  // 2) Email submissions go to this address either way.
+  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
+  const POSTHOG_KEY = '';
+  const POSTHOG_HOST = 'https://us.i.posthog.com';
+
+  // Optional booking link on the success step. Empty hides it.
+  const BOOKING_URL = '';
+
+  // Mailto fallback if the webhook is unreachable.
   const CONTACT_EMAIL = 'hello@abacoadigital.com';
   // ===========================================================
+
+  // Bootstrap PostHog if a key is configured
+  if (POSTHOG_KEY) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
+    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
+    document.head.appendChild(s);
+    window.posthog = window.posthog || [];
+  }
+  function trackEvent(name, props) {
+    if (window.posthog && typeof window.posthog.capture === 'function') {
+      try { window.posthog.capture(name, props || {}); } catch (e) {}
+    }
+  }
 
   // Theme toggle
   const STORAGE_KEY = 'abacoa-theme';
@@ -917,27 +951,44 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
     btnNextLabel.textContent = 'Sending…';
     const data = collectData();
 
-    if (FORMSPREE_ENDPOINT) {
+    // Primary path: Vercel proxy forwards to the agent on Railway
+    if (LEADS_ENDPOINT) {
       try {
-        const res = await fetch(FORMSPREE_ENDPOINT, {
+        const res = await fetch(LEADS_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            company: data.company,
+            message: buildEmailBody(data),
+            extra: {
+              role: data.role,
+              services: data.services,
+              budget: data.budget,
+              timeline: data.timeline,
+              website: data.website,
+              referral: data.referral,
+            },
+          }),
         });
         if (res.ok) {
+          trackEvent('lead_submitted', { budget: data.budget, timeline: data.timeline, services: data.services });
           showSuccess();
           return;
         }
+        console.error('Lead webhook returned', res.status);
       } catch (err) {
-        console.error('Formspree submission failed:', err);
+        console.error('Lead webhook failed:', err);
       }
       // Fall through to mailto on error
     }
 
-    // Mailto fallback — opens user's mail client with everything filled in
-    const subject = encodeURIComponent(`New project inquiry — ${data.name}`);
+    // Mailto fallback: opens user's mail client with everything filled in
+    const subject = encodeURIComponent(`New project inquiry from ${data.name}`);
     const body = encodeURIComponent(buildEmailBody(data));
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    trackEvent('lead_mailto_fallback', { budget: data.budget });
     setTimeout(showSuccess, 400);
   }
 
@@ -946,6 +997,13 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
     actions.style.display = 'none';
     document.getElementById('progress').style.display = 'none';
     success.classList.add('active');
+    if (BOOKING_URL) {
+      const bookingLink = document.getElementById('bookingLink');
+      if (bookingLink) {
+        bookingLink.href = BOOKING_URL;
+        bookingLink.style.display = 'inline-flex';
+      }
+    }
     window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
   }
 </script>

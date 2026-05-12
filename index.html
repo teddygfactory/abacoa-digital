@@ -696,14 +696,14 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   <div class="container">
     <div class="section-head reveal">
       <span class="section-num">04 · Approach</span>
-      <div><h2 class="section-title">An engineer's <em>standard</em>, applied to software.</h2></div>
+      <div><h2 class="section-title">Aerospace <em>quality</em>, applied to software.</h2></div>
     </div>
     <div class="approach-grid">
-      <div class="approach-quote reveal">We came up in aerospace. The discipline of building things people stake their lives on doesn't go away when the medium changes — it just gets applied to a different problem.</div>
+      <div class="approach-quote reveal">We come from aerospace quality and inspection. The job is catching defects before they ship, documenting every decision, and signing your name to what leaves the shop. That mindset doesn't disappear when the medium changes. It just gets applied to a different problem.</div>
       <div class="approach-body reveal">
-        <p>Abacoa Digital was started by an engineer with a decade of hands-on aerospace, manufacturing, and quality experience. That background changes how we think about software: <strong>nothing ships that we wouldn't sign our name to.</strong> Every system has a documented spec. Every decision has a reason. Every line is written like the next person who reads it deserves to understand it without a meeting.</p>
-        <p>We're small on purpose. You work with the person doing the work. There's no junior team, no offshore handoff, no "account manager" between you and the build. The trade-off is that we take fewer projects than a typical agency — and the projects we take, we go deep on.</p>
-        <p>The work is for businesses ready to compete on the <strong>quality of their digital surface</strong> — not just check a box that says "we have a website."</p>
+        <p>Abacoa Digital was founded by an aerospace quality and inspection professional turned software engineer. That background changes how we ship: <strong>nothing leaves here that we wouldn't sign our name to.</strong> Every system has a documented spec. Every decision has a reason. Every line is written like the next person reading it deserves to understand it without a meeting.</p>
+        <p>We're small on purpose. You work with the person doing the work. There's no junior team, no offshore handoff, no "account manager" between you and the build. The trade-off: we take fewer projects than a typical agency, and the projects we take, we go deep on.</p>
+        <p>The work is for businesses ready to compete on the <strong>quality of their digital surface</strong>, not just check a box that says "we have a website."</p>
         <div class="signature">— Abacoa Digital · Palm Beach, Florida</div>
       </div>
     </div>
@@ -745,6 +745,18 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 </footer>
 
 <script>
+  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
+  const POSTHOG_KEY = '';
+  const POSTHOG_HOST = 'https://us.i.posthog.com';
+  if (POSTHOG_KEY) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
+    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
+    document.head.appendChild(s);
+    window.posthog = window.posthog || [];
+  }
+
   const STORAGE_KEY = 'abacoa-theme';
   const root = document.documentElement;
   const toggle = document.getElementById('themeToggle');
