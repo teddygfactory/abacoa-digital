@@ -6,9 +6,17 @@
 <title>Abacoa Digital — Digital systems for ambitious businesses</title>
 <meta name="description" content="We build the digital systems that bring you customers and serve them well. AI agents, custom software, and customer engagement infrastructure." />
 <meta property="og:title" content="Abacoa Digital" />
-<meta property="og:description" content="Digital systems for ambitious businesses. AI, software, and customer engagement built to ship." />
+<meta property="og:description" content="AI systems that work. For businesses that ship." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://abacoadigital.com" />
+<meta property="og:image" content="https://abacoadigital.com/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Abacoa Digital — AI systems that work. For businesses that ship." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Abacoa Digital" />
+<meta name="twitter:description" content="AI systems that work. For businesses that ship." />
+<meta name="twitter:image" content="https://abacoadigital.com/og.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -254,7 +262,62 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
   -webkit-mask-image: radial-gradient(circle, black 0%, transparent 70%);
   pointer-events: none;
 }
-.hero-grid { position: relative; z-index: 2; }
+.hero-grid {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+}
+.hero-photo {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  animation: fadeUp 1.2s ease 0.6s forwards;
+}
+.hero-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: brightness(0.85) contrast(1.08) saturate(0.65) sepia(0.18) hue-rotate(-8deg);
+}
+.hero-photo::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, rgba(14,18,24,0.45) 0%, rgba(14,18,24,0.05) 50%, rgba(212,175,55,0.08) 100%),
+    radial-gradient(circle at 80% 20%, rgba(212,175,55,0.14) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero-photo-caption {
+  position: absolute; bottom: 14px; left: 16px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); z-index: 2;
+  background: rgba(14,18,24,0.6); padding: 6px 10px;
+  border-radius: 3px; backdrop-filter: blur(4px);
+}
+@media (max-width: 980px) {
+  .hero-photo { aspect-ratio: 16 / 10; max-height: 380px; }
+}
+
+#approach { position: relative; }
+#approach::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1555532538-dcdbd01d373d?fm=jpg&q=70&w=1600&auto=format&fit=crop");
+  background-size: cover; background-position: center;
+  opacity: 0.06;
+  filter: brightness(0.5) saturate(0.4) sepia(0.25) hue-rotate(-8deg);
+  z-index: 0; pointer-events: none;
+}
+#approach .container { position: relative; z-index: 2; }
 
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -575,6 +638,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <span class="dot"></span>
         <span>Available for new projects · 2026</span>
       </div>
+      <!-- (column 1: existing hero text continues below) -->
       <h1 class="hero-title">
         <span class="word" style="animation-delay:0.15s">Digital</span>
         <span class="word" style="animation-delay:0.25s">systems</span>
@@ -602,6 +666,10 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="hero-meta-item"><span class="hero-meta-label">Working with</span><span class="hero-meta-value">Founders &amp; SMBs</span></div>
         <div class="hero-meta-item"><span class="hero-meta-label">Specialties</span><span class="hero-meta-value">AI · Software · Growth</span></div>
       </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1753998943228-73470750c597?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Code on a developer's monitor in a darkened workspace" loading="eager"/>
+      <span class="hero-photo-caption">// REAL WORK</span>
     </div>
   </div>
 </header>
