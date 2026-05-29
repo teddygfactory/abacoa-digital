@@ -412,15 +412,17 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 
 .stack-intro { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.4; color: var(--text-dim); max-width: 60ch; margin-bottom: 64px; }
 .stack-intro em { color: var(--gold); font-style: italic; }
-.stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 900px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .stack-grid { grid-template-columns: 1fr; } }
 .stack-item {
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
-  padding: 24px 22px;
+  padding: 22px 20px 20px;
   background: var(--bg-2);
   transition: all 0.25s ease;
-  display: flex; flex-direction: column; gap: 10px;
-  min-height: 110px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 170px;
 }
 .stack-item:hover {
   border-color: var(--gold);
@@ -428,13 +430,41 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   transform: translateY(-2px);
   box-shadow: var(--shadow-card);
 }
-.stack-name { font-family: var(--serif); font-weight: 500; font-size: 17px; letter-spacing: -0.005em; }
+.stack-header { display: flex; align-items: center; gap: 10px; }
+.stack-icon { width: 18px; height: 18px; color: var(--gold); opacity: 0.9; flex-shrink: 0; }
+.stack-icon svg { width: 100%; height: 100%; stroke-width: 1.6; }
 .stack-cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); }
+.stack-tools { display: flex; flex-direction: column; gap: 7px; }
+.stack-tool {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.005em;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.18s ease, transform 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+}
+.stack-tool::after {
+  content: "↗";
+  font-family: var(--sans);
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  color: var(--gold-bright);
+}
+.stack-tool:hover { color: var(--gold-bright); transform: translateX(2px); }
+.stack-tool:hover::after { opacity: 1; }
+.stack-tool.primary { color: var(--gold); font-size: 18px; }
+.stack-tool.primary:hover { color: var(--gold-bright); }
 .stack-item.featured {
   background: linear-gradient(135deg, var(--gold-glow), color-mix(in srgb, var(--gold) 4%, transparent));
   border-color: color-mix(in srgb, var(--gold) 35%, transparent);
 }
-.stack-item.featured .stack-name { color: var(--gold); }
 
 .approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .approach-quote {
@@ -677,18 +707,143 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
     </div>
     <p class="stack-intro reveal">The agency layer of the AI era runs on a handful of platforms doing extraordinary work. We compose them — not lock you into them — so you can <em>own the system</em> we build for you.</p>
     <div class="stack-grid reveal-stagger">
-      <div class="stack-item featured"><span class="stack-cat">AI Agents</span><span class="stack-name">Manus</span></div>
-      <div class="stack-item featured"><span class="stack-cat">Foundation Model</span><span class="stack-name">Anthropic Claude</span></div>
-      <div class="stack-item"><span class="stack-cat">Frontend</span><span class="stack-name">Next.js · React</span></div>
-      <div class="stack-item"><span class="stack-cat">Hosting</span><span class="stack-name">Vercel</span></div>
-      <div class="stack-item"><span class="stack-cat">Database</span><span class="stack-name">Postgres · Supabase</span></div>
-      <div class="stack-item"><span class="stack-cat">Voice &amp; Comms</span><span class="stack-name">Twilio · Vapi</span></div>
-      <div class="stack-item"><span class="stack-cat">Payments</span><span class="stack-name">Stripe</span></div>
-      <div class="stack-item"><span class="stack-cat">Auth</span><span class="stack-name">Clerk · Auth.js</span></div>
-      <div class="stack-item"><span class="stack-cat">Email</span><span class="stack-name">Resend · Postmark</span></div>
-      <div class="stack-item"><span class="stack-cat">Analytics</span><span class="stack-name">PostHog</span></div>
-      <div class="stack-item"><span class="stack-cat">Search · Vectors</span><span class="stack-name">Pinecone · Turbopuffer</span></div>
-      <div class="stack-item"><span class="stack-cat">Voice Synthesis</span><span class="stack-name">ElevenLabs</span></div>
+      <div class="stack-item featured">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.8L18 9.4l-4.4 1.6L12 16l-1.6-5L6 9.4l4.4-1.6z"/><path d="M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+          <span class="stack-cat">AI Agents</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://manus.im" target="_blank" rel="noopener noreferrer">Manus</a>
+          <a class="stack-tool" href="https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener noreferrer">Anthropic Skills</a>
+          <a class="stack-tool" href="https://platform.openai.com/docs/assistants" target="_blank" rel="noopener noreferrer">OpenAI Assistants</a>
+        </div>
+      </div>
+      <div class="stack-item featured">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
+          <span class="stack-cat">Foundation Models</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://claude.com" target="_blank" rel="noopener noreferrer">Anthropic Claude</a>
+          <a class="stack-tool" href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI GPT</a>
+          <a class="stack-tool" href="https://ollama.com" target="_blank" rel="noopener noreferrer">Llama · Qwen (local)</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></span>
+          <span class="stack-cat">Voice AI</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://vapi.ai" target="_blank" rel="noopener noreferrer">Vapi</a>
+          <a class="stack-tool" href="https://retellai.com" target="_blank" rel="noopener noreferrer">Retell</a>
+          <a class="stack-tool" href="https://bland.ai" target="_blank" rel="noopener noreferrer">Bland</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2M22 12h-2M6 8v8M10 5v14M14 5v14M18 8v8"/></svg></span>
+          <span class="stack-cat">Voice Synthesis</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">ElevenLabs</a>
+          <a class="stack-tool" href="https://cartesia.ai" target="_blank" rel="noopener noreferrer">Cartesia</a>
+          <a class="stack-tool" href="https://platform.openai.com/docs/guides/text-to-speech" target="_blank" rel="noopener noreferrer">OpenAI TTS</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><circle cx="5.5" cy="5.5" r="0.5" fill="currentColor"/><circle cx="8" cy="5.5" r="0.5" fill="currentColor"/></svg></span>
+          <span class="stack-cat">Frontend</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://nextjs.org" target="_blank" rel="noopener noreferrer">Next.js</a>
+          <a class="stack-tool" href="https://react.dev" target="_blank" rel="noopener noreferrer">React</a>
+          <a class="stack-tool" href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind</a>
+          <a class="stack-tool" href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
+          <span class="stack-cat">Hosting</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a>
+          <a class="stack-tool" href="https://railway.com" target="_blank" rel="noopener noreferrer">Railway</a>
+          <a class="stack-tool" href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6a9 3 0 0 0 18 0V5"/><path d="M3 11v6a9 3 0 0 0 18 0v-6"/></svg></span>
+          <span class="stack-cat">Database</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://postgresql.org" target="_blank" rel="noopener noreferrer">Postgres</a>
+          <a class="stack-tool" href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a>
+          <a class="stack-tool" href="https://neon.tech" target="_blank" rel="noopener noreferrer">Neon</a>
+          <a class="stack-tool" href="https://turso.tech" target="_blank" rel="noopener noreferrer">Turso</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="stack-cat">Comms</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://twilio.com" target="_blank" rel="noopener noreferrer">Twilio</a>
+          <a class="stack-tool" href="https://slack.com" target="_blank" rel="noopener noreferrer">Slack</a>
+          <a class="stack-tool" href="https://resend.com" target="_blank" rel="noopener noreferrer">Resend</a>
+          <a class="stack-tool" href="https://postmarkapp.com" target="_blank" rel="noopener noreferrer">Postmark</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
+          <span class="stack-cat">Payments</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://stripe.com" target="_blank" rel="noopener noreferrer">Stripe</a>
+          <a class="stack-tool" href="https://paddle.com" target="_blank" rel="noopener noreferrer">Paddle</a>
+          <a class="stack-tool" href="https://lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="stack-cat">Auth</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://clerk.com" target="_blank" rel="noopener noreferrer">Clerk</a>
+          <a class="stack-tool" href="https://authjs.dev" target="_blank" rel="noopener noreferrer">Auth.js</a>
+          <a class="stack-tool" href="https://supabase.com/auth" target="_blank" rel="noopener noreferrer">Supabase Auth</a>
+          <a class="stack-tool" href="https://workos.com" target="_blank" rel="noopener noreferrer">WorkOS</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+          <span class="stack-cat">Analytics</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://posthog.com" target="_blank" rel="noopener noreferrer">PostHog</a>
+          <a class="stack-tool" href="https://plausible.io" target="_blank" rel="noopener noreferrer">Plausible</a>
+          <a class="stack-tool" href="https://mixpanel.com" target="_blank" rel="noopener noreferrer">Mixpanel</a>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-header">
+          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+          <span class="stack-cat">Search · Vectors</span>
+        </div>
+        <div class="stack-tools">
+          <a class="stack-tool primary" href="https://pinecone.io" target="_blank" rel="noopener noreferrer">Pinecone</a>
+          <a class="stack-tool" href="https://turbopuffer.com" target="_blank" rel="noopener noreferrer">Turbopuffer</a>
+          <a class="stack-tool" href="https://algolia.com" target="_blank" rel="noopener noreferrer">Algolia</a>
+          <a class="stack-tool" href="https://meilisearch.com" target="_blank" rel="noopener noreferrer">Meilisearch</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
