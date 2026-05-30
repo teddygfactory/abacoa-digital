@@ -640,6 +640,10 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
               <label class="label" for="role">Your role <span class="optional">(optional)</span></label>
               <input type="text" id="role" name="role" class="input" placeholder="Founder · CEO · Ops Lead" autocomplete="organization-title" />
             </div>
+            <div class="field">
+              <label class="label" for="phone">Phone <span class="optional">(optional — lets us call you back fast)</span></label>
+              <input type="tel" id="phone" name="phone" class="input" placeholder="(555) 123-4567" autocomplete="tel" />
+            </div>
           </div>
         </div>
 
@@ -753,7 +757,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 
 <footer class="foot">
   <div class="container">
-    © 2026 Abacoa Digital LLC · Palm Beach, FL · <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
+    © 2026 Abacoa Digital LLC · Jupiter, FL · <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
   </div>
 </footer>
 
@@ -913,6 +917,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
       email:    document.getElementById('email').value.trim(),
       company:  document.getElementById('company').value.trim(),
       role:     document.getElementById('role').value.trim(),
+      phone:    document.getElementById('phone').value.trim(),
       services: services,
       budget:   (document.querySelector('input[name="budget"]:checked') || {}).value || '',
       timeline: (document.querySelector('input[name="timeline"]:checked') || {}).value || '',
@@ -931,6 +936,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
       `Email:    ${data.email}`,
       `Company:  ${data.company || '—'}`,
       `Role:     ${data.role || '—'}`,
+      `Phone:    ${data.phone || '—'}`,
       ``,
       `— Project —`,
       `Services: ${data.services.join(', ') || '—'}`,
@@ -964,6 +970,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
             message: buildEmailBody(data),
             extra: {
               role: data.role,
+              phone: data.phone,
               services: data.services,
               budget: data.budget,
               timeline: data.timeline,
