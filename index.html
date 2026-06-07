@@ -592,6 +592,51 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal, .reveal-stagger > * { opacity: 1; transform: none; }
 }
+
+.pr-sec{padding:90px 0;}
+.pr-wrap{max-width:var(--container,920px);margin:0 auto;padding:0 var(--gutter,32px);}
+.pr-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;justify-content:center;}
+.pr-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.pr-h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,44px);letter-spacing:-.01em;margin-bottom:8px;text-align:center;}
+.pr-lede{color:var(--text-dim);font-size:16px;max-width:600px;margin:0 auto 24px;text-align:center;}
+.pr-toprow{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:34px;}
+.pr-toggle{display:inline-flex;border:1px solid var(--border);border-radius:999px;padding:4px;background:var(--surface);}
+.pr-toggle button{font-family:var(--sans);font-size:13px;font-weight:500;border:none;background:transparent;color:var(--text-dim);padding:8px 18px;border-radius:999px;cursor:pointer;transition:all .2s;}
+.pr-toggle button.on{background:var(--gold);color:#1a1408;}
+.pr-save{font-family:var(--mono);font-size:11px;color:var(--gold);}
+.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;}
+.pr-plan{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:30px 26px;position:relative;display:flex;flex-direction:column;transition:border-color .2s,transform .2s,box-shadow .2s;}
+.pr-plan:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 20px 44px -20px rgba(212,175,55,.34);}
+.pr-plan.feat{border-color:var(--gold);}
+.pr-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#1a1408;padding:4px 14px;border-radius:999px;font-weight:500;white-space:nowrap;}
+.pr-plan h3{font-family:var(--serif);font-weight:400;font-size:25px;margin-bottom:4px;}
+.pr-blurb{font-size:13px;color:var(--text-mute);margin-bottom:18px;min-height:34px;}
+.pr-price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;}
+.pr-amt{font-family:var(--serif);font-size:42px;font-weight:500;}
+.pr-per{font-size:14px;color:var(--text-dim);}
+.pr-setup{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:20px;}
+.pr-setup s{color:var(--text-mute);opacity:.7;}
+.pr-setup .pr-waived{color:var(--gold);}
+.pr-list{list-style:none;margin:0 0 22px;padding:0;flex:1;}
+.pr-list li{font-size:14px;color:var(--text-dim);padding:8px 0 8px 26px;position:relative;border-top:1px solid var(--border-soft);}
+.pr-list li:first-child{border-top:none;}
+.pr-list li::before{content:"";position:absolute;left:3px;top:14px;width:9px;height:9px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);}
+.pr-cta{font-family:var(--sans);font-weight:500;font-size:14px;text-align:center;padding:13px;border-radius:999px;text-decoration:none;display:block;transition:all .2s;}
+.pr-cta.solid{background:var(--gold);color:#1a1408;box-shadow:0 14px 32px -14px rgba(212,175,55,.34);}
+.pr-cta.solid:hover{background:var(--gold-bright,#e8c558);}
+.pr-cta.ghost{background:transparent;border:1px solid var(--border);color:var(--text);}
+.pr-cta.ghost:hover{border-color:var(--gold);color:var(--gold);}
+.pr-projects{margin-top:50px;border-top:1px solid var(--border);padding-top:34px;}
+.pr-projects h4{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:4px;}
+.pr-psub{font-size:14px;color:var(--text-dim);margin-bottom:22px;}
+.pr-ptiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.pr-ptier{background:var(--bg-2);border:2px solid transparent;border-radius:10px;padding:18px;transition:border-color .2s,transform .2s;}
+.pr-ptier:hover{border-color:var(--gold);transform:translateY(-4px);}
+.pr-ptier .pr-t{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.pr-ptier .pr-r{font-family:var(--serif);font-size:20px;}
+.pr-ptier .pr-d{font-size:12.5px;color:var(--text-mute);margin-top:6px;line-height:1.5;}
+.pr-combo{margin-top:26px;font-size:14px;color:var(--text-dim);background:var(--bg-2);border-left:3px solid var(--gold);padding:14px 18px;}
+@media(max-width:780px){.pr-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;}.pr-plan{scroll-snap-align:center;}.pr-ptiers{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 
@@ -967,6 +1012,225 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
       </div>
     </div>
   </div>
+</section>
+
+<section id="pricing" class="pr-sec">
+  <div class="pr-wrap reveal">
+    <div class="pr-eyebrow">Pricing</div>
+    <h2 class="pr-h2">Simple plans. Real outcomes.</h2>
+    <p class="pr-lede">A monthly plan for AI that runs for you, or a one-time project for a finished build. Most clients do both.</p>
+    <div class="pr-toprow">
+      <div class="pr-toggle" id="prToggle"><button class="on" data-mode="monthly">Monthly</button><button data-mode="annual">Annual</button></div>
+      <span class="pr-save" id="prSave">Pay annually and we waive the setup fee.</span>
+    </div>
+    <div class="pr-grid">
+      <div class="pr-plan">
+        <h3>Starter</h3>
+        <div class="pr-blurb">Your first AI agent, set up right.</div>
+        <div class="pr-price"><span class="pr-amt">$299</span><span class="pr-per">/ mo</span></div>
+        <div class="pr-setup" data-setup="499">+ setup from $499</div>
+        <ul class="pr-list"><li>A live AI agent (voice or chat)</li><li>Monitoring + tuning so it keeps working</li><li>Ongoing build support</li><li>Monthly check-in</li><li>Private AI you own</li></ul>
+        <a class="pr-cta ghost" href="contact.html">Start here</a>
+      </div>
+      <div class="pr-plan feat">
+        <div class="pr-badge">Most popular</div>
+        <h3>Growth</h3>
+        <div class="pr-blurb">Agents and automations, working together.</div>
+        <div class="pr-price"><span class="pr-amt">$599</span><span class="pr-per">/ mo</span></div>
+        <div class="pr-setup" data-setup="999">+ setup from $999</div>
+        <ul class="pr-list"><li>Multiple agents (voice and chat)</li><li>Workflow automations included</li><li>Faster turnaround</li><li>Priority support</li><li>Private AI you own</li></ul>
+        <a class="pr-cta solid" href="contact.html">Choose Growth</a>
+      </div>
+      <div class="pr-plan">
+        <h3>Scale</h3>
+        <div class="pr-blurb">Run your operation on agents.</div>
+        <div class="pr-price"><span class="pr-amt">$1,499</span><span class="pr-per">/ mo</span></div>
+        <div class="pr-setup" data-setup="2500">+ setup from $2,500</div>
+        <ul class="pr-list"><li>Agents across voice, chat, and SMS</li><li>Ongoing build queue</li><li>Custom integrations</li><li>Dedicated strategy + monthly review</li><li>Private AI you own</li></ul>
+        <a class="pr-cta ghost" href="contact.html">Talk to us</a>
+      </div>
+    </div>
+    <div class="pr-projects">
+      <h4>One-time projects.</h4>
+      <div class="pr-psub">For builds with a finish line, a website, an MVP, a one-off automation or integration.</div>
+      <div class="pr-ptiers">
+        <div class="pr-ptier"><div class="pr-t">Starter build</div><div class="pr-r">$500 &ndash; $1K</div><div class="pr-d">One focused automation or a simple site.</div></div>
+        <div class="pr-ptier"><div class="pr-t">Standard</div><div class="pr-r">$1K &ndash; $5K</div><div class="pr-d">A real agent or site with integrations.</div></div>
+        <div class="pr-ptier"><div class="pr-t">Advanced</div><div class="pr-r">$5K &ndash; $10K</div><div class="pr-d">Multi-workflow systems, custom build.</div></div>
+        <div class="pr-ptier"><div class="pr-t">Custom</div><div class="pr-r">$10K+</div><div class="pr-d">Full apps and multi-agent systems. Starts at $10K.</div></div>
+      </div>
+      <div class="pr-combo">Build it once, then keep it running. Any project pairs with a managed plan, and annual plans get the setup fee waived.</div>
+    </div>
+  </div>
+  <script>(function(){var t=document.getElementById('prToggle'),s=document.getElementById('prSave');if(!t)return;t.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(t.children,function(x){x.classList.remove('on')});b.classList.add('on');var a=b.getAttribute('data-mode')==='annual';[].forEach.call(document.querySelectorAll('#pricing .pr-setup'),function(el){var v=el.getAttribute('data-setup');el.innerHTML=a?'<s>+ setup from 
+  <div class="container cta-inner reveal">
+    <div class="cta-eyebrow">Let's talk</div>
+    <h2 class="cta-title">Tell us what's <em>broken</em>,<br/>or what could be better.</h2>
+    <p class="cta-sub">A short qualifying form, then a real 30-minute call. No pitch deck, no pressure. You leave with a plan whether or not we end up working together.</p>
+    <a href="contact.html" class="btn btn-primary btn-lg">
+      Start a project
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="logo" aria-label="Abacoa Digital">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none">
+          <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M5 32 L17 8 L29 32"/>
+            <path d="M10 23 L24 23"/>
+            <path d="M17 8 Q34 8 34 20 Q34 32 29 32"/>
+          </g>
+        </svg>
+      </span>
+      <span class="logo-text">Abacoa <span>Digital</span></span>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Abacoa Digital LLC</span>
+      <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
+      <a href="contact.html">Start a project</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
+  const POSTHOG_KEY = '';
+  const POSTHOG_HOST = 'https://us.i.posthog.com';
+  if (POSTHOG_KEY) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
+    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
+    document.head.appendChild(s);
+    window.posthog = window.posthog || [];
+  }
+
+  const STORAGE_KEY = 'abacoa-theme';
+  const root = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    root.setAttribute('data-theme', 'light');
+  }
+
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
++v+'</s> &nbsp;<span class="pr-waived">waived</span>':'+ setup from 
+  <div class="container cta-inner reveal">
+    <div class="cta-eyebrow">Let's talk</div>
+    <h2 class="cta-title">Tell us what's <em>broken</em>,<br/>or what could be better.</h2>
+    <p class="cta-sub">A short qualifying form, then a real 30-minute call. No pitch deck, no pressure. You leave with a plan whether or not we end up working together.</p>
+    <a href="contact.html" class="btn btn-primary btn-lg">
+      Start a project
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="logo" aria-label="Abacoa Digital">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none">
+          <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M5 32 L17 8 L29 32"/>
+            <path d="M10 23 L24 23"/>
+            <path d="M17 8 Q34 8 34 20 Q34 32 29 32"/>
+          </g>
+        </svg>
+      </span>
+      <span class="logo-text">Abacoa <span>Digital</span></span>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Abacoa Digital LLC</span>
+      <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
+      <a href="contact.html">Start a project</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
+  const POSTHOG_KEY = '';
+  const POSTHOG_HOST = 'https://us.i.posthog.com';
+  if (POSTHOG_KEY) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
+    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
+    document.head.appendChild(s);
+    window.posthog = window.posthog || [];
+  }
+
+  const STORAGE_KEY = 'abacoa-theme';
+  const root = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    root.setAttribute('data-theme', 'light');
+  }
+
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
++v;});s.textContent=a?'Setup fee waived on annual plans.':'Pay annually and we waive the setup fee.';});})();</script>
 </section>
 
 <section id="contact" class="cta">
