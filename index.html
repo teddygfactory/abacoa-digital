@@ -1018,17 +1018,13 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   <div class="pr-wrap reveal">
     <div class="pr-eyebrow">Pricing</div>
     <h2 class="pr-h2">Simple plans. Real outcomes.</h2>
-    <p class="pr-lede">A monthly plan for AI that runs for you, or a one-time project for a finished build. Most clients do both.</p>
-    <div class="pr-toprow">
-      <div class="pr-toggle" id="prToggle"><button class="on" data-mode="monthly">Monthly</button><button data-mode="annual">Annual</button></div>
-      <span class="pr-save" id="prSave">Pay annually and we waive the setup fee.</span>
-    </div>
+    <p class="pr-lede">A monthly plan for AI that runs for you, or a one-time project for a finished build. Most clients do both, and annual plans get the setup fee waived.</p>
     <div class="pr-grid">
       <div class="pr-plan">
         <h3>Starter</h3>
         <div class="pr-blurb">Your first AI agent, set up right.</div>
         <div class="pr-price"><span class="pr-amt">$299</span><span class="pr-per">/ mo</span></div>
-        <div class="pr-setup" data-setup="499">+ setup from $499</div>
+        <div class="pr-setup">+ setup from $499</div>
         <ul class="pr-list"><li>A live AI agent (voice or chat)</li><li>Monitoring + tuning so it keeps working</li><li>Ongoing build support</li><li>Monthly check-in</li><li>Private AI you own</li></ul>
         <a class="pr-cta ghost" href="contact.html">Start here</a>
       </div>
@@ -1037,7 +1033,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <h3>Growth</h3>
         <div class="pr-blurb">Agents and automations, working together.</div>
         <div class="pr-price"><span class="pr-amt">$599</span><span class="pr-per">/ mo</span></div>
-        <div class="pr-setup" data-setup="999">+ setup from $999</div>
+        <div class="pr-setup">+ setup from $999</div>
         <ul class="pr-list"><li>Multiple agents (voice and chat)</li><li>Workflow automations included</li><li>Faster turnaround</li><li>Priority support</li><li>Private AI you own</li></ul>
         <a class="pr-cta solid" href="contact.html">Choose Growth</a>
       </div>
@@ -1045,7 +1041,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <h3>Scale</h3>
         <div class="pr-blurb">Run your operation on agents.</div>
         <div class="pr-price"><span class="pr-amt">$1,499</span><span class="pr-per">/ mo</span></div>
-        <div class="pr-setup" data-setup="2500">+ setup from $2,500</div>
+        <div class="pr-setup">+ setup from $2,500</div>
         <ul class="pr-list"><li>Agents across voice, chat, and SMS</li><li>Ongoing build queue</li><li>Custom integrations</li><li>Dedicated strategy + monthly review</li><li>Private AI you own</li></ul>
         <a class="pr-cta ghost" href="contact.html">Talk to us</a>
       </div>
@@ -1062,175 +1058,6 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
       <div class="pr-combo">Build it once, then keep it running. Any project pairs with a managed plan, and annual plans get the setup fee waived.</div>
     </div>
   </div>
-  <script>(function(){var t=document.getElementById('prToggle'),s=document.getElementById('prSave');if(!t)return;t.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(t.children,function(x){x.classList.remove('on')});b.classList.add('on');var a=b.getAttribute('data-mode')==='annual';[].forEach.call(document.querySelectorAll('#pricing .pr-setup'),function(el){var v=el.getAttribute('data-setup');el.innerHTML=a?'<s>+ setup from 
-  <div class="container cta-inner reveal">
-    <div class="cta-eyebrow">Let's talk</div>
-    <h2 class="cta-title">Tell us what's <em>broken</em>,<br/>or what could be better.</h2>
-    <p class="cta-sub">A short qualifying form, then a real 30-minute call. No pitch deck, no pressure. You leave with a plan whether or not we end up working together.</p>
-    <a href="contact.html" class="btn btn-primary btn-lg">
-      Start a project
-      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="logo" aria-label="Abacoa Digital">
-      <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" fill="none">
-          <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path d="M5 32 L17 8 L29 32"/>
-            <path d="M10 23 L24 23"/>
-            <path d="M17 8 Q34 8 34 20 Q34 32 29 32"/>
-          </g>
-        </svg>
-      </span>
-      <span class="logo-text">Abacoa <span>Digital</span></span>
-    </div>
-    <div class="footer-meta">
-      <span>© 2026 Abacoa Digital LLC</span>
-      <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
-      <a href="contact.html">Start a project</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
-  const POSTHOG_KEY = '';
-  const POSTHOG_HOST = 'https://us.i.posthog.com';
-  if (POSTHOG_KEY) {
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
-    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
-    document.head.appendChild(s);
-    window.posthog = window.posthog || [];
-  }
-
-  const STORAGE_KEY = 'abacoa-theme';
-  const root = document.documentElement;
-  const toggle = document.getElementById('themeToggle');
-
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'light' || stored === 'dark') {
-    root.setAttribute('data-theme', stored);
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    root.setAttribute('data-theme', 'light');
-  }
-
-  toggle.addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem(STORAGE_KEY, next);
-  });
-
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 24) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
-</script>
-</body>
-</html>
-+v+'</s> &nbsp;<span class="pr-waived">waived</span>':'+ setup from 
-  <div class="container cta-inner reveal">
-    <div class="cta-eyebrow">Let's talk</div>
-    <h2 class="cta-title">Tell us what's <em>broken</em>,<br/>or what could be better.</h2>
-    <p class="cta-sub">A short qualifying form, then a real 30-minute call. No pitch deck, no pressure. You leave with a plan whether or not we end up working together.</p>
-    <a href="contact.html" class="btn btn-primary btn-lg">
-      Start a project
-      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="logo" aria-label="Abacoa Digital">
-      <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" fill="none">
-          <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path d="M5 32 L17 8 L29 32"/>
-            <path d="M10 23 L24 23"/>
-            <path d="M17 8 Q34 8 34 20 Q34 32 29 32"/>
-          </g>
-        </svg>
-      </span>
-      <span class="logo-text">Abacoa <span>Digital</span></span>
-    </div>
-    <div class="footer-meta">
-      <span>© 2026 Abacoa Digital LLC</span>
-      <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
-      <a href="contact.html">Start a project</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
-  const POSTHOG_KEY = '';
-  const POSTHOG_HOST = 'https://us.i.posthog.com';
-  if (POSTHOG_KEY) {
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
-    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
-    document.head.appendChild(s);
-    window.posthog = window.posthog || [];
-  }
-
-  const STORAGE_KEY = 'abacoa-theme';
-  const root = document.documentElement;
-  const toggle = document.getElementById('themeToggle');
-
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'light' || stored === 'dark') {
-    root.setAttribute('data-theme', stored);
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    root.setAttribute('data-theme', 'light');
-  }
-
-  toggle.addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem(STORAGE_KEY, next);
-  });
-
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 24) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
-</script>
-</body>
-</html>
-+v;});s.textContent=a?'Setup fee waived on annual plans.':'Pay annually and we waive the setup fee.';});})();</script>
 </section>
 
 <section id="contact" class="cta">
