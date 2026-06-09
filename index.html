@@ -1019,6 +1019,33 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
     <div class="pr-eyebrow">Pricing</div>
     <h2 class="pr-h2">Simple plans. Real outcomes.</h2>
     <p class="pr-lede">A monthly plan for AI that runs for you, or a one-time project for a finished build. Most clients do both, and annual plans get the setup fee waived.</p>
+    <div class="pr-billing" style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px auto 30px;">
+      <div id="prToggle" style="display:inline-flex;border:1px solid var(--border,#2a3346);border-radius:999px;padding:4px;background:var(--surface,#1a2030);">
+        <button type="button" data-mode="monthly" class="on" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:#d4af37;color:#0e1218;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Monthly</button>
+        <button type="button" data-mode="annual" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:transparent;color:#c0b8a5;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Annual</button>
+      </div>
+      <span id="prSaveNote" style="font:500 11px var(--mono,'JetBrains Mono',monospace);color:#d4af37;letter-spacing:.04em;">Pay annually and we waive the setup fee.</span>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var t = document.getElementById('prToggle'); if (!t) return;
+      var note = document.getElementById('prSaveNote');
+      var setups = [].slice.call(document.querySelectorAll('.pr-setup'));
+      setups.forEach(function (el) { el.setAttribute('data-orig', el.innerHTML); });
+      t.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-mode]'); if (!b) return;
+        [].forEach.call(t.children, function (x) { x.classList.remove('on'); x.style.background = 'transparent'; x.style.color = '#c0b8a5'; });
+        b.classList.add('on'); b.style.background = '#d4af37'; b.style.color = '#0e1218';
+        var annual = b.getAttribute('data-mode') === 'annual';
+        setups.forEach(function (el) {
+          el.innerHTML = annual
+            ? '<s style="color:#7d7565;opacity:.7;">' + el.getAttribute('data-orig') + '</s> &nbsp;<span style="color:#d4af37;">waived</span>'
+            : el.getAttribute('data-orig');
+        });
+        if (note) note.textContent = annual ? 'Setup fee waived on annual plans.' : 'Pay annually and we waive the setup fee.';
+      });
+    });
+    </script>
     <div class="pr-grid">
       <div class="pr-plan">
         <h3>Starter</h3>
