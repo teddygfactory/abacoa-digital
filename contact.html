@@ -501,6 +501,20 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 .btn-primary:active { transform: translateY(0); }
 .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+/* Consent microcopy under submit */
+.consent {
+  margin-top: 16px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-mute);
+  text-align: right;
+  max-width: 62ch;
+  margin-left: auto;
+}
+.consent a { color: var(--text-dim); text-decoration: underline; }
+.consent a:hover { color: var(--gold); }
+@media (max-width: 600px) { .consent { text-align: left; } }
+
 /* Success state */
 .success {
   display: none;
@@ -555,6 +569,18 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 </style>
+
+<!-- Meta Pixel Code — set FB_PIXEL_ID to your Meta Pixel ID to activate (inert until then) -->
+<script>
+(function () {
+  var FB_PIXEL_ID = 'FB_PIXEL_ID'; /* ← replace with your numeric Pixel ID, e.g. '123456789012345' */
+  if (!/^\d+$/.test(FB_PIXEL_ID)) return; /* stays inert until a real ID is set */
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', FB_PIXEL_ID);
+  fbq('track', 'PageView');
+})();
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -592,9 +618,9 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
       <span class="dot"></span>
       <span>Project intake</span>
     </div>
-    <h1 class="page-title">Tell us what you're <em>building.</em></h1>
+    <h1 class="page-title">Tell us what you'd <em>fix.</em></h1>
     <p class="page-sub">
-      Four short steps. Two minutes. We'll get back within one business day with a concrete plan and the next available time on the calendar.
+      One minute. Your name, the best way to reach you, and the main thing you'd want handled. We'll get back within one business day with a concrete next step.
     </p>
   </div>
 </section>
@@ -603,20 +629,11 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
   <div class="container">
     <div class="form-card">
 
-      <div class="progress" id="progress">
-        <div class="progress-meta">
-          <span><span id="stepNum">1</span> / 4</span>
-          <span class="step-name" id="stepName">Who you are</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 25%"></div></div>
-      </div>
-
       <form id="contactForm" novalidate>
 
-        <!-- ============ STEP 1: IDENTITY ============ -->
-        <div class="step active" data-step="1" data-name="Who you are">
-          <h2>First, who's <em>asking?</em></h2>
-          <p class="step-desc">The basics so we know who's reaching out and how to get back to you.</p>
+        <div class="step active">
+          <h2>Who's <em>asking</em>, and what would you fix?</h2>
+          <p class="step-desc">The basics, plus the one thing you'd most want handled. We'll sort out the details together on a quick call.</p>
 
           <div class="field-row">
             <div class="field">
@@ -631,103 +648,38 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
             </div>
           </div>
 
-          <div class="field-row">
-            <div class="field">
-              <label class="label" for="company">Company <span class="optional">(optional)</span></label>
-              <input type="text" id="company" name="company" class="input" placeholder="Acme Inc." autocomplete="organization" />
-            </div>
-            <div class="field">
-              <label class="label" for="role">Your role <span class="optional">(optional)</span></label>
-              <input type="text" id="role" name="role" class="input" placeholder="Founder · CEO · Ops Lead" autocomplete="organization-title" />
-            </div>
-            <div class="field">
-              <label class="label" for="phone">Phone <span class="optional">(optional — lets us call you back fast)</span></label>
-              <input type="tel" id="phone" name="phone" class="input" placeholder="(555) 123-4567" autocomplete="tel" />
-            </div>
-          </div>
-        </div>
-
-        <!-- ============ STEP 2: SERVICES ============ -->
-        <div class="step" data-step="2" data-name="What you need">
-          <h2>What do you need <em>help with?</em></h2>
-          <p class="step-desc">Pick everything that applies. We'll figure out the right combination together — this just helps us prep.</p>
-
           <div class="field">
-            <div class="chips" id="serviceChips">
-              <label class="chip"><input type="checkbox" name="services" value="AI Agents & Automation" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>AI agents &amp; automation</label>
-              <label class="chip"><input type="checkbox" name="services" value="Web & App Development" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Web &amp; app development</label>
-              <label class="chip"><input type="checkbox" name="services" value="Customer Engagement" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Customer engagement (SMS, voice, chat)</label>
-              <label class="chip"><input type="checkbox" name="services" value="Data & Analytics" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Data &amp; analytics</label>
-              <label class="chip"><input type="checkbox" name="services" value="Brand & Digital Presence" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Brand &amp; digital presence</label>
-              <label class="chip"><input type="checkbox" name="services" value="Workflow Systems" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Workflow &amp; internal tools</label>
-              <label class="chip"><input type="checkbox" name="services" value="Not Sure Yet" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Not sure yet</label>
-            </div>
-            <div class="field-error" id="servicesError">Pick at least one option.</div>
-          </div>
-        </div>
-
-        <!-- ============ STEP 3: SCOPE ============ -->
-        <div class="step" data-step="3" data-name="Scope">
-          <h2>What's the <em>scope?</em></h2>
-          <p class="step-desc">Honest answers help us tell you fast whether we're a fit. No wrong answers — just real ones.</p>
-
-          <div class="field">
-            <label class="label">Budget range <span class="req">●</span></label>
-            <div class="radio-grid" id="budgetGrid">
-              <label class="radio-card"><input type="radio" name="budget" value="Under $10K" required /><span class="rc-label">Under $10K</span><span class="rc-meta">Small project</span></label>
-              <label class="radio-card"><input type="radio" name="budget" value="$10K – $25K" /><span class="rc-label">$10K – $25K</span><span class="rc-meta">Focused build</span></label>
-              <label class="radio-card"><input type="radio" name="budget" value="$25K – $75K" /><span class="rc-label">$25K – $75K</span><span class="rc-meta">Full system</span></label>
-              <label class="radio-card"><input type="radio" name="budget" value="$75K+" /><span class="rc-label">$75K+</span><span class="rc-meta">Multi-phase</span></label>
-              <label class="radio-card"><input type="radio" name="budget" value="Not sure yet" /><span class="rc-label">Not sure</span><span class="rc-meta">We'll help scope</span></label>
-            </div>
-            <div class="field-error">Pick a budget range so we can plan accordingly.</div>
+            <label class="label" for="phone">Phone <span class="optional">(optional — lets us call you back fast)</span></label>
+            <input type="tel" id="phone" name="phone" class="input" placeholder="(555) 123-4567" autocomplete="tel" />
           </div>
 
           <div class="field">
-            <label class="label">Timeline <span class="req">●</span></label>
-            <div class="radio-grid" id="timelineGrid">
-              <label class="radio-card"><input type="radio" name="timeline" value="ASAP / urgent" required /><span class="rc-label">ASAP</span><span class="rc-meta">Urgent</span></label>
-              <label class="radio-card"><input type="radio" name="timeline" value="1–3 months" /><span class="rc-label">1–3 months</span><span class="rc-meta">Near-term</span></label>
-              <label class="radio-card"><input type="radio" name="timeline" value="3–6 months" /><span class="rc-label">3–6 months</span><span class="rc-meta">Planned</span></label>
-              <label class="radio-card"><input type="radio" name="timeline" value="Just exploring" /><span class="rc-label">Just exploring</span><span class="rc-meta">Early stage</span></label>
+            <label class="label">What's the main thing you'd fix? <span class="optional">(pick any that fit)</span></label>
+            <div class="chips" id="fixChips">
+              <label class="chip"><input type="checkbox" name="mainfix" value="After-hours calls" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>After-hours calls</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Calls during jobs" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Calls during jobs</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Slow follow-up" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Slow follow-up</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="A website" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>A website</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Other" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Other</label>
             </div>
-            <div class="field-error">Pick a timeline so we can be honest about availability.</div>
-          </div>
-        </div>
-
-        <!-- ============ STEP 4: DETAILS ============ -->
-        <div class="step" data-step="4" data-name="Details">
-          <h2>Last thing — <em>tell us more.</em></h2>
-          <p class="step-desc">The more specific, the better. What's the actual problem? What does success look like? Anything we should know going in.</p>
-
-          <div class="field">
-            <label class="label" for="details">Project details <span class="req">●</span></label>
-            <textarea id="details" name="details" class="textarea" placeholder="We run a small HVAC company in South Florida. Half our leads come in after hours and we miss them. Looking for an AI voice agent that can take the call, qualify the job, and text our dispatcher with a summary..." required></textarea>
-            <div class="field-error">Tell us a bit about what you're trying to do (50+ characters).</div>
           </div>
 
           <div class="field">
-            <label class="label" for="website">Current website / relevant link <span class="optional">(optional)</span></label>
-            <input type="url" id="website" name="website" class="input" placeholder="https://yourcompany.com" inputmode="url" autocomplete="url" />
-          </div>
-
-          <div class="field">
-            <label class="label" for="referral">How did you hear about us? <span class="optional">(optional)</span></label>
-            <input type="text" id="referral" name="referral" class="input" placeholder="Google, referral from a friend, social, etc." />
+            <label class="label" for="details">Anything else? <span class="optional">(optional)</span></label>
+            <textarea id="details" name="details" class="textarea" style="min-height:96px;" placeholder="A sentence on what's going on is plenty — e.g. we miss half our leads after hours."></textarea>
           </div>
         </div>
 
         <!-- Action bar -->
-        <div class="actions" id="actions">
-          <button type="button" class="btn btn-back" id="btnBack" disabled>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Back
-          </button>
-          <button type="button" class="btn btn-primary" id="btnNext">
-            <span id="btnNextLabel">Continue</span>
+        <div class="actions" id="actions" style="justify-content:flex-end;">
+          <button type="button" class="btn btn-primary" id="btnSubmit">
+            <span id="btnSubmitLabel">Send it</span>
             <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </div>
+        <p class="consent">
+          By submitting, you agree to be contacted by phone, email, or text. Reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a>.
+        </p>
       </form>
 
       <!-- Success state -->
@@ -757,7 +709,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 
 <footer class="foot">
   <div class="container">
-    © 2026 Abacoa Digital LLC · Jupiter, FL · <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
+    © 2026 Abacoa Digital LLC · Jupiter, FL · <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms</a>
   </div>
 </footer>
 
@@ -813,117 +765,61 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
     localStorage.setItem(STORAGE_KEY, next);
   });
 
-  // Multi-step controller
-  const steps = document.querySelectorAll('.step');
-  const totalSteps = steps.length;
-  let current = 1;
-
-  const stepNumEl = document.getElementById('stepNum');
-  const stepNameEl = document.getElementById('stepName');
-  const progressFill = document.getElementById('progressFill');
-  const btnBack = document.getElementById('btnBack');
-  const btnNext = document.getElementById('btnNext');
-  const btnNextLabel = document.getElementById('btnNextLabel');
+  // Single-step submit controller
   const form = document.getElementById('contactForm');
   const actions = document.getElementById('actions');
   const success = document.getElementById('success');
-
-  function showStep(n) {
-    steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === n));
-    const active = document.querySelector(`.step[data-step="${n}"]`);
-    stepNumEl.textContent = n;
-    stepNameEl.textContent = active.dataset.name;
-    progressFill.style.width = (n / totalSteps * 100) + '%';
-    btnBack.disabled = n === 1;
-    btnNextLabel.textContent = n === totalSteps ? 'Send it' : 'Continue';
-    window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
-  }
+  const btnSubmit = document.getElementById('btnSubmit');
+  const btnSubmitLabel = document.getElementById('btnSubmitLabel');
 
   function clearError(field) {
-    field.classList.remove('has-error');
+    if (field) field.classList.remove('has-error');
   }
   function showError(field) {
-    field.classList.add('has-error');
+    if (field) field.classList.add('has-error');
   }
 
-  function validateStep(n) {
+  function validate() {
     let valid = true;
-    if (n === 1) {
-      const nameField = document.getElementById('name').closest('.field');
-      const emailField = document.getElementById('email').closest('.field');
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!name) { showError(nameField); valid = false; } else clearError(nameField);
-      if (!emailOk) { showError(emailField); valid = false; } else clearError(emailField);
-    }
-    if (n === 2) {
-      const checked = document.querySelectorAll('input[name="services"]:checked').length;
-      const errEl = document.getElementById('servicesError');
-      if (checked === 0) {
-        errEl.style.display = 'block';
-        valid = false;
-      } else {
-        errEl.style.display = 'none';
-      }
-    }
-    if (n === 3) {
-      const budget = document.querySelector('input[name="budget"]:checked');
-      const timeline = document.querySelector('input[name="timeline"]:checked');
-      const budgetField = document.getElementById('budgetGrid').closest('.field');
-      const timelineField = document.getElementById('timelineGrid').closest('.field');
-      if (!budget) { showError(budgetField); valid = false; } else clearError(budgetField);
-      if (!timeline) { showError(timelineField); valid = false; } else clearError(timelineField);
-    }
-    if (n === 4) {
-      const details = document.getElementById('details').value.trim();
-      const detailsField = document.getElementById('details').closest('.field');
-      if (details.length < 50) { showError(detailsField); valid = false; } else clearError(detailsField);
-    }
+    const nameField = document.getElementById('name').closest('.field');
+    const emailField = document.getElementById('email').closest('.field');
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name) { showError(nameField); valid = false; } else clearError(nameField);
+    if (!emailOk) { showError(emailField); valid = false; } else clearError(emailField);
     return valid;
   }
 
-  btnBack.addEventListener('click', () => {
-    if (current > 1) { current--; showStep(current); }
-  });
-
-  btnNext.addEventListener('click', async () => {
-    if (!validateStep(current)) return;
-    if (current < totalSteps) {
-      current++;
-      showStep(current);
-    } else {
-      await submitForm();
-    }
-  });
-
-  // Clear errors as user types/selects
+  // Clear errors as the user types
   form.addEventListener('input', (e) => {
     const f = e.target.closest('.field');
     if (f) clearError(f);
-    if (e.target.name === 'services') {
-      document.getElementById('servicesError').style.display = 'none';
-    }
   });
-  form.addEventListener('change', (e) => {
-    const f = e.target.closest('.field');
-    if (f) clearError(f);
+
+  btnSubmit.addEventListener('click', async () => {
+    if (!validate()) {
+      const firstErr = document.querySelector('.field.has-error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    await submitForm();
   });
 
   function collectData() {
-    const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(i => i.value);
+    const mainfix = Array.from(document.querySelectorAll('input[name="mainfix"]:checked')).map(i => i.value);
     return {
       name:     document.getElementById('name').value.trim(),
       email:    document.getElementById('email').value.trim(),
-      company:  document.getElementById('company').value.trim(),
-      role:     document.getElementById('role').value.trim(),
+      company:  '',
+      role:     '',
       phone:    document.getElementById('phone').value.trim(),
-      services: services,
-      budget:   (document.querySelector('input[name="budget"]:checked') || {}).value || '',
-      timeline: (document.querySelector('input[name="timeline"]:checked') || {}).value || '',
+      services: mainfix,
+      budget:   '',
+      timeline: '',
       details:  document.getElementById('details').value.trim(),
-      website:  document.getElementById('website').value.trim(),
-      referral: document.getElementById('referral').value.trim(),
+      website:  '',
+      referral: '',
     };
   }
 
@@ -931,30 +827,22 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
     return [
       `New project inquiry from ${data.name}`,
       ``,
-      `— Identity —`,
-      `Name:     ${data.name}`,
-      `Email:    ${data.email}`,
-      `Company:  ${data.company || '—'}`,
-      `Role:     ${data.role || '—'}`,
-      `Phone:    ${data.phone || '—'}`,
+      `— Contact —`,
+      `Name:  ${data.name}`,
+      `Email: ${data.email}`,
+      `Phone: ${data.phone || '—'}`,
       ``,
-      `— Project —`,
-      `Services: ${data.services.join(', ') || '—'}`,
-      `Budget:   ${data.budget}`,
-      `Timeline: ${data.timeline}`,
+      `— Main thing to fix —`,
+      data.services.join(', ') || '—',
       ``,
-      `— Details —`,
-      data.details,
-      ``,
-      `— Other —`,
-      `Website:  ${data.website || '—'}`,
-      `Referral: ${data.referral || '—'}`,
+      `— Notes —`,
+      data.details || '—',
     ].join('\n');
   }
 
   async function submitForm() {
-    btnNext.disabled = true;
-    btnNextLabel.textContent = 'Sending…';
+    btnSubmit.disabled = true;
+    btnSubmitLabel.textContent = 'Sending…';
     const data = collectData();
 
     // Primary path: Vercel proxy forwards to the agent on Railway
@@ -1002,7 +890,8 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
   function showSuccess() {
     form.style.display = 'none';
     actions.style.display = 'none';
-    document.getElementById('progress').style.display = 'none';
+    const consent = document.querySelector('.consent');
+    if (consent) consent.style.display = 'none';
     success.classList.add('active');
     if (BOOKING_URL) {
       const bookingLink = document.getElementById('bookingLink');

@@ -417,24 +417,20 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 }
 @media (max-width: 720px) { .section-head { grid-template-columns: 1fr; gap: 24px; } }
 
-.cap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1px;
-  background: var(--border-soft);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
+.cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 920px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .cap-grid { grid-template-columns: 1fr; } }
 .cap {
-  background: var(--bg);
-  padding: 40px 36px 44px;
-  position: relative;
-  transition: background 0.3s ease;
-  min-height: 280px;
+  background: var(--bg); border: 1px solid var(--border-soft); border-radius: var(--radius);
+  padding: 36px 32px 40px; position: relative; min-height: 280px;
   display: flex; flex-direction: column;
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease;
 }
-.cap:hover { background: var(--bg-2); }
+.cap::before { content:""; position:absolute; left:0; top:0; height:2px; width:0;
+  background: var(--gold); border-radius: var(--radius) var(--radius) 0 0; transition: width .3s ease; }
+.cap:hover { background: var(--bg-2); transform: translateY(-6px); border-color: var(--gold);
+  box-shadow: 0 18px 44px rgba(0,0,0,.45); }
+.cap:hover::before { width: 100%; }
 .cap-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-mute); margin-bottom: 36px; }
 .cap-icon { width: 38px; height: 38px; margin-bottom: 28px; color: var(--gold); }
 .cap-icon svg { width: 100%; height: 100%; stroke-width: 1.5; }
@@ -638,6 +634,18 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 .pr-combo{margin-top:26px;font-size:14px;color:var(--text-dim);background:var(--bg-2);border-left:3px solid var(--gold);padding:14px 18px;}
 @media(max-width:780px){.pr-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;}.pr-plan{scroll-snap-align:center;}.pr-ptiers{grid-template-columns:1fr 1fr;}}
 </style>
+
+<!-- Meta Pixel Code — set FB_PIXEL_ID to your Meta Pixel ID to activate (inert until then) -->
+<script>
+(function () {
+  var FB_PIXEL_ID = 'FB_PIXEL_ID'; /* ← replace with your numeric Pixel ID, e.g. '123456789012345' */
+  if (!/^\d+$/.test(FB_PIXEL_ID)) return; /* stays inert until a real ID is set */
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', FB_PIXEL_ID);
+  fbq('track', 'PageView');
+})();
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -659,7 +667,6 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
-      <li><a href="#stack">Stack</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#approach">Approach</a></li>
     </ul>
@@ -770,6 +777,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="cap-tags"><span class="cap-tag">Internal Tools</span><span class="cap-tag">Integrations</span><span class="cap-tag">Ops</span></div>
       </article>
     </div>
+    <p class="stack-intro reveal" style="margin-top:52px;margin-bottom:0;font-size:clamp(18px,2vw,22px);">Built on best-in-class AI and infrastructure, composed for reliability — and <em>the system we build is yours to keep.</em></p>
   </div>
 </section>
 
@@ -807,165 +815,13 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   </div>
 </section>
 
-<section id="stack">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-num">03 · Stack</span>
-      <div>
-        <h2 class="section-title">Built on the <em>right</em> tools.</h2>
-        <p class="section-lede">We're opinionated about the toolchain because the tools matter. These are what we reach for when reliability, speed, and your future maintainability all have to be true at once.</p>
-      </div>
-    </div>
-    <p class="stack-intro reveal">The agency layer of the AI era runs on a handful of platforms doing extraordinary work. We compose them, not lock you into them, so you can <em>own the system</em> we build for you.</p>
-    <div class="stack-grid reveal-stagger">
-      <div class="stack-item featured">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.8L18 9.4l-4.4 1.6L12 16l-1.6-5L6 9.4l4.4-1.6z"/><path d="M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
-          <span class="stack-cat">AI Agents</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://manus.im" target="_blank" rel="noopener noreferrer">Manus</a>
-          <a class="stack-tool" href="https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener noreferrer">Anthropic Skills</a>
-          <a class="stack-tool" href="https://platform.openai.com/docs/assistants" target="_blank" rel="noopener noreferrer">OpenAI Assistants</a>
-        </div>
-      </div>
-      <div class="stack-item featured">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
-          <span class="stack-cat">Foundation Models</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://claude.com" target="_blank" rel="noopener noreferrer">Anthropic Claude</a>
-          <a class="stack-tool" href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI GPT</a>
-          <a class="stack-tool" href="https://ollama.com" target="_blank" rel="noopener noreferrer">Llama · Qwen (local)</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></span>
-          <span class="stack-cat">Voice AI</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://vapi.ai" target="_blank" rel="noopener noreferrer">Vapi</a>
-          <a class="stack-tool" href="https://retellai.com" target="_blank" rel="noopener noreferrer">Retell</a>
-          <a class="stack-tool" href="https://bland.ai" target="_blank" rel="noopener noreferrer">Bland</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2M22 12h-2M6 8v8M10 5v14M14 5v14M18 8v8"/></svg></span>
-          <span class="stack-cat">Voice Synthesis</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">ElevenLabs</a>
-          <a class="stack-tool" href="https://cartesia.ai" target="_blank" rel="noopener noreferrer">Cartesia</a>
-          <a class="stack-tool" href="https://platform.openai.com/docs/guides/text-to-speech" target="_blank" rel="noopener noreferrer">OpenAI TTS</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><circle cx="5.5" cy="5.5" r="0.5" fill="currentColor"/><circle cx="8" cy="5.5" r="0.5" fill="currentColor"/></svg></span>
-          <span class="stack-cat">Frontend</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://nextjs.org" target="_blank" rel="noopener noreferrer">Next.js</a>
-          <a class="stack-tool" href="https://react.dev" target="_blank" rel="noopener noreferrer">React</a>
-          <a class="stack-tool" href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind</a>
-          <a class="stack-tool" href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
-          <span class="stack-cat">Hosting</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a>
-          <a class="stack-tool" href="https://railway.com" target="_blank" rel="noopener noreferrer">Railway</a>
-          <a class="stack-tool" href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6a9 3 0 0 0 18 0V5"/><path d="M3 11v6a9 3 0 0 0 18 0v-6"/></svg></span>
-          <span class="stack-cat">Database</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://postgresql.org" target="_blank" rel="noopener noreferrer">Postgres</a>
-          <a class="stack-tool" href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a>
-          <a class="stack-tool" href="https://neon.tech" target="_blank" rel="noopener noreferrer">Neon</a>
-          <a class="stack-tool" href="https://turso.tech" target="_blank" rel="noopener noreferrer">Turso</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-          <span class="stack-cat">Comms</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://twilio.com" target="_blank" rel="noopener noreferrer">Twilio</a>
-          <a class="stack-tool" href="https://slack.com" target="_blank" rel="noopener noreferrer">Slack</a>
-          <a class="stack-tool" href="https://resend.com" target="_blank" rel="noopener noreferrer">Resend</a>
-          <a class="stack-tool" href="https://postmarkapp.com" target="_blank" rel="noopener noreferrer">Postmark</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
-          <span class="stack-cat">Payments</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://stripe.com" target="_blank" rel="noopener noreferrer">Stripe</a>
-          <a class="stack-tool" href="https://paddle.com" target="_blank" rel="noopener noreferrer">Paddle</a>
-          <a class="stack-tool" href="https://lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          <span class="stack-cat">Auth</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://clerk.com" target="_blank" rel="noopener noreferrer">Clerk</a>
-          <a class="stack-tool" href="https://authjs.dev" target="_blank" rel="noopener noreferrer">Auth.js</a>
-          <a class="stack-tool" href="https://supabase.com/auth" target="_blank" rel="noopener noreferrer">Supabase Auth</a>
-          <a class="stack-tool" href="https://workos.com" target="_blank" rel="noopener noreferrer">WorkOS</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-          <span class="stack-cat">Analytics</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://posthog.com" target="_blank" rel="noopener noreferrer">PostHog</a>
-          <a class="stack-tool" href="https://plausible.io" target="_blank" rel="noopener noreferrer">Plausible</a>
-          <a class="stack-tool" href="https://mixpanel.com" target="_blank" rel="noopener noreferrer">Mixpanel</a>
-        </div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-header">
-          <span class="stack-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-          <span class="stack-cat">Search · Vectors</span>
-        </div>
-        <div class="stack-tools">
-          <a class="stack-tool primary" href="https://pinecone.io" target="_blank" rel="noopener noreferrer">Pinecone</a>
-          <a class="stack-tool" href="https://turbopuffer.com" target="_blank" rel="noopener noreferrer">Turbopuffer</a>
-          <a class="stack-tool" href="https://algolia.com" target="_blank" rel="noopener noreferrer">Algolia</a>
-          <a class="stack-tool" href="https://meilisearch.com" target="_blank" rel="noopener noreferrer">Meilisearch</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="work">
   <div class="container">
     <div class="section-head reveal">
-      <span class="section-num">04 · Work</span>
+      <span class="section-num">03 · Work</span>
       <div>
         <h2 class="section-title">What we've <em>shipped.</em></h2>
-        <p class="section-lede">We don't ask you to take our word for it. Here's what we've built end to end. Same standards, same playbook, applied to your business.</p>
+        <p class="section-lede">These are products we've built and funded ourselves — the same standards, testing, and discipline we bring to client work. Proof of craft, not a client roster.</p>
       </div>
     </div>
     <div class="cap-grid reveal-stagger">
@@ -998,7 +854,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 <section id="approach">
   <div class="container">
     <div class="section-head reveal">
-      <span class="section-num">05 · Approach</span>
+      <span class="section-num">04 · Approach</span>
       <div><h2 class="section-title">Quality is the <em>whole point.</em></h2></div>
     </div>
     <div class="approach-grid">
@@ -1018,7 +874,19 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   <div class="pr-wrap reveal">
     <div class="pr-eyebrow">Pricing</div>
     <h2 class="pr-h2">Simple plans. Real outcomes.</h2>
-    <p class="pr-lede">A monthly plan for AI that runs for you, or a one-time project for a finished build. Most clients do both, and annual plans get the setup fee waived.</p>
+    <p class="pr-lede">Start with a one-time project for a finished build, or a monthly plan for AI that runs for you. Most clients do both, and annual plans get the setup fee waived.</p>
+
+    <div class="pr-projects" style="margin-top:0;border-top:none;padding-top:0;margin-bottom:44px;">
+      <h4>One-time projects.</h4>
+      <div class="pr-psub">The lowest-friction way to start — a website, an MVP, a one-off automation or integration, with a clear finish line.</div>
+      <div class="pr-ptiers">
+        <div class="pr-ptier"><div class="pr-t">Starter build</div><div class="pr-r">$500 &ndash; $1K</div><div class="pr-d">One focused automation or a simple site.</div></div>
+        <div class="pr-ptier"><div class="pr-t">Standard</div><div class="pr-r">$1K &ndash; $5K</div><div class="pr-d">A real agent or site with integrations.</div></div>
+        <div class="pr-ptier"><div class="pr-t">Advanced</div><div class="pr-r">$5K &ndash; $10K</div><div class="pr-d">Multi-workflow systems, custom build.</div></div>
+        <div class="pr-ptier"><div class="pr-t">Custom</div><div class="pr-r">$10K+</div><div class="pr-d">Full apps and multi-agent systems. Starts at $10K.</div></div>
+      </div>
+    </div>
+
     <div class="pr-billing" style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px auto 30px;">
       <div id="prToggle" style="display:inline-flex;border:1px solid var(--border,#2a3346);border-radius:999px;padding:4px;background:var(--surface,#1a2030);">
         <button type="button" data-mode="monthly" class="on" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:#d4af37;color:#0e1218;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Monthly</button>
@@ -1073,16 +941,12 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <a class="pr-cta ghost" href="contact.html">Talk to us</a>
       </div>
     </div>
-    <div class="pr-projects">
-      <h4>One-time projects.</h4>
-      <div class="pr-psub">For builds with a finish line, a website, an MVP, a one-off automation or integration.</div>
-      <div class="pr-ptiers">
-        <div class="pr-ptier"><div class="pr-t">Starter build</div><div class="pr-r">$500 &ndash; $1K</div><div class="pr-d">One focused automation or a simple site.</div></div>
-        <div class="pr-ptier"><div class="pr-t">Standard</div><div class="pr-r">$1K &ndash; $5K</div><div class="pr-d">A real agent or site with integrations.</div></div>
-        <div class="pr-ptier"><div class="pr-t">Advanced</div><div class="pr-r">$5K &ndash; $10K</div><div class="pr-d">Multi-workflow systems, custom build.</div></div>
-        <div class="pr-ptier"><div class="pr-t">Custom</div><div class="pr-r">$10K+</div><div class="pr-d">Full apps and multi-agent systems. Starts at $10K.</div></div>
-      </div>
-      <div class="pr-combo">Build it once, then keep it running. Any project pairs with a managed plan, and annual plans get the setup fee waived.</div>
+    <div class="pr-combo">Build it once, then keep it running. Any project pairs with a managed plan, and annual plans get the setup fee waived.</div>
+    <div style="margin-top:34px;text-align:center;max-width:660px;margin-left:auto;margin-right:auto;">
+      <p style="font-size:15.5px;color:var(--text-dim);line-height:1.65;">
+        <strong style="color:var(--text);">Founder-led.</strong> No subcontractors, no offshore handoff — you work with the person building it. Not sure yet? The first call is a working session, and you leave with a plan whether or not we work together.
+      </p>
+      <p style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-top:14px;">Month-to-month · Cancel anytime.</p>
     </div>
   </div>
 </section>
@@ -1117,6 +981,8 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
       <span>© 2026 Abacoa Digital LLC</span>
       <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
       <a href="contact.html">Start a project</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
     </div>
   </div>
 </footer>
