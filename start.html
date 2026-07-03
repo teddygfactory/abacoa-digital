@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Start your project — Abacoa Digital</title>
+<meta name="description" content="Choose a plan and book a scoping consultation. Nothing is charged until we've scoped it together." />
+<meta name="robots" content="noindex" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%230e1218'/><g stroke='%23d4af37' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'><path d='M5 32 L17 8 L29 32'/><path d='M10 23 L24 23'/><path d='M17 8 Q34 8 34 20 Q34 32 29 32'/></g></svg>" />
+
+<style>
+:root {
+  --gold: #d4af37;
+  --gold-bright: #e7c560;
+  --gold-deep: #b8951f;
+  --serif: "Fraunces", "Times New Roman", serif;
+  --sans: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --container: 920px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --radius: 6px;
+}
+
+html[data-theme="dark"] {
+  --bg: #0e1218;
+  --bg-2: #131822;
+  --surface: #1a2030;
+  --surface-2: #222a3a;
+  --border: #2a3346;
+  --border-soft: #1d2433;
+  --input-bg: #131822;
+  --text: #f1ece1;
+  --text-dim: #c0b8a5;
+  --text-mute: #7d7565;
+  --gold-glow: rgba(212, 175, 55, 0.18);
+  --gold-glow-strong: rgba(212, 175, 55, 0.4);
+  --grain-opacity: 0.04;
+  --grain-blend: overlay;
+  --shadow-cta: 0 16px 40px -12px rgba(212, 175, 55, 0.45);
+  --error: #ff7b7b;
+}
+html[data-theme="light"] {
+  --bg: #faf7f0;
+  --bg-2: #f4efe2;
+  --surface: #ffffff;
+  --surface-2: #f9f5ea;
+  --border: #e2dac6;
+  --border-soft: #ece4d2;
+  --input-bg: #ffffff;
+  --text: #14181f;
+  --text-dim: #4d5260;
+  --text-mute: #8a8170;
+  --gold-glow: rgba(212, 175, 55, 0.14);
+  --gold-glow-strong: rgba(212, 175, 55, 0.35);
+  --grain-opacity: 0.025;
+  --grain-blend: multiply;
+  --shadow-cta: 0 14px 36px -10px rgba(212, 175, 55, 0.45);
+  --error: #c43d3d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02";
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+body::before {
+  content: ""; position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: var(--grain-blend);
+}
+::selection { background: var(--gold); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative; z-index: 2;
+}
+
+/* ===== Header bar ===== */
+.bar {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border-soft);
+  position: sticky; top: 0;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 50;
+}
+.bar-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.logo {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+  font-weight: 500; letter-spacing: 0.18em;
+  font-size: 12px; text-transform: uppercase;
+  color: var(--text);
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 22px; height: 22px; }
+.logo-text span { color: var(--gold); }
+.bar-back {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.06em;
+  color: var(--text-dim);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 0.2s ease;
+}
+.bar-back:hover { color: var(--gold); }
+
+.bar-actions { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--gold); border-color: var(--gold); }
+.theme-toggle svg { width: 16px; height: 16px; }
+html[data-theme="dark"]  .theme-toggle .icon-light { display: block; }
+html[data-theme="dark"]  .theme-toggle .icon-dark  { display: none; }
+html[data-theme="light"] .theme-toggle .icon-light { display: none; }
+html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
+
+/* ===== Page header ===== */
+.page-head {
+  padding: 80px 0 40px;
+  position: relative;
+}
+.page-head::before {
+  content: ""; position: absolute;
+  top: -10%; right: -15%;
+  width: 50vw; height: 50vw;
+  max-width: 600px; max-height: 600px;
+  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 24px;
+}
+.page-eyebrow .dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--gold-glow-strong);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gold-glow-strong); }
+  50%      { box-shadow: 0 0 0 8px transparent; }
+}
+.page-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+  max-width: 16ch;
+}
+.page-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.page-sub {
+  font-size: 17px;
+  color: var(--text-dim);
+  max-width: 56ch;
+  line-height: 1.6;
+}
+
+/* ===== Form card ===== */
+.form-wrap {
+  padding-bottom: 100px;
+}
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: clamp(28px, 4vw, 48px);
+  position: relative;
+  overflow: hidden;
+}
+.form-card::before {
+  content: ""; position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+/* Progress */
+.progress {
+  margin-bottom: 40px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.progress-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.progress-meta .step-name { color: var(--gold); }
+.progress-bar {
+  height: 3px;
+  background: var(--border-soft);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+/* Form steps */
+.step { display: none; animation: stepIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.step.active { display: block; }
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.step h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.step-desc {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-bottom: 32px;
+  max-width: 56ch;
+}
+
+/* Fields */
+.field { margin-bottom: 24px; }
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
+
+.label {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.label .req { color: var(--gold); font-size: 10px; }
+.label .optional {
+  color: var(--text-mute);
+  font-size: 10px;
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+
+.input, .textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.input::placeholder, .textarea::placeholder { color: var(--text-mute); }
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-glow);
+  background: var(--surface-2);
+}
+.textarea { min-height: 140px; resize: vertical; line-height: 1.55; }
+
+/* Chip groups (multi-select services) */
+.chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.chip {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.chip:hover {
+  border-color: color-mix(in srgb, var(--gold) 50%, var(--border));
+  color: var(--text);
+}
+.chip input {
+  position: absolute; opacity: 0; pointer-events: none;
+}
+.chip .check {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: grid; place-items: center;
+  transition: all 0.2s ease;
+}
+.chip .check svg { width: 10px; height: 10px; opacity: 0; transition: opacity 0.2s ease; }
+.chip:has(input:checked),
+.chip.checked {
+  background: color-mix(in srgb, var(--gold) 12%, var(--input-bg));
+  border-color: var(--gold);
+  color: var(--text);
+}
+.chip:has(input:checked) .check,
+.chip.checked .check {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.chip:has(input:checked) .check svg,
+.chip.checked .check svg { opacity: 1; }
+
+/* Radio cards (budget, timeline) */
+.radio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.radio-card {
+  position: relative;
+  padding: 16px 18px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.radio-card:hover {
+  border-color: color-mix(in srgb, var(--gold) 50%, var(--border));
+}
+.radio-card input {
+  position: absolute; opacity: 0; pointer-events: none;
+}
+.radio-card .rc-label {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text);
+}
+.radio-card .rc-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.radio-card:has(input:checked),
+.radio-card.checked {
+  background: color-mix(in srgb, var(--gold) 10%, var(--input-bg));
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+.radio-card:has(input:checked) .rc-label,
+.radio-card.checked .rc-label { color: var(--gold); }
+
+/* Errors */
+.field-error {
+  color: var(--error);
+  font-size: 12.5px;
+  margin-top: 8px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+  display: none;
+}
+.field.has-error .input,
+.field.has-error .textarea { border-color: var(--error); }
+.field.has-error .field-error { display: block; }
+
+/* Buttons */
+.actions {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-soft);
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: none;
+}
+.btn .arrow { transition: transform 0.25s ease; }
+.btn:hover .arrow { transform: translateX(4px); }
+.btn-back {
+  background: transparent;
+  color: var(--text-dim);
+  padding: 13px 22px;
+  border-radius: 999px;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  padding: 13px 22px;
+  border-radius: 999px;
+  border-color: var(--border);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+.btn-back:hover { color: var(--text); }
+.btn-back svg { transform: rotate(180deg); transition: transform 0.25s ease; }
+.btn-back:hover svg { transform: rotate(180deg) translateX(4px); }
+.btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-back:disabled:hover svg { transform: rotate(180deg); }
+
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+  color: #0e1218;
+  padding: 15px 30px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.15) inset,
+    var(--shadow-cta);
+}
+.btn-primary::before {
+  content: ""; position: absolute; inset: -2px;
+  border-radius: 999px;
+  background: var(--gold);
+  filter: blur(14px);
+  opacity: 0.45;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.15) inset,
+    0 22px 50px -12px rgba(212, 175, 55, 0.6);
+}
+.btn-primary:hover::before { opacity: 0.7; }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* Consent microcopy under submit */
+.consent {
+  margin-top: 16px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-mute);
+  text-align: right;
+  max-width: 62ch;
+  margin-left: auto;
+}
+.consent a { color: var(--text-dim); text-decoration: underline; }
+.consent a:hover { color: var(--gold); }
+@media (max-width: 600px) { .consent { text-align: left; } }
+
+/* Success state */
+.success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.success.active { display: block; animation: stepIn 0.6s ease; }
+.success-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 28px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px var(--gold-glow), 0 14px 36px -10px var(--gold-glow-strong);
+}
+.success-icon svg { width: 36px; height: 36px; color: #0e1218; }
+.success h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.success h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.success p { color: var(--text-dim); font-size: 16px; max-width: 50ch; margin: 0 auto 28px; line-height: 1.6; }
+.success .ref {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+  padding: 8px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Footer */
+.foot {
+  padding: 28px 0 32px;
+  border-top: 1px solid var(--border-soft);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  text-align: center;
+}
+.foot a { transition: color 0.2s ease; }
+.foot a:hover { color: var(--gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== Plan summary ===== */
+.plan-summary {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: clamp(24px, 3.5vw, 36px);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.plan-summary::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), transparent);
+}
+.ps-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.ps-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.ps-name { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; }
+.ps-price { text-align: right; }
+.ps-amt { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4.5vw, 40px); }
+.ps-per { font-size: 14px; color: var(--text-dim); margin-left: 2px; }
+.ps-setup { font-family: var(--mono); font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+.ps-setup .pr-waived, .ps-setup .ps-waived { color: var(--gold); }
+.ps-features { list-style: none; margin: 22px 0 0; padding: 22px 0 0; border-top: 1px solid var(--border-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+@media (max-width: 560px) { .ps-features { grid-template-columns: 1fr; } }
+.ps-features li { font-size: 13.5px; color: var(--text-dim); padding-left: 22px; position: relative; line-height: 1.5; }
+.ps-features li::before { content: ""; position: absolute; left: 2px; top: 6px; width: 8px; height: 8px; border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(45deg); }
+.ps-controls { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+.ps-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 4px; background: var(--input-bg); }
+.ps-seg button { font-family: var(--sans); font-size: 12.5px; font-weight: 500; border: none; background: transparent; color: var(--text-dim); padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: all 0.2s ease; }
+.ps-seg button.on { background: var(--gold); color: #0e1218; }
+.ps-seg-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); align-self: center; margin-right: 2px; }
+
+/* ===== Reassurance ===== */
+.reassure {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: color-mix(in srgb, var(--gold) 8%, var(--input-bg));
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, var(--border));
+  border-radius: var(--radius);
+  padding: 14px 16px; margin-top: 8px;
+  font-size: 14px; color: var(--text-dim); line-height: 1.55;
+}
+.reassure svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+.reassure strong { color: var(--text); font-weight: 500; }
+</style>
+
+<!-- Meta Pixel Code — set FB_PIXEL_ID to your Meta Pixel ID to activate (inert until then) -->
+<script>
+(function () {
+  var FB_PIXEL_ID = 'FB_PIXEL_ID'; /* ← replace with your numeric Pixel ID, e.g. '123456789012345' */
+  if (!/^\d+$/.test(FB_PIXEL_ID)) return; /* stays inert until a real ID is set */
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', FB_PIXEL_ID);
+  fbq('track', 'PageView');
+})();
+</script>
+<!-- End Meta Pixel Code -->
+</head>
+
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a href="index.html" class="logo" aria-label="Abacoa Digital home">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none">
+          <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M5 32 L17 8 L29 32"/>
+            <path d="M10 23 L24 23"/>
+            <path d="M17 8 Q34 8 34 20 Q34 32 29 32"/>
+          </g>
+        </svg>
+      </span>
+      <span class="logo-text">Abacoa <span>Digital</span></span>
+    </a>
+    <div class="bar-actions">
+      <a href="index.html" class="bar-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to home
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" type="button">
+        <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <div class="page-eyebrow">
+      <span class="dot"></span>
+      <span>Plan selection</span>
+    </div>
+    <h1 class="page-title">Start your <em>project.</em></h1>
+    <p class="page-sub">
+      Here's the plan you picked. Tell us a bit about your business and what you want handled, and we'll book a quick scoping consultation — nothing is charged until we've scoped it together.
+    </p>
+  </div>
+</section>
+
+<section class="form-wrap">
+  <div class="container">
+
+    <div class="plan-summary" id="planSummary">
+      <div class="ps-top">
+        <div>
+          <div class="ps-eyebrow">Selected plan</div>
+          <div class="ps-name" id="psName">Growth</div>
+        </div>
+        <div class="ps-price">
+          <span class="ps-amt" id="psAmt">$599</span><span class="ps-per">/ mo</span>
+          <div class="ps-setup" id="psSetup">+ setup $359</div>
+        </div>
+      </div>
+      <ul class="ps-features" id="psFeatures"></ul>
+      <div class="ps-controls">
+        <div class="ps-seg" id="psPlanSel" role="group" aria-label="Choose plan">
+          <span class="ps-seg-label">Plan</span>
+          <button type="button" data-plan="starter">Starter</button>
+          <button type="button" data-plan="growth" class="on">Growth</button>
+          <button type="button" data-plan="scale">Scale</button>
+        </div>
+        <div class="ps-seg" id="psTermSel" role="group" aria-label="Billing term">
+          <span class="ps-seg-label">Billing</span>
+          <button type="button" data-term="monthly" class="on">Monthly</button>
+          <button type="button" data-term="annual">Annual</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+
+      <form id="contactForm" novalidate>
+
+        <div class="step active">
+          <h2>Tell us about your <em>business.</em></h2>
+          <p class="step-desc">A few details so the consultation is useful from minute one. We'll confirm the plan and scope together — nothing is charged yet.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="name">Your name <span class="req">●</span></label>
+              <input type="text" id="name" name="name" class="input" placeholder="Jane Doe" required autocomplete="name" />
+              <div class="field-error">Please enter your name.</div>
+            </div>
+            <div class="field">
+              <label class="label" for="business">Business name <span class="req">●</span></label>
+              <input type="text" id="business" name="business" class="input" placeholder="Acme Home Services" required autocomplete="organization" />
+              <div class="field-error">Please enter your business name.</div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="email">Email <span class="req">●</span></label>
+              <input type="email" id="email" name="email" class="input" placeholder="jane@company.com" required autocomplete="email" />
+              <div class="field-error">Please enter a valid email.</div>
+            </div>
+            <div class="field">
+              <label class="label" for="phone">Phone <span class="req">●</span></label>
+              <input type="tel" id="phone" name="phone" class="input" placeholder="(555) 123-4567" required autocomplete="tel" />
+              <div class="field-error">Please enter a phone number.</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="bizType">Business type / what you do <span class="optional">(optional)</span></label>
+            <input type="text" id="bizType" name="bizType" class="input" placeholder="e.g. HVAC company, law firm, SaaS startup" />
+          </div>
+
+          <div class="field">
+            <label class="label">What do you want this to handle? <span class="optional">(pick any that fit)</span></label>
+            <div class="chips" id="fixChips">
+              <label class="chip"><input type="checkbox" name="mainfix" value="After-hours / missed calls" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>After-hours / missed calls</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Slow follow-up" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Slow follow-up</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="AI agent / voice assistant" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>AI agent / voice assistant</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Automation / workflows" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Automation / workflows</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Website or landing page" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Website or landing page</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Web or mobile app" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Web or mobile app</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Dashboards / data / SaaS" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Dashboards / data / SaaS</label>
+              <label class="chip"><input type="checkbox" name="mainfix" value="Something else" /><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#0e1218" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Something else</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="timeline">Timeline <span class="optional">(optional)</span></label>
+            <select id="timeline" name="timeline" class="input">
+              <option value="">Select…</option>
+              <option value="ASAP">ASAP</option>
+              <option value="This month">This month</option>
+              <option value="1–3 months">1–3 months</option>
+              <option value="Just exploring">Just exploring</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" for="details">Anything else? <span class="optional">(optional)</span></label>
+            <textarea id="details" name="details" class="textarea" style="min-height:96px;" placeholder="A sentence on what's going on is plenty — e.g. we miss half our leads after hours."></textarea>
+          </div>
+        </div>
+
+        <p class="reassure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          <span><strong>This books a quick setup consultation — nothing is charged until we've scoped it together.</strong></span>
+        </p>
+
+        <!-- Action bar -->
+        <div class="actions" id="actions" style="justify-content:flex-end;">
+          <button type="button" class="btn btn-primary" id="btnSubmit">
+            <span id="btnSubmitLabel">Request my consultation</span>
+            <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+        <p class="consent">
+          By submitting, you agree to be contacted by phone, email, or text. Reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a>.
+        </p>
+      </form>
+
+      <!-- Success state -->
+      <div class="success" id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>Request received. <em>Talk soon.</em></h2>
+        <p>
+          Your plan and details are with us. We'll reach out within one business day to book your scoping consultation — nothing is charged until we've scoped it together.
+        </p>
+        <p style="margin-bottom: 36px;">
+          If anything is urgent, you can reach us directly at <a href="mailto:hello@abacoadigital.com" style="color: var(--gold);">hello@abacoadigital.com</a>.
+        </p>
+        <a id="bookingLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="display: none; margin-right: 12px;">
+          Book the call now
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="index.html" class="btn btn-secondary">
+          Back to home
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="container">
+    © 2026 Abacoa Digital LLC · Jupiter, FL · <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+<script>
+  // ===========================================================
+  // CONFIG
+  // ===========================================================
+  // Submissions POST to /api/lead, a Vercel Edge function that
+  // forwards to the abacoa-agent /leads webhook on Railway with
+  // the secret header added server-side. Set LEADS_URL and
+  // LEADS_SECRET as Vercel env vars. See api/lead.js.
+  const LEADS_ENDPOINT = '/api/lead';
+
+  // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
+  const POSTHOG_KEY = '';
+  const POSTHOG_HOST = 'https://us.i.posthog.com';
+
+  // Optional booking link on the success step. Empty hides it.
+  const BOOKING_URL = '';
+
+  // Mailto fallback if the webhook is unreachable.
+  const CONTACT_EMAIL = 'hello@abacoadigital.com';
+  // ===========================================================
+
+  // Bootstrap PostHog if a key is configured
+  if (POSTHOG_KEY) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://cdn.jsdelivr.net/npm/posthog-js@1/dist/array.js';
+    s.onload = () => { window.posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' }); };
+    document.head.appendChild(s);
+    window.posthog = window.posthog || [];
+  }
+  function trackEvent(name, props) {
+    if (window.posthog && typeof window.posthog.capture === 'function') {
+      try { window.posthog.capture(name, props || {}); } catch (e) {}
+    }
+  }
+
+  // Theme toggle
+  const STORAGE_KEY = 'abacoa-theme';
+  const root = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    root.setAttribute('data-theme', 'light');
+  }
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  // ===== Plan summary (reads ?plan= & ?term= from the URL) =====
+  const PLANS = {
+    starter: { name: 'Starter', priceM: '$299', priceA: '$249', setupM: '+ setup $179', billedA: 'Billed $2,988/yr',
+      features: ['A live AI agent (voice or chat)', 'Up to 200 AI voice minutes/mo', '~1 hour of changes/mo', 'Google Business Profile audit + fixes', 'Monitoring + tuning', 'Private AI you own'] },
+    growth:  { name: 'Growth', priceM: '$599', priceA: '$499', setupM: '+ setup $359', billedA: 'Billed $5,988/yr',
+      features: ['Multiple agents (voice and chat)', 'Up to 500 voice minutes/mo', '~4 hours of changes/mo', 'Workflow automations included', 'Priority support', 'Private AI you own'] },
+    scale:   { name: 'Scale', priceM: '$1,499', priceA: '$1,249', setupM: '+ setup $899', billedA: 'Billed $14,988/yr',
+      features: ['Agents across voice, chat, and SMS', 'Up to 1,200 voice minutes/mo', '~8 hours of changes/mo', 'Ongoing build queue (one active item at a time)', 'Custom integrations', 'Dedicated strategy + monthly review'] },
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const reqPlan = (params.get('plan') || '').toLowerCase();
+  const state = {
+    plan: PLANS[reqPlan] ? reqPlan : 'growth',
+    term: params.get('term') === 'annual' ? 'annual' : 'monthly',
+  };
+
+  const psName = document.getElementById('psName');
+  const psAmt = document.getElementById('psAmt');
+  const psSetup = document.getElementById('psSetup');
+  const psFeatures = document.getElementById('psFeatures');
+  const psPlanSel = document.getElementById('psPlanSel');
+  const psTermSel = document.getElementById('psTermSel');
+
+  function setSeg(container, attr, val) {
+    [].forEach.call(container.querySelectorAll('button[data-' + attr + ']'), function (b) {
+      b.classList.toggle('on', b.getAttribute('data-' + attr) === val);
+    });
+  }
+  function renderSummary() {
+    const p = PLANS[state.plan];
+    const annual = state.term === 'annual';
+    psName.textContent = p.name;
+    psAmt.textContent = annual ? p.priceA : p.priceM;
+    psSetup.innerHTML = annual
+      ? '<span class="ps-waived">Setup waived</span> · ' + p.billedA
+      : p.setupM;
+    psFeatures.innerHTML = p.features.map(function (f) { return '<li>' + f + '</li>'; }).join('');
+    setSeg(psPlanSel, 'plan', state.plan);
+    setSeg(psTermSel, 'term', state.term);
+  }
+  psPlanSel.addEventListener('click', function (e) {
+    const b = e.target.closest('button[data-plan]'); if (!b) return;
+    state.plan = b.getAttribute('data-plan'); renderSummary();
+  });
+  psTermSel.addEventListener('click', function (e) {
+    const b = e.target.closest('button[data-term]'); if (!b) return;
+    state.term = b.getAttribute('data-term'); renderSummary();
+  });
+  renderSummary();
+
+  // ===== Single-step submit controller =====
+  const form = document.getElementById('contactForm');
+  const actions = document.getElementById('actions');
+  const success = document.getElementById('success');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const btnSubmitLabel = document.getElementById('btnSubmitLabel');
+
+  function clearError(field) { if (field) field.classList.remove('has-error'); }
+  function showError(field) { if (field) field.classList.add('has-error'); }
+
+  function validate() {
+    let valid = true;
+    const checks = [
+      { id: 'name' },
+      { id: 'business' },
+      { id: 'email', test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); } },
+      { id: 'phone' },
+    ];
+    checks.forEach(function (c) {
+      const el = document.getElementById(c.id);
+      const f = el.closest('.field');
+      const v = el.value.trim();
+      const ok = c.test ? c.test(v) : !!v;
+      if (!ok) { showError(f); valid = false; } else clearError(f);
+    });
+    return valid;
+  }
+
+  // Clear errors as the user types
+  form.addEventListener('input', (e) => {
+    const f = e.target.closest('.field');
+    if (f) clearError(f);
+  });
+
+  btnSubmit.addEventListener('click', async () => {
+    if (!validate()) {
+      const firstErr = document.querySelector('.field.has-error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    await submitForm();
+  });
+
+  function collectData() {
+    const services = Array.from(document.querySelectorAll('input[name="mainfix"]:checked')).map(i => i.value);
+    return {
+      name:     document.getElementById('name').value.trim(),
+      business: document.getElementById('business').value.trim(),
+      email:    document.getElementById('email').value.trim(),
+      phone:    document.getElementById('phone').value.trim(),
+      bizType:  document.getElementById('bizType').value.trim(),
+      services: services,
+      timeline: document.getElementById('timeline').value,
+      details:  document.getElementById('details').value.trim(),
+      plan:     state.plan,
+      term:     state.term,
+    };
+  }
+
+  function planLine(data) {
+    const p = PLANS[data.plan];
+    const annual = data.term === 'annual';
+    const price = annual ? p.priceA : p.priceM;
+    const setup = annual ? ('Setup waived · ' + p.billedA) : p.setupM;
+    return p.name + ' / ' + data.term + ' — ' + price + '/mo (' + setup + ')';
+  }
+
+  function buildEmailBody(data) {
+    return [
+      'New consultation request — ' + PLANS[data.plan].name + ' / ' + data.term,
+      '',
+      '— Plan —',
+      planLine(data),
+      '',
+      '— Contact —',
+      'Name:     ' + data.name,
+      'Business: ' + data.business,
+      'Email:    ' + data.email,
+      'Phone:    ' + (data.phone || '—'),
+      'Type:     ' + (data.bizType || '—'),
+      '',
+      '— Wants handled —',
+      data.services.join(', ') || '—',
+      '',
+      '— Timeline —',
+      data.timeline || '—',
+      '',
+      '— Notes —',
+      data.details || '—',
+    ].join('\n');
+  }
+
+  async function submitForm() {
+    btnSubmit.disabled = true;
+    btnSubmitLabel.textContent = 'Sending…';
+    const data = collectData();
+
+    // Primary path: Vercel proxy forwards to the agent on Railway.
+    // Payload shape is IDENTICAL to /contact — name/email/company/message/extra —
+    // with new values (plan, term, etc.) added inside `extra` only.
+    if (LEADS_ENDPOINT) {
+      try {
+        const res = await fetch(LEADS_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            company: data.business,
+            message: buildEmailBody(data),
+            extra: {
+              role: '',
+              phone: data.phone,
+              services: data.services,
+              budget: '',
+              timeline: data.timeline,
+              website: '',
+              referral: '',
+              plan: data.plan,
+              term: data.term,
+              businessType: data.bizType,
+              notes: data.details,
+            },
+          }),
+        });
+        if (res.ok) {
+          trackEvent('consultation_requested', { plan: data.plan, term: data.term, services: data.services });
+          showSuccess();
+          return;
+        }
+        console.error('Lead webhook returned', res.status);
+      } catch (err) {
+        console.error('Lead webhook failed:', err);
+      }
+      // Fall through to mailto on error
+    }
+
+    // Mailto fallback: opens user's mail client with everything filled in
+    const subject = encodeURIComponent('Consultation request — ' + PLANS[data.plan].name + ' / ' + data.term + ' — ' + data.name);
+    const body = encodeURIComponent(buildEmailBody(data));
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    trackEvent('consultation_mailto_fallback', { plan: data.plan, term: data.term });
+    setTimeout(showSuccess, 400);
+  }
+
+  function showSuccess() {
+    form.style.display = 'none';
+    actions.style.display = 'none';
+    const consent = document.querySelector('.consent');
+    if (consent) consent.style.display = 'none';
+    success.classList.add('active');
+    if (BOOKING_URL) {
+      const bookingLink = document.getElementById('bookingLink');
+      if (bookingLink) {
+        bookingLink.href = BOOKING_URL;
+        bookingLink.style.display = 'inline-flex';
+      }
+    }
+    window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

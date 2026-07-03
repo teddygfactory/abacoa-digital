@@ -913,6 +913,10 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         if (note) note.textContent = annual
           ? 'Annual billing — 2 months free + setup waived.'
           : 'Pay annually: 2 months free + setup waived.';
+        var term = annual ? 'annual' : 'monthly';
+        [].forEach.call(document.querySelectorAll('.pr-cta[data-plan]'), function (a) {
+          a.setAttribute('href', '/start.html?plan=' + a.getAttribute('data-plan') + '&term=' + term);
+        });
       }
       t.addEventListener('click', function (e) {
         var b = e.target.closest('button[data-mode]'); if (!b) return;
@@ -929,7 +933,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="pr-price"><span class="pr-amt">$299</span><span class="pr-per">/ mo</span></div>
         <div class="pr-setup">+ setup $179</div>
         <ul class="pr-list"><li>A live AI agent (voice or chat)</li><li>Up to 200 AI voice minutes/mo</li><li>~1 hour of changes/mo included</li><li>Includes your Google Business Profile (GBP) audit + fixes — a $149 value</li><li>Monitoring + tuning so it keeps working</li><li>Private AI you own</li></ul>
-        <a class="pr-cta ghost" href="contact.html">Start here</a>
+        <a class="pr-cta ghost" data-plan="starter" href="/start.html?plan=starter&amp;term=monthly">Start here</a>
       </div>
       <div class="pr-plan feat" data-price-m="$599" data-price-a="$499" data-setup-m="+ setup $359" data-billed-a="Billed $5,988/yr">
         <div class="pr-badge">Most popular</div>
@@ -938,7 +942,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="pr-price"><span class="pr-amt">$599</span><span class="pr-per">/ mo</span></div>
         <div class="pr-setup">+ setup $359</div>
         <ul class="pr-list"><li>Multiple agents (voice and chat)</li><li>Up to 500 voice minutes/mo</li><li>~4 hours of changes/mo</li><li>Workflow automations included</li><li>Priority support</li><li>Private AI you own</li></ul>
-        <a class="pr-cta solid" href="contact.html">Choose Growth</a>
+        <a class="pr-cta solid" data-plan="growth" href="/start.html?plan=growth&amp;term=monthly">Choose Growth</a>
       </div>
       <div class="pr-plan" data-price-m="$1,499" data-price-a="$1,249" data-setup-m="+ setup $899" data-billed-a="Billed $14,988/yr">
         <h3>Scale</h3>
@@ -946,7 +950,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="pr-price"><span class="pr-amt">$1,499</span><span class="pr-per">/ mo</span></div>
         <div class="pr-setup">+ setup $899</div>
         <ul class="pr-list"><li>Agents across voice, chat, and SMS</li><li>Up to 1,200 voice minutes/mo</li><li>~8 hours of changes/mo</li><li>Ongoing build queue (one active item at a time)</li><li>Custom integrations</li><li>Dedicated strategy + monthly review</li></ul>
-        <a class="pr-cta ghost" href="contact.html">Talk to us</a>
+        <a class="pr-cta ghost" data-plan="scale" href="/start.html?plan=scale&amp;term=monthly">Talk to us</a>
       </div>
     </div>
     <p class="pr-fineprint" style="text-align:center;font-size:12.5px;color:var(--text-mute);margin-top:16px;max-width:640px;margin-left:auto;margin-right:auto;">Custom builds (new sites, complex integrations) quoted separately. Voice overage $0.49/min.</p>
