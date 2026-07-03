@@ -892,55 +892,64 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <button type="button" data-mode="monthly" class="on" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:#d4af37;color:#0e1218;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Monthly</button>
         <button type="button" data-mode="annual" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:transparent;color:#c0b8a5;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Annual</button>
       </div>
-      <span id="prSaveNote" style="font:500 11px var(--mono,'JetBrains Mono',monospace);color:#d4af37;letter-spacing:.04em;">Pay annually and we waive the setup fee.</span>
+      <span id="prSaveNote" style="font:500 11px var(--mono,'JetBrains Mono',monospace);color:#d4af37;letter-spacing:.04em;">Pay annually: 2 months free + setup waived.</span>
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
       var t = document.getElementById('prToggle'); if (!t) return;
       var note = document.getElementById('prSaveNote');
-      var setups = [].slice.call(document.querySelectorAll('.pr-setup'));
-      setups.forEach(function (el) { el.setAttribute('data-orig', el.innerHTML); });
+      var plans = [].slice.call(document.querySelectorAll('.pr-plan'));
+      function render(annual) {
+        plans.forEach(function (p) {
+          var amt = p.querySelector('.pr-amt');
+          var setup = p.querySelector('.pr-setup');
+          if (amt) amt.textContent = annual ? p.getAttribute('data-price-a') : p.getAttribute('data-price-m');
+          if (setup) {
+            setup.innerHTML = annual
+              ? '<span class="pr-waived">Setup waived</span> · ' + p.getAttribute('data-billed-a')
+              : p.getAttribute('data-setup-m');
+          }
+        });
+        if (note) note.textContent = annual
+          ? 'Annual billing — 2 months free + setup waived.'
+          : 'Pay annually: 2 months free + setup waived.';
+      }
       t.addEventListener('click', function (e) {
         var b = e.target.closest('button[data-mode]'); if (!b) return;
         [].forEach.call(t.children, function (x) { x.classList.remove('on'); x.style.background = 'transparent'; x.style.color = '#c0b8a5'; });
         b.classList.add('on'); b.style.background = '#d4af37'; b.style.color = '#0e1218';
-        var annual = b.getAttribute('data-mode') === 'annual';
-        setups.forEach(function (el) {
-          el.innerHTML = annual
-            ? '<s style="color:#7d7565;opacity:.7;">' + el.getAttribute('data-orig') + '</s> &nbsp;<span style="color:#d4af37;">waived</span>'
-            : el.getAttribute('data-orig');
-        });
-        if (note) note.textContent = annual ? 'Setup fee waived on annual plans.' : 'Pay annually and we waive the setup fee.';
+        render(b.getAttribute('data-mode') === 'annual');
       });
     });
     </script>
     <div class="pr-grid">
-      <div class="pr-plan">
+      <div class="pr-plan" data-price-m="$299" data-price-a="$249" data-setup-m="+ setup $179" data-billed-a="Billed $2,988/yr">
         <h3>Starter</h3>
         <div class="pr-blurb">Your first AI agent, set up right.</div>
         <div class="pr-price"><span class="pr-amt">$299</span><span class="pr-per">/ mo</span></div>
-        <div class="pr-setup">+ setup from $499</div>
-        <ul class="pr-list"><li>A live AI agent (voice or chat)</li><li>Monitoring + tuning so it keeps working</li><li>Ongoing build support</li><li>Monthly check-in</li><li>Private AI you own</li></ul>
+        <div class="pr-setup">+ setup $179</div>
+        <ul class="pr-list"><li>A live AI agent (voice or chat)</li><li>Up to 200 AI voice minutes/mo</li><li>~1 hour of changes/mo included</li><li>Includes your Google Business Profile (GBP) audit + fixes — a $149 value</li><li>Monitoring + tuning so it keeps working</li><li>Private AI you own</li></ul>
         <a class="pr-cta ghost" href="contact.html">Start here</a>
       </div>
-      <div class="pr-plan feat">
+      <div class="pr-plan feat" data-price-m="$599" data-price-a="$499" data-setup-m="+ setup $359" data-billed-a="Billed $5,988/yr">
         <div class="pr-badge">Most popular</div>
         <h3>Growth</h3>
         <div class="pr-blurb">Agents and automations, working together.</div>
         <div class="pr-price"><span class="pr-amt">$599</span><span class="pr-per">/ mo</span></div>
-        <div class="pr-setup">+ setup from $999</div>
-        <ul class="pr-list"><li>Multiple agents (voice and chat)</li><li>Workflow automations included</li><li>Faster turnaround</li><li>Priority support</li><li>Private AI you own</li></ul>
+        <div class="pr-setup">+ setup $359</div>
+        <ul class="pr-list"><li>Multiple agents (voice and chat)</li><li>Up to 500 voice minutes/mo</li><li>~4 hours of changes/mo</li><li>Workflow automations included</li><li>Priority support</li><li>Private AI you own</li></ul>
         <a class="pr-cta solid" href="contact.html">Choose Growth</a>
       </div>
-      <div class="pr-plan">
+      <div class="pr-plan" data-price-m="$1,499" data-price-a="$1,249" data-setup-m="+ setup $899" data-billed-a="Billed $14,988/yr">
         <h3>Scale</h3>
         <div class="pr-blurb">Run your operation on agents.</div>
         <div class="pr-price"><span class="pr-amt">$1,499</span><span class="pr-per">/ mo</span></div>
-        <div class="pr-setup">+ setup from $2,500</div>
-        <ul class="pr-list"><li>Agents across voice, chat, and SMS</li><li>Ongoing build queue</li><li>Custom integrations</li><li>Dedicated strategy + monthly review</li><li>Private AI you own</li></ul>
+        <div class="pr-setup">+ setup $899</div>
+        <ul class="pr-list"><li>Agents across voice, chat, and SMS</li><li>Up to 1,200 voice minutes/mo</li><li>~8 hours of changes/mo</li><li>Ongoing build queue (one active item at a time)</li><li>Custom integrations</li><li>Dedicated strategy + monthly review</li></ul>
         <a class="pr-cta ghost" href="contact.html">Talk to us</a>
       </div>
     </div>
+    <p class="pr-fineprint" style="text-align:center;font-size:12.5px;color:var(--text-mute);margin-top:16px;max-width:640px;margin-left:auto;margin-right:auto;">Custom builds (new sites, complex integrations) quoted separately. Voice overage $0.49/min.</p>
     <div class="pr-combo">Build it once, then keep it running. Any project pairs with a managed plan, and annual plans get the setup fee waived.</div>
     <div style="margin-top:34px;text-align:center;max-width:660px;margin-left:auto;margin-right:auto;">
       <p style="font-size:15.5px;color:var(--text-dim);line-height:1.65;">
