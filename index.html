@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="dark light" />
+<meta name="theme-color" content="#0d0f12" />
+<script>
+  // Apply the saved choice before the page paints; storage may be unavailable.
+  try {
+    const choice = localStorage.getItem('abacoa-theme');
+    if (choice === 'light' || choice === 'dark') document.documentElement.dataset.theme = choice;
+  } catch (_) {}
+</script>
 <title>Abacoa Digital: Digital systems for ambitious businesses</title>
 <meta name="description" content="We build the digital systems that bring you customers and serve them well. AI agents, custom software, and customer engagement infrastructure." />
 <meta property="og:title" content="Abacoa Digital" />
@@ -20,7 +29,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet" />
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%230e1218'/><g stroke='%23d4af37' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'><path d='M5 32 L17 8 L29 32'/><path d='M10 23 L24 23'/><path d='M17 8 Q34 8 34 20 Q34 32 29 32'/></g></svg>" />
 
@@ -55,23 +64,7 @@ html[data-theme="dark"] {
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
   --shadow-cta: 0 16px 40px -12px rgba(212, 175, 55, 0.45);
 }
-html[data-theme="light"] {
-  --bg: #faf7f0;
-  --bg-2: #f4efe2;
-  --surface: #ffffff;
-  --surface-2: #f9f5ea;
-  --border: #e2dac6;
-  --border-soft: #ece4d2;
-  --text: #14181f;
-  --text-dim: #4d5260;
-  --text-mute: #8a8170;
-  --gold-glow: rgba(212, 175, 55, 0.14);
-  --gold-glow-strong: rgba(212, 175, 55, 0.35);
-  --grain-opacity: 0.025;
-  --grain-blend: multiply;
-  --shadow-card: 0 4px 14px rgba(20, 24, 31, 0.06);
-  --shadow-cta: 0 14px 36px -10px rgba(212, 175, 55, 0.45);
-}
+
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -177,8 +170,8 @@ a { color: inherit; text-decoration: none; }
 .theme-toggle svg { width: 18px; height: 18px; }
 html[data-theme="dark"]  .theme-toggle .icon-light { display: block; }
 html[data-theme="dark"]  .theme-toggle .icon-dark  { display: none; }
-html[data-theme="light"] .theme-toggle .icon-light { display: none; }
-html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
+
+
 
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
@@ -298,7 +291,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 }
 .hero-photo-caption {
   position: absolute; bottom: 14px; left: 16px;
-  font-family: var(--mono); font-size: 10px;
+  font-family: var(--sans); font-size: 10px;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold); z-index: 2;
   background: rgba(14,18,24,0.6); padding: 6px 10px;
@@ -321,7 +314,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 11px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--gold);
   margin-bottom: 36px;
@@ -384,7 +377,7 @@ html[data-theme="light"] .theme-toggle .icon-dark  { display: block; }
 }
 .hero-meta-item { display: flex; flex-direction: column; gap: 6px; }
 .hero-meta-label {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 11px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--text-mute);
 }
@@ -397,7 +390,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   gap: 60px; margin-bottom: 80px; align-items: end;
 }
 .section-num {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 12px; letter-spacing: 0.2em;
   color: var(--gold); text-transform: uppercase;
   padding-top: 12px;
@@ -431,14 +424,14 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 .cap:hover { background: var(--bg-2); transform: translateY(-6px); border-color: var(--gold);
   box-shadow: 0 18px 44px rgba(0,0,0,.45); }
 .cap:hover::before { width: 100%; }
-.cap-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-mute); margin-bottom: 36px; }
+.cap-num { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; color: var(--text-mute); margin-bottom: 36px; }
 .cap-icon { width: 38px; height: 38px; margin-bottom: 28px; color: var(--gold); }
 .cap-icon svg { width: 100%; height: 100%; stroke-width: 1.5; }
 .cap h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.01em; }
 .cap p { font-size: 14.5px; color: var(--text-dim); line-height: 1.6; margin-bottom: auto; }
 .cap-tags { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 6px; }
 .cap-tag {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 10.5px; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--text-mute);
   padding: 5px 10px;
@@ -492,7 +485,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 .stack-header { display: flex; align-items: center; gap: 10px; }
 .stack-icon { width: 18px; height: 18px; color: var(--gold); opacity: 0.9; flex-shrink: 0; }
 .stack-icon svg { width: 100%; height: 100%; stroke-width: 1.6; }
-.stack-cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); }
+.stack-cat { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); }
 .stack-tools { display: flex; flex-direction: column; gap: 7px; }
 .stack-tool {
   font-family: var(--serif);
@@ -548,7 +541,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 .approach-body .signature {
   margin-top: 40px; padding-top: 28px;
   border-top: 1px solid var(--border-soft);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 12px; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--text-mute);
 }
@@ -561,14 +554,14 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   pointer-events: none;
 }
 .cta-inner { text-align: center; position: relative; z-index: 2; }
-.cta-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
+.cta-eyebrow { font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
 .cta-title { font-family: var(--serif); font-weight: 300; font-size: clamp(40px, 6vw, 84px); line-height: 1.02; letter-spacing: -0.025em; margin-bottom: 32px; }
 .cta-title em { font-style: italic; color: var(--gold); font-weight: 400; }
 .cta-sub { font-size: 17px; color: var(--text-dim); max-width: 50ch; margin: 0 auto 48px; line-height: 1.6; }
 
 .footer { border-top: 1px solid var(--border-soft); padding: 56px 0 40px; position: relative; z-index: 2; }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
-.footer-meta { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--text-mute); display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-meta { font-family: var(--sans); font-size: 12px; letter-spacing: 0.06em; color: var(--text-mute); display: flex; gap: 24px; flex-wrap: wrap; }
 .footer-meta a { transition: color 0.2s ease; }
 .footer-meta a:hover { color: var(--gold); }
 @media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; } }
@@ -591,7 +584,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 
 .pr-sec{padding:90px 0;}
 .pr-wrap{max-width:var(--container,920px);margin:0 auto;padding:0 var(--gutter,32px);}
-.pr-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;justify-content:center;}
+.pr-eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;justify-content:center;}
 .pr-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
 .pr-h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,44px);letter-spacing:-.01em;margin-bottom:8px;text-align:center;}
 .pr-lede{color:var(--text-dim);font-size:16px;max-width:600px;margin:0 auto 24px;text-align:center;}
@@ -599,18 +592,18 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 .pr-toggle{display:inline-flex;border:1px solid var(--border);border-radius:999px;padding:4px;background:var(--surface);}
 .pr-toggle button{font-family:var(--sans);font-size:13px;font-weight:500;border:none;background:transparent;color:var(--text-dim);padding:8px 18px;border-radius:999px;cursor:pointer;transition:all .2s;}
 .pr-toggle button.on{background:var(--gold);color:#1a1408;}
-.pr-save{font-family:var(--mono);font-size:11px;color:var(--gold);}
+.pr-save{font-family:var(--sans);font-size:11px;color:var(--gold);}
 .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;}
 .pr-plan{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:30px 26px;position:relative;display:flex;flex-direction:column;transition:border-color .2s,transform .2s,box-shadow .2s;}
 .pr-plan:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 20px 44px -20px rgba(212,175,55,.34);}
 .pr-plan.feat{border-color:var(--gold);}
-.pr-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#1a1408;padding:4px 14px;border-radius:999px;font-weight:500;white-space:nowrap;}
+.pr-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#1a1408;padding:4px 14px;border-radius:999px;font-weight:500;white-space:nowrap;}
 .pr-plan h3{font-family:var(--serif);font-weight:400;font-size:25px;margin-bottom:4px;}
 .pr-blurb{font-size:13px;color:var(--text-mute);margin-bottom:18px;min-height:34px;}
 .pr-price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;}
 .pr-amt{font-family:var(--serif);font-size:42px;font-weight:500;}
 .pr-per{font-size:14px;color:var(--text-dim);}
-.pr-setup{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:20px;}
+.pr-setup{font-family:var(--sans);font-size:12px;color:var(--text-dim);margin-bottom:20px;}
 .pr-setup s{color:var(--text-mute);opacity:.7;}
 .pr-setup .pr-waived{color:var(--gold);}
 .pr-list{list-style:none;margin:0 0 22px;padding:0;flex:1;}
@@ -628,7 +621,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 .pr-ptiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
 .pr-ptier{background:var(--bg-2);border:2px solid transparent;border-radius:10px;padding:18px;transition:border-color .2s,transform .2s;}
 .pr-ptier:hover{border-color:var(--gold);transform:translateY(-4px);}
-.pr-ptier .pr-t{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.pr-ptier .pr-t{font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
 .pr-ptier .pr-r{font-family:var(--serif);font-size:20px;}
 .pr-ptier .pr-d{font-size:12.5px;color:var(--text-mute);margin-top:6px;line-height:1.5;}
 .pr-combo{margin-top:26px;font-size:14px;color:var(--text-dim);background:var(--bg-2);border-left:3px solid var(--gold);padding:14px 18px;}
@@ -646,9 +639,16 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 })();
 </script>
 <!-- End Meta Pixel Code -->
+<link href="obsidian.css" rel="stylesheet" />
+<link href="assets/business-stories.css" rel="stylesheet" />
+<link href="assets/owner-paths.css" rel="stylesheet" />
+<link href="assets/studio-experience.css" rel="stylesheet" />
+<link href="assets/software-scenes.css" rel="stylesheet" />
+<meta name="robots" content="noindex,nofollow" />
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="nav" id="nav">
   <div class="container nav-inner">
@@ -668,150 +668,247 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#approach">Approach</a></li>
+      <li><a href="#approach">Your next chapter</a></li><li><a href="#pricing">Pricing</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" type="button">
-        <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+        <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
       </button>
-      <a href="contact.html" class="btn btn-primary nav-cta">
-        Start a project
+<a href="#contact" data-agent-topic="general" class="btn btn-primary nav-cta">
+        Let’s talk
         <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="hero-eyebrow">
-        <span class="dot"></span>
-        <span>Available for new projects · 2026</span>
-      </div>
-      <!-- (column 1: existing hero text continues below) -->
-      <h1 class="hero-title">
-        <span class="word" style="animation-delay:0.15s">Buy</span>
-        <span class="word" style="animation-delay:0.25s">back</span>
-        <span class="word" style="animation-delay:0.35s">your</span>
-        <span class="word" style="animation-delay:0.45s">time</span>
-        <span class="word" style="animation-delay:0.55s">with</span>
-        <span class="word" style="animation-delay:0.65s">AI</span>
-        <span class="word" style="animation-delay:0.75s">that's</span>
-        <em><span class="word" style="animation-delay:0.85s">yours.</span></em>
-      </h1>
-      <p class="hero-sub">
-        We set up private AI you own, built on your data and your voice, plus automation, voice agents, and workflow fixes that take the repetitive work off your plate. You get your hours back for customers, creativity, and growth.
-      </p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary btn-lg">
-          Start a project
-          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#services" class="btn btn-ghost">See what we build</a>
-      </div>
-      <div class="hero-meta">
-        <div class="hero-meta-item"><span class="hero-meta-label">Based in</span><span class="hero-meta-value">Jupiter, FL</span></div>
-        <div class="hero-meta-item"><span class="hero-meta-label">Working with</span><span class="hero-meta-value">Founders &amp; SMBs</span></div>
-        <div class="hero-meta-item"><span class="hero-meta-label">Specialties</span><span class="hero-meta-value">AI · Software · Growth</span></div>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <img src="https://images.unsplash.com/photo-1753998943228-73470750c597?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Code on a developer's monitor in a darkened workspace" loading="eager"/>
-      <span class="hero-photo-caption">// REAL WORK</span>
+<main id="main"><header class="hero">
+<div class="container hero-grid"><div class="hero-copy">
+<div class="hero-eyebrow"><span class="dot"></span>Abacoa Digital · AI &amp; software studio</div>
+<h1 class="hero-title">Buy back<br>your <span class="soft">time.</span></h1>
+<p class="hero-sub">Great businesses are built by people. We build the AI, software, and connected workflows that give your people more room to do their best work.</p>
+<div class="hero-actions"><a href="#contact" data-agent-topic="general" class="btn btn-primary btn-lg">Build with Abacoa <span aria-hidden="true">↗</span></a><a href="#software-in-use" class="btn btn-ghost">See the software <span aria-hidden="true">↓</span></a></div>
+<p class="hero-note">Your team, backed by connected systems.<br><a href="#contact" data-agent-topic="client">Already a client? Get in touch.</a></p></div>
+<div class="brain-shell">
+<div class="brain" aria-label="Explore Abacoa's connected business systems">
+<img class="brain-art" src="assets/obsidian-nexus.webp" width="1536" height="1024" alt="" fetchpriority="high" /><canvas id="brainCanvas" aria-hidden="true"></canvas>
+<a class="brain-node core" data-brain-node="business" href="#services" style="--x:50%;--y:49%">Your business</a>
+<a class="brain-node" data-brain-node="knowledge" href="#service-voice" style="--x:50%;--y:8%">Private AI</a>
+<a class="brain-node" data-brain-node="voice" href="#service-voice" style="--x:78%;--y:23%">Voice agents</a>
+<a class="brain-node" data-brain-node="leads" href="#service-leads" style="--x:89%;--y:49%">Leads</a>
+<a class="brain-node" data-brain-node="workflows" href="#service-workflows" style="--x:78%;--y:76%">Workflows</a>
+<a class="brain-node" data-brain-node="software" href="#service-software" style="--x:50%;--y:91%">Software</a>
+<a class="brain-node" data-brain-node="analytics" href="#service-analytics" style="--x:22%;--y:76%">Analytics</a>
+<a class="brain-node" data-brain-node="brand" href="#service-brand" style="--x:11%;--y:49%">Brand</a>
+<a class="brain-node" data-brain-node="products" href="#work" style="--x:22%;--y:23%">Our work</a>
+</div>
+<div class="brain-detail" id="brainDetail" role="region" aria-labelledby="brainDetailTitle">
+  <div class="brain-detail-top"><span id="brainDetailKicker">Explore the connections</span><button id="brainReset" type="button" aria-label="Show the whole business network" hidden>Reset <span aria-hidden="true">↺</span></button></div>
+  <h2 id="brainDetailTitle">One business. Connected.</h2>
+  <p id="brainDetailCopy">Your calls, customer details, and daily work belong together. Explore a connection to see what we can build.</p>
+  <div class="brain-detail-links" id="brainDetailLinks"><a href="#services">Explore services <span aria-hidden="true">↗</span></a><a href="#system-film">Watch Elliot <span aria-hidden="true">↗</span></a></div>
+</div>
+<span class="sr-only" id="brainStatus" role="status" aria-live="polite"></span>
+</div></div>
+<div class="container"><div class="hero-rail"><span><strong>Jupiter, Florida</strong> / Building everywhere</span><span class="rail-middle">AI · Software · Automation</span><button id="motionToggle" class="motion-toggle" type="button" aria-pressed="false">Ⅱ Pause motion</button></div></div>
+</header>
+
+<section id="software-in-use" class="software-scenes">
+  <div class="container">
+    <div class="software-scenes-heading"><div><span class="section-num">A connected business, on screen</span><h2>Your systems.<br><em>Working together.</em></h2></div><p>The customer conversation. The lead record. The next action. Software that puts the information where your people can use it.</p></div>
+    <figure class="software-scene"><a href="assets/software-in-use-office.webp" target="_blank" rel="noopener" aria-label="Open the office software scene at full size"><img src="assets/software-in-use-office.webp" width="1672" height="941" loading="lazy" alt="A business owner working at two monitors showing an unbranded customer pipeline and email inbox." /></a><figcaption><span>Illustrative software in use · Unbranded interface concepts</span><a href="#app-workbench" data-workspace-link="crm">Explore the customer workspace <span aria-hidden="true">↗</span></a></figcaption></figure>
+    <div class="screen-outcomes">
+      <a href="#app-workbench" data-workspace-link="email"><span>01</span><h3>Every conversation, in context.</h3><p>An inquiry arrives with the customer’s question and the details your team needs.</p></a>
+      <a href="#app-workbench" data-workspace-link="crm"><span>02</span><h3>The right information, together.</h3><p>A customer record brings the request, its history and the next step into view.</p></a>
+      <a href="#app-workbench" data-workspace-link="projects"><span>03</span><h3>A clear place to act.</h3><p>The team sees what needs review and what should happen after it.</p></a>
     </div>
   </div>
-</header>
+</section>
+
+<section id="system-film" class="business-stories">
+  <div class="container">
+    <div class="story-heading">
+      <div><span class="section-num">Built for the way business happens</span><h2 class="section-title">Life happens.<br><em>Keep things moving.</em></h2></div>
+      <p>A ringing phone. An after-hours booking. A new project inquiry. Explore how connected software can turn each one into a clear next step.</p>
+    </div>
+    <div class="story-tabs" role="tablist" aria-label="Choose a business example">
+      <button type="button" role="tab" id="storyTabHome" aria-selected="true" aria-controls="storyPanel" data-story="home"><span>01</span>Home services<small>From the call to the crew</small></button>
+      <button type="button" role="tab" id="storyTabAppointments" aria-selected="false" aria-controls="storyPanel" tabindex="-1" data-story="appointments"><span>02</span>Appointments<small>Booked while you're busy</small></button>
+      <button type="button" role="tab" id="storyTabProfessional" aria-selected="false" aria-controls="storyPanel" tabindex="-1" data-story="professional"><span>03</span>Professional services<small>Every inquiry in its place</small></button>
+    </div>
+    <div id="storyPanel" class="story-panel" role="tabpanel" aria-labelledby="storyTabHome" tabindex="0">
+      <div class="story-copy">
+        <span id="storyCategory" class="story-eyebrow">Home services</span>
+        <h3 id="storyTitle">A busy shop.<br>A call that matters.</h3>
+        <p id="storyDescription">The owner is juggling staff and deliveries. Maya is at home with a broken AC and two hot, restless children. She needs help today.</p>
+        <div class="story-request"><div><span id="storyInitials" class="customer-initials" aria-hidden="true">M</span><span><strong id="storyCustomer">Maya</strong><small id="storyChannel">Incoming call · Jupiter, FL</small></span></div><p id="storyQuote">“Our AC is broken. Can someone come today?”</p></div>
+        <div class="story-outcome"><span>What changes</span><h4 id="storyOutcome">A booked job. A ready team.</h4><p id="storyValue">Elliot captures the urgency and confirms 3 PM. The owner gets the details needed to send the crew.</p></div>
+        <a class="story-desk-link" href="#owner-dashboard">See what reaches the owner <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="story-media">
+        <div id="storyHomeMedia">
+    <figure class="brand-film">
+      <div class="film-stage">
+      <video id="elliotFilm" class="brand-film-video" controls playsinline preload="none" poster="assets/elliot-emergency-poster.webp" aria-label="Abacoa Digital: Elliot answers, books the urgent job, and keeps the team informed. A 40-second illustrative film." aria-describedby="brandFilmCaption">
+        <source src="assets/elliot-emergency-web.mp4" type="video/mp4" />
+        <track kind="descriptions" src="assets/elliot-emergency.vtt" srclang="en" label="English scene descriptions" />
+        Your browser cannot play this video. <a href="assets/elliot-emergency-web.mp4">Watch Elliot in action</a>.
+      </video>
+      <button class="film-play" id="filmPlay" type="button" aria-controls="elliotFilm" hidden><span class="film-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7z"/></svg></span><span><strong id="filmPlayLabel">Watch Elliot in action</strong><small>40 seconds · Watch with sound</small></span></button>
+      </div>
+      <figcaption id="brandFilmCaption"><span><span class="film-caption-dot" aria-hidden="true"></span>Abacoa Digital · From the call to the crew</span><span>40 seconds · Voices &amp; sound</span></figcaption>
+    </figure>
+
+          <details class="story-film-extras"><summary>Film chapters &amp; the full story <span aria-hidden="true">+</span></summary>
+    <div class="film-chapters" role="group" aria-label="Jump to a chapter in the film" hidden>
+      <button type="button" data-film-seek="0" aria-controls="elliotFilm"><span class="film-chapter-index">01 <small>00:00</small></span><span>A busy business</span><span class="film-chapter-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" data-film-seek="4.667" aria-controls="elliotFilm"><span class="film-chapter-index">02 <small>00:05</small></span><span>Elliot takes the call</span><span class="film-chapter-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" data-film-seek="25.333" aria-controls="elliotFilm"><span class="film-chapter-index">03 <small>00:25</small></span><span>A booked job. A ready team.</span><span class="film-chapter-arrow" aria-hidden="true">↗</span></button>
+    </div>
+    <div class="film-notes"><p>Illustrative scenario · Sample appointment and customer details.</p><details class="film-transcript"><summary>Read the story</summary><p>An HVAC owner is juggling staff, deliveries, and a ringing phone. At home, Maya is hot and upset because the AC is broken and her children need help. Elliot, the AI receptionist, answers her call, offers an available 3 PM appointment, and confirms it with her. He flags the job as urgent and captures the details. When the owner checks his system, the appointment is already booked. He reviews the urgency and sends his team the job information so they can get rolling. Abacoa Digital: You do the work. We connect the rest.</p></details></div>
+
+          </details>
+        </div>
+        <figure id="storyPhotoMedia" class="story-photo" hidden><img id="storyPhoto" src="assets/scenario-appointments.webp" alt="A stylist helping a customer in an independent salon." width="1536" height="1024" loading="lazy" /><figcaption><span id="storyPhotoCaption">A full salon. A clear schedule.</span><span>Illustrative business scene</span></figcaption></figure>
+      </div>
+    </div>
+    <div class="story-workflow">
+      <div class="story-flow-heading"><span>Follow the work</span><button id="storyPlay" type="button" class="story-run" hidden><span aria-hidden="true">▶</span> Play the workflow</button></div>
+      <ol class="story-steps" aria-label="Example workflow">
+        <li><button type="button" data-story-step="0" aria-current="false"><span>01</span><strong id="storyStep0">The call comes in</strong><small id="storyStepCopy0">Maya needs urgent AC help.</small></button></li>
+        <li><button type="button" data-story-step="1" aria-current="false"><span>02</span><strong id="storyStep1">Elliot captures the details</strong><small id="storyStepCopy1">The need, location and urgency.</small></button></li>
+        <li><button type="button" data-story-step="2" aria-current="false"><span>03</span><strong id="storyStep2">The appointment is booked</strong><small id="storyStepCopy2">3 PM, accepted by Maya.</small></button></li>
+        <li><button type="button" data-story-step="3" aria-current="step"><span>04</span><strong id="storyStep3">The owner has the next step</strong><small id="storyStepCopy3">An urgent brief, ready for the crew.</small></button></li>
+      </ol>
+      <p id="storyStatus" class="story-status" role="status" aria-live="polite">Explore the completed example, or play the workflow step by step.</p>
+    </div>
+  </div>
+</section>
+
+<section id="owner-dashboard" class="owner-section">
+  <div class="container">
+    <div class="story-heading owner-screen-heading"><div><span class="section-num">The owner's side of the story</span><h2 class="section-title">The details.<br><em>Already together.</em></h2><p>A customer record at the desk. An urgent brief on your phone. Give the owner a useful view of the work, wherever the day takes them.</p></div><figure class="owner-mobile-scene"><a href="assets/software-in-use-mobile.webp" target="_blank" rel="noopener" aria-label="Open the mobile job-alert scene at full size"><img src="assets/software-in-use-mobile.webp" width="1536" height="1024" loading="lazy" alt="A business owner holding a phone with an unbranded urgent AC job alert for Maya and a confirmed 3 PM appointment." /></a><figcaption><span>Illustrative mobile workspace · Sample job details</span><a href="#deskPanel" data-story-link="home">Explore the job record <span aria-hidden="true">↗</span></a></figcaption></figure></div>
+    <div class="owner-console">
+      <div class="owner-toolbar"><div class="owner-brand"><span aria-hidden="true">a.</span><div>Abacoa <strong>Workspace</strong><small id="deskBusiness">Home services · Example workspace</small></div></div><div class="owner-toolbar-actions"><label><span class="sr-only">Choose a business example</span><select id="deskScenario"><option value="home">Home services</option><option value="appointments">Appointments</option><option value="professional">Professional services</option></select></label><span class="demo-pill">Interactive demo</span></div></div>
+      <div class="owner-layout">
+        <div class="owner-sidebar" role="tablist" aria-label="Workspace views" aria-orientation="vertical">
+          <button id="deskTabLeads" type="button" role="tab" aria-controls="deskPanel" aria-selected="true" data-desk-view="leads"><span aria-hidden="true">↳</span>Leads <small>1</small></button>
+          <button id="deskTabCalendar" type="button" role="tab" aria-controls="deskPanel" aria-selected="false" tabindex="-1" data-desk-view="calendar"><span aria-hidden="true">▦</span>Calendar</button>
+          <button id="deskTabConversations" type="button" role="tab" aria-controls="deskPanel" aria-selected="false" tabindex="-1" data-desk-view="conversations"><span aria-hidden="true">☷</span>Conversations</button>
+          <button id="deskTabTeam" type="button" role="tab" aria-controls="deskPanel" aria-selected="false" tabindex="-1" data-desk-view="team"><span aria-hidden="true">↗</span>Team</button>
+        </div>
+        <div id="deskPanel" class="owner-main" role="tabpanel" aria-labelledby="deskTabLeads" tabindex="0">
+          <div class="desk-heading"><div><span id="deskEyebrow">Customer overview</span><h3 id="deskTitle">One call. The full picture.</h3></div><span id="deskStage" class="desk-stage">Ready for the team</span></div>
+          <div id="deskContent"></div>
+          <noscript><p class="desk-fallback">Maya's urgent AC request is recorded, her 3 PM appointment is confirmed, and Elliot's brief is ready for the owner. Enable JavaScript to explore the workspace views.</p></noscript>
+        </div>
+      </div>
+      <div class="owner-footer"><span>Illustrative workflow · Sample customer data</span><a href="#contact" data-agent-topic="operations">Talk about your own workspace <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <details class="workflow-trial"><summary>Explore a business intake example <span aria-hidden="true">↗</span></summary><p class="workflow-trial-intro">In this separate example, a business asks Abacoa for help. Change the inquiry to see how its assessment and suggested reply change.</p>
+    <div class="workflow-console">
+      <div class="workflow-toolbar"><span class="workflow-label"><span class="workflow-dot" aria-hidden="true"></span>Intake → assessment → reply</span><span class="workflow-disclosure">Interactive simulation · sample rules</span></div>
+      <ol id="workflowSteps" class="workflow-steps" aria-label="Workflow stages"><li><span>01</span> Read inquiry</li><li><span>02</span> Assess intent</li><li><span>03</span> Suggest next step</li><li><span>04</span> Draft reply</li></ol>
+      <div class="workflow-workbench">
+        <form id="workflowForm" class="workflow-input-panel" novalidate>
+          <div class="workflow-panel-heading"><h3>The inquiry</h3><span>Input</span></div>
+          <div class="workflow-samples" role="group" aria-label="Sample inquiries"><button type="button" data-scenario="calls" aria-pressed="true">Missed calls</button><button type="button" data-scenario="followup" aria-pressed="false">Lead follow-up</button><button type="button" data-scenario="knowledge" aria-pressed="false">Private AI</button></div>
+          <label for="workflowInput">Edit the message</label>
+          <textarea id="workflowInput" rows="10" maxlength="1800" aria-describedby="workflowHint workflowError" spellcheck="false">Name: Maya
+Email: maya@example.com
+We miss customer calls while we're out on jobs. I need a voice agent that answers common questions and captures callback requests.
+Budget: $3,000
+Timeline: within 2 weeks</textarea>
+          <p id="workflowHint" class="workflow-hint">Try removing the budget or changing the request. Use “Budget:” and “Timeline:” for those fields.</p>
+          <p id="workflowError" class="workflow-error" role="alert"></p>
+          <button id="workflowRun" class="btn btn-primary" type="submit">Run example</button>
+          <p class="workflow-note">Uses demo rules, not a live AI model. Nothing is sent or saved.</p>
+          <noscript><p class="workflow-error">Enable JavaScript to try the interactive workflow. The film above is also available.</p></noscript>
+        </form>
+        <div class="workflow-output-panel">
+          <div class="workflow-panel-heading"><h3>The work</h3><span>Output</span></div>
+          <p id="workflowStatus" class="workflow-status" role="status" aria-live="polite">Ready for an inquiry</p>
+          <div id="workflowEmpty" class="workflow-empty"><span class="workflow-empty-mark" aria-hidden="true">↗</span><h4>See what changes.</h4><p>Run the example to turn this inquiry into a lead assessment and a response draft.</p><div class="workflow-preview-tags"><span>Lead details</span><span>Next step</span><span>Reply draft</span></div></div>
+          <div id="workflowOutput" hidden>
+            <div class="workflow-result-head"><span id="workflowBadge" class="workflow-badge"></span><span class="workflow-result-label">Lead preview</span></div>
+            <p id="workflowSummary" class="workflow-summary"></p>
+            <dl class="workflow-fields"><div><dt>Name</dt><dd id="workflowName"></dd></div><div><dt>Email</dt><dd id="workflowEmail"></dd></div><div><dt>Service</dt><dd id="workflowService"></dd></div><div><dt>Budget</dt><dd id="workflowBudget"></dd></div><div><dt>Timeline</dt><dd id="workflowTimeline"></dd></div></dl>
+            <div class="workflow-decision"><span>Suggested next step</span><h4 id="workflowNext"></h4><p id="workflowReason"></p><p id="workflowMissing"></p></div>
+            <div class="workflow-draft-head"><h4>Reply draft</h4><span>Ready for review</span></div>
+            <p id="workflowSubject" class="workflow-subject"></p><div id="workflowDraft" class="workflow-draft"></div>
+          </div>
+          <button id="workflowCopy" class="workflow-copy" type="button" disabled>Copy draft</button>
+        </div>
+      </div>
+    </div>
+    </details>
+
+  </div>
+</section>
 
 <section id="services">
   <div class="container">
     <div class="section-head reveal">
       <span class="section-num">01 · Services</span>
       <div>
-        <h2 class="section-title">What we <em>build</em> for you.</h2>
-        <p class="section-lede">Six core capabilities, assembled into the system your business actually needs. We don't sell packages. We solve the specific friction between your business and the next customer.</p>
+        <h2 class="section-title">The systems <em>behind the work.</em></h2>
+        <p class="section-lede">Start with the part of your business that needs help. We connect voice, software, and workflows around your team, your customers, and the way you work.</p>
       </div>
     </div>
-    <div class="cap-grid reveal-stagger">
-      <article class="cap">
-        <div class="cap-num">01</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg></div>
-        <h3>AI Agents &amp; Automation</h3>
-        <p>Voice agents, chat assistants, and autonomous workflows that do the repetitive work for you. The hours you spend answering, qualifying, and following up go back on your calendar. Built on Manus, Anthropic, and the right model for the task.</p>
-        <div class="cap-tags"><span class="cap-tag">Manus.ai</span><span class="cap-tag">Voice</span><span class="cap-tag">Workflows</span></div>
-      </article>
-      <article class="cap">
-        <div class="cap-num">02</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <h3>Web &amp; App Development</h3>
-        <p>Fast, accessible, well-built sites and apps that sell and serve while you sleep. Marketing pages, customer portals, dashboards, and mobile experiences that convert without you in the loop, built to last.</p>
-        <div class="cap-tags"><span class="cap-tag">Next.js</span><span class="cap-tag">React</span><span class="cap-tag">Mobile</span></div>
-      </article>
-      <article class="cap">
-        <div class="cap-num">03</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></div>
-        <h3>Customer Engagement</h3>
-        <p>One layer between you and every lead across SMS, email, voice, and chat. It answers in seconds, qualifies intelligently, and routes only the work worth your time, so you stop living in the inbox.</p>
-        <div class="cap-tags"><span class="cap-tag">SMS · Email</span><span class="cap-tag">Twilio</span><span class="cap-tag">CRM</span></div>
-      </article>
-      <article class="cap">
-        <div class="cap-num">04</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-        <h3>Data &amp; Analytics</h3>
-        <p>Dashboards and pipelines that turn raw activity into the three numbers you actually run on. Less time digging through reports, more time knowing where to act.</p>
-        <div class="cap-tags"><span class="cap-tag">Postgres</span><span class="cap-tag">Dashboards</span><span class="cap-tag">ETL</span></div>
-      </article>
-      <article class="cap">
-        <div class="cap-num">05</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h3>Brand &amp; Digital Presence</h3>
-        <p>The first impression that does the qualifying for you. Identity, positioning, and a public-facing surface that signals you can be trusted, so the right customers arrive already sold.</p>
-        <div class="cap-tags"><span class="cap-tag">Identity</span><span class="cap-tag">Web Design</span><span class="cap-tag">Positioning</span></div>
-      </article>
-      <article class="cap">
-        <div class="cap-num">06</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div>
-        <h3>Workflow Systems</h3>
-        <p>The internal tooling your team will actually use. Operations dashboards, custom CRMs, intake automations, and integrations that take the manual steps off your plate and hand the hours back.</p>
-        <div class="cap-tags"><span class="cap-tag">Internal Tools</span><span class="cap-tag">Integrations</span><span class="cap-tag">Ops</span></div>
-      </article>
+    <div class="app-workbench" id="app-workbench">
+      <div class="app-workbench-heading"><div><span class="small-eyebrow">Familiar tools. A connected working day.</span><h3>The work between the apps.</h3><p>Follow one inquiry from an email to the information your team needs. The tools can look familiar. The connection is what changes the day.</p></div><span class="sample-label">Interactive example · Sample data</span></div>
+      <div class="app-switcher" role="tablist" aria-label="Explore the connected workspaces">
+        <button type="button" role="tab" id="appEmailTab" data-workspace="email" aria-selected="true" aria-controls="workspacePanel"><span aria-hidden="true">✉</span>Email</button>
+        <button type="button" role="tab" id="appSheetTab" data-workspace="sheet" aria-selected="false" aria-controls="workspacePanel" tabindex="-1"><span aria-hidden="true">▦</span>Spreadsheet</button>
+        <button type="button" role="tab" id="appCrmTab" data-workspace="crm" aria-selected="false" aria-controls="workspacePanel" tabindex="-1"><span aria-hidden="true">◉</span>CRM</button>
+        <button type="button" role="tab" id="appNotesTab" data-workspace="notes" aria-selected="false" aria-controls="workspacePanel" tabindex="-1"><span aria-hidden="true">▤</span>Team notes</button>
+        <button type="button" role="tab" id="appProjectsTab" data-workspace="projects" aria-selected="false" aria-controls="workspacePanel" tabindex="-1"><span aria-hidden="true">☷</span>Project board</button>
+        <button type="button" role="tab" id="appReportsTab" data-workspace="reports" aria-selected="false" aria-controls="workspacePanel" tabindex="-1"><span aria-hidden="true">▥</span>Reporting</button>
+      </div>
+      <div class="connected-desktop">
+        <div class="workspace-window" id="workspacePanel" role="tabpanel" aria-labelledby="appEmailTab" tabindex="0"><div class="workspace-titlebar"><span class="window-controls" aria-hidden="true"><i></i><i></i><i></i></span><span id="workspaceName">Business inbox</span><span class="workspace-example">Example workspace</span></div><div id="workspaceContent"><div class="workspace-noscript"><h4>A website inquiry from Sam</h4><p>The request for a second-location website connects to a lead row, customer record, team brief, project tasks and reporting.</p><noscript><p>Enable JavaScript to explore each workspace.</p></noscript></div></div></div>
+        <aside class="handoff-card"><span class="handoff-brand">Abacoa Digital <span aria-hidden="true">✧</span></span><span class="small-eyebrow">The connection</span><h4 id="handoffTitle">An inquiry comes in.</h4><p id="handoffCopy">Sam wants a website for a second location. Capture the request without losing the context in the inbox.</p><div class="handoff-payload"><span>Information that travels</span><p id="handoffData">Sam · New website · Second location</p></div><ol class="handoff-trail" aria-label="Example workflow"><li data-handoff-step="0">Inquiry</li><li data-handoff-step="1">Lead row</li><li data-handoff-step="2">CRM record</li><li data-handoff-step="3">Team brief</li><li data-handoff-step="4">Next task</li><li data-handoff-step="5">Visibility</li></ol><button class="text-action" id="workspacePlay" type="button"><span aria-hidden="true">▶</span> Play the handoff</button><p class="sr-only" id="workspaceStatus" role="status"></p></aside>
+      </div>
+      <div class="workbench-bottom"><p>Keep the tools that work for you. Let Abacoa Digital connect the missing handoffs.</p><a class="text-action" href="#contact" data-agent-topic="operations">Connect our workflow <span aria-hidden="true">↗</span></a></div>
     </div>
-    <p class="stack-intro reveal" style="margin-top:52px;margin-bottom:0;font-size:clamp(18px,2vw,22px);">Built on best-in-class AI and infrastructure, composed for reliability — and <em>the system we build is yours to keep.</em></p>
+    <details class="system-explainer"><summary>Explore the systems behind these connections <span aria-hidden="true">+</span></summary>
+    <div class="system-map">
+      <div class="system-map-top"><span>The pieces, working together</span><span>Explore an example architecture</span></div>
+      <div class="system-nodes" role="tablist" aria-label="Explore the connected systems">
+        <button id="systemIntake" type="button" role="tab" data-system="intake" aria-selected="false" aria-controls="systemMapPanel" tabindex="-1"><span aria-hidden="true">↳</span>Website &amp; forms</button>
+        <button id="systemAssistant" type="button" role="tab" data-system="assistant" aria-selected="false" aria-controls="systemMapPanel" tabindex="-1"><span aria-hidden="true">✧</span>AI assistant</button>
+        <button id="systemCrm" type="button" role="tab" data-system="crm" aria-selected="true" aria-controls="systemMapPanel"><span aria-hidden="true">▤</span>Custom CRM</button>
+        <button id="systemCalendar" type="button" role="tab" data-system="calendar" aria-selected="false" aria-controls="systemMapPanel" tabindex="-1"><span aria-hidden="true">▦</span>Calendar &amp; tasks</button>
+        <button id="systemTeam" type="button" role="tab" data-system="team" aria-selected="false" aria-controls="systemMapPanel" tabindex="-1"><span aria-hidden="true">↗</span>Team &amp; customer</button>
+        <button id="systemInsights" type="button" role="tab" data-system="insights" aria-selected="false" aria-controls="systemMapPanel" tabindex="-1"><span aria-hidden="true">⌁</span>Activity &amp; insights</button>
+      </div>
+      <div class="system-map-detail" id="systemMapPanel" role="tabpanel" aria-labelledby="systemCrm" tabindex="0"><h3 id="systemMapTitle">Custom CRM</h3><p id="systemMapCopy">Bring the customer record, conversations and activity into a workspace built around the team’s actual day.</p><div class="system-data-note"><span>What moves through it</span><div id="systemMapData">One connected record for the people doing the work.</div></div></div>
+    </div>
+    </details>
+    <div class="service-catalog">
+      <details class="service-detail" id="service-voice"><summary><span>01</span><strong>Private AI &amp; Voice Agents</strong><span aria-hidden="true">+</span></summary><div><p>Voice agents, chat assistants, and autonomous workflows that do the repetitive work for you. The hours you spend answering, qualifying, and following up go back on your calendar. Built around your knowledge, with the right model for the task.</p><div class="cap-tags"><span class="cap-tag">Private AI</span><span class="cap-tag">Voice</span><span class="cap-tag">Workflows</span></div><a class="text-action" href="#contact" data-agent-topic="calls">Talk about an AI assistant <span aria-hidden="true">↗</span></a></div></details>
+      <details class="service-detail" id="service-software"><summary><span>02</span><strong>Web &amp; App Development</strong><span aria-hidden="true">+</span></summary><div><p>Fast, accessible, well-built sites and apps that sell and serve while you sleep. Marketing pages, customer portals, dashboards, and mobile experiences that convert without you in the loop, built to last.</p><div class="cap-tags"><span class="cap-tag">Websites</span><span class="cap-tag">Portals</span><span class="cap-tag">Mobile</span></div><a class="text-action" href="#contact" data-agent-topic="website">Explore your website or app <span aria-hidden="true">↗</span></a></div></details>
+      <details class="service-detail" id="service-leads"><summary><span>03</span><strong>Customer Engagement</strong><span aria-hidden="true">+</span></summary><div><p>One layer between you and every lead across SMS, email, voice, and chat. It answers in seconds, qualifies intelligently, and routes only the work worth your time, so you stop living in the inbox.</p><div class="cap-tags"><span class="cap-tag">SMS · Email</span><span class="cap-tag">Conversations</span><span class="cap-tag">CRM</span></div><a class="text-action" href="#contact" data-agent-topic="followup">Connect your customer follow-up <span aria-hidden="true">↗</span></a></div></details>
+      <details class="service-detail" id="service-analytics"><summary><span>04</span><strong>Data &amp; Analytics</strong><span aria-hidden="true">+</span></summary><div><p>Dashboards and pipelines that turn raw activity into the three numbers you actually run on. Less time digging through reports, more time knowing where to act.</p><div class="cap-tags"><span class="cap-tag">Connected data</span><span class="cap-tag">Dashboards</span><span class="cap-tag">Reporting</span></div><a class="text-action" href="#contact" data-agent-topic="operations">Bring your information together <span aria-hidden="true">↗</span></a></div></details>
+      <details class="service-detail" id="service-brand"><summary><span>05</span><strong>Brand &amp; Digital Presence</strong><span aria-hidden="true">+</span></summary><div><p>The first impression that does the qualifying for you. Identity, positioning, and a public-facing surface that signals you can be trusted, so the right customers arrive already sold.</p><div class="cap-tags"><span class="cap-tag">Identity</span><span class="cap-tag">Web Design</span><span class="cap-tag">Positioning</span></div><a class="text-action" href="#contact" data-agent-topic="website">Talk about your digital presence <span aria-hidden="true">↗</span></a></div></details>
+      <details class="service-detail" id="service-workflows"><summary><span>06</span><strong>Workflow Systems</strong><span aria-hidden="true">+</span></summary><div><p>The internal tooling your team will actually use. Operations dashboards, custom CRMs, intake automations, and integrations that take the manual steps off your plate and hand the hours back.</p><div class="cap-tags"><span class="cap-tag">Internal Tools</span><span class="cap-tag">Integrations</span><span class="cap-tag">Ops</span></div><a class="text-action" href="#contact" data-agent-topic="operations">Simplify a workflow <span aria-hidden="true">↗</span></a></div></details>
+    </div>
+    <p class="stack-intro reveal" style="margin-top:52px;margin-bottom:0;font-size:clamp(18px,2vw,22px);">Connect the tools that earn their place. <em>Build the missing pieces around your business.</em></p>
   </div>
 </section>
 
 <section id="process" class="process">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="section-num">02 · Process</span>
-      <div>
-        <h2 class="section-title">How the <em>work</em> gets done.</h2>
-        <p class="section-lede">Four phases. No mystery. We move fast where speed compounds, and slow down where decisions matter.</p>
-      </div>
-    </div>
+    <div class="people-intro"><figure><img src="assets/business-working-day.webp" width="1672" height="941" loading="lazy" alt="A business owner and a service technician discussing the day’s work while an office coordinator works nearby." /><figcaption>Illustrative business scene</figcaption></figure><div><span class="section-num">Built around people</span><h2 class="section-title">More time for<br><em>the human part.</em></h2><p>The customer who needs an answer. The team member who needs the details. The owner who needs to see what’s next.</p><p>Abacoa Digital connects the systems around those moments, so the people doing the work can stay in it.</p><a class="text-action" href="#contact" data-agent-topic="general">Meet your next project team <span aria-hidden="true">↗</span></a></div></div>
+    <div class="process-caption"><span>Working with Abacoa Digital</span><span>From the first question to everyday use</span></div>
     <div class="process-list">
-      <div class="process-step reveal">
-        <div class="process-num">01</div>
-        <div class="process-title">Discovery &amp; Diagnosis</div>
-        <div class="process-desc">A working session. We map the actual problem, where customers leak, where the team is doing manual work that software should handle, what one change would move the most. You leave with a plan whether or not we work together.</div>
-      </div>
-      <div class="process-step reveal">
-        <div class="process-num">02</div>
-        <div class="process-title">Scope &amp; Architecture</div>
-        <div class="process-desc">A fixed-price proposal with a real timeline. The smallest version of the system that solves the problem, with a clear runway for what comes next. No surprise invoices. No vague "phases."</div>
-      </div>
-      <div class="process-step reveal">
-        <div class="process-num">03</div>
-        <div class="process-title">Build &amp; Iterate</div>
-        <div class="process-desc">You see working software within the first two weeks. We ship in short cycles, you give real feedback, we adjust before anything is locked in. The thing that gets delivered is the thing you helped shape.</div>
-      </div>
-      <div class="process-step reveal">
-        <div class="process-num">04</div>
-        <div class="process-title">Launch &amp; Operate</div>
-        <div class="process-desc">We don't disappear at handoff. Monitoring, optimization, and a continuing relationship at whatever level you need. You can take the system in-house anytime, and the code is yours, documented and clean.</div>
-      </div>
+      <div class="process-step reveal"><div class="process-num">01</div><h3 class="process-title">Tell us what gets in the way.</h3><p class="process-desc">Tell Abacoa Digital what needs to change. We review the problem, your existing tools and what a useful result would look like.</p><div class="process-deliverable">A problem worth solving.</div></div>
+      <div class="process-step reveal"><div class="process-num">02</div><h3 class="process-title">Choose the first useful win.</h3><p class="process-desc">Agree on the scope, price, timeline and connections before the build starts. Keep the first version focused enough to put to work.</p><div class="process-deliverable">An agreed plan and scope.</div></div>
+      <div class="process-step reveal"><div class="process-num">03</div><h3 class="process-title">Try it in your world.</h3><p class="process-desc">Review working software and realistic scenarios. Refine the handoffs, messages and decisions with the people who will use it.</p><div class="process-deliverable">A system your team has tried.</div></div>
+      <div class="process-step reveal"><div class="process-num">04</div><h3 class="process-title">Launch. Learn. Improve.</h3><p class="process-desc">Put it into use with a clear handoff. Add monitoring, tuning and further improvements through the support arrangement you choose.</p><div class="process-deliverable">Ownership and a next step.</div></div>
     </div>
+    <div class="section-action"><p>You don’t need a technical brief. A real example of what slows you down is a useful place to start.</p><a class="text-action" href="#contact" data-agent-topic="general">Talk about your business <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 
@@ -821,51 +918,82 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
       <span class="section-num">03 · Work</span>
       <div>
         <h2 class="section-title">What we've <em>shipped.</em></h2>
-        <p class="section-lede">These are products we've built and funded ourselves — the same standards, testing, and discipline we bring to client work. Proof of craft, not a client roster.</p>
+        <p class="section-lede">Independent products, built and funded by us. Explore the thinking, care, and working software behind the studio.</p>
       </div>
     </div>
     <div class="cap-grid reveal-stagger">
       <article class="cap">
         <div class="cap-num">01</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22 C 10 17, 14 14, 12 10 C 10.4 7, 12.6 5, 12 3.4"/><path d="M12 16 C 9.5 15.2, 8 16, 7.5 18 C 10 18.3, 11.6 17.6, 12 16 Z"/><path d="M12 11 C 14.5 10.2, 16 11, 16.5 13 C 14 13.3, 12.4 12.6, 12 11 Z"/><circle cx="12" cy="3.2" r="1.5"/></svg></div>
-        <h3><a href="/briar.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Briar <span style="color:#d4af37;font-weight:400;font-size:0.8em;">↗</span></a></h3>
+        <div class="work-surface"><div class="surface-top"><span>BRIAR</span><span>01 / FINTECH</span></div><div class="surface-title">Your money, together.</div><div class="surface-line"><span>Cards &amp; balances</span><b>Organized</b></div><div class="surface-line"><span>Statements &amp; rewards</span><b>Connected</b></div></div>
+        <h3><a href="https://abacoadigital.com/briar.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Briar <span style="color:#d4af37;font-weight:400;font-size:0.8em;">↗</span></a></h3>
         <p>A secure, simple home for every credit card you carry. Balances, limits, due dates, rewards, statements, and account changes, all organized in one place instead of five logins and a pile of paper.</p>
-        <div class="cap-tags"><span class="cap-tag">Fintech</span><span class="cap-tag">Mobile</span><span class="cap-tag">Security</span></div>
+        <p class="work-takeaway"><span>The business idea:</span> scattered information, brought into one useful view.</p>
       </article>
       <article class="cap">
         <div class="cap-num">02</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="4"/><path d="M11.8 11.8 L19 19"/><path d="M16 14.5 L18 16.5"/><path d="M13.5 17 L15.5 19"/></svg></div>
-        <h3><a href="/bramble.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Bramble <span style="color:#d4af37;font-weight:400;font-size:0.8em;">↗</span></a></h3>
+        <div class="work-surface"><div class="surface-top"><span>BRAMBLE</span><span>02 / PROPTECH</span></div><div class="surface-title">From approved to home.</div><div class="surface-line"><span>Lease &amp; documents</span><b>One place</b></div><div class="surface-line"><span>Move-in checklist</span><b>Next steps</b></div></div>
+        <h3><a href="https://abacoadigital.com/bramble.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Bramble <span style="color:#d4af37;font-weight:400;font-size:0.8em;">↗</span></a></h3>
         <p>A renter's command center for the messy middle, everything between "you're approved" and "here are your keys." Status dashboard, payment safety check, document vault, lease summary, insurance tracker, and nudge templates.</p>
-        <div class="cap-tags"><span class="cap-tag">Proptech</span><span class="cap-tag">Renters</span><span class="cap-tag">Dashboard</span></div>
+        <p class="work-takeaway"><span>The business idea:</span> a complex customer journey with clear next steps.</p>
       </article>
       <article class="cap">
         <div class="cap-num">03</div>
-        <div class="cap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9.2 14l2 2 3.6-3.6"/></svg></div>
+        <div class="work-surface"><div class="surface-top"><span>POLISH</span><span>03 / AI</span></div><div class="surface-title">Trust what you send.</div><div class="surface-line"><span>AI meeting notes</span><b>Cross-checked</b></div><div class="surface-line"><span>Transcript evidence</span><b>Traceable</b></div></div>
         <h3><a href="https://codex-challenge-mvp.vercel.app/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Polish <span style="color:#d4af37;font-weight:400;font-size:0.8em;">↗</span></a></h3>
         <p>A verification layer for AI meeting notes. It cross-checks summaries from Otter, Fathom, Granola, Zoom, or Teams against the transcript and flags hallucinations before you send.</p>
-        <div class="cap-tags"><span class="cap-tag">AI</span><span class="cap-tag">Meetings</span><span class="cap-tag">Verification</span></div>
+        <p class="work-takeaway"><span>The business idea:</span> useful AI with evidence people can review.</p>
       </article>
     </div>
-    <p class="stack-intro reveal" style="margin-top: 48px;">Whatever we build for ourselves, we build for our clients. The standards do not change because the logo on top does.</p>
+    <div class="section-action"><p>The same thinking can shape your customer portal, internal workspace or next product.</p><a class="text-action" href="#contact" data-agent-topic="operations">Discuss something built for you <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 
-<section id="approach">
+<section id="approach" class="future-section">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="section-num">04 · Approach</span>
-      <div><h2 class="section-title">Quality is the <em>whole point.</em></h2></div>
-    </div>
-    <div class="approach-grid">
-      <div class="approach-quote reveal">Nothing leaves here that we wouldn't sign our name to. Documented spec, real testing, secure handling of money and data, accessible to everyone who has to use it. Customers do not notice when it works. They notice fast when it does not.</div>
-      <div class="approach-body reveal">
-        <p>Abacoa Digital was founded on a simple idea: businesses deserve software built with the same discipline you would expect from anyone responsible for something important. <strong>Every system has a documented spec. Every decision has a reason. Every line is written for the next person who has to maintain it.</strong></p>
-        <p>We design for the parts most agencies skip. Payment safety. Data security. Accessibility. Monitoring. Graceful failure when something upstream breaks. The work is not done when the demo works. It is done when the demo works and the system survives a bad day.</p>
-        <p>We are small on purpose. You work with the person doing the work. No junior team, no offshore handoff, no "account manager" between you and the build. The trade-off: we take fewer projects than a typical agency, and the projects we take, we go deep on.</p>
-        <p>The work is for businesses ready to compete on the <strong>quality of their digital surface</strong>, not just check a box that says "we have a website."</p>
-        <div class="signature">Abacoa Digital · Jupiter, Florida</div>
+    <div class="future-intro screen-future-intro"><div><span class="section-num">04 · Your next chapter</span><h2 class="section-title">Start with one win.<br><em>Build toward what’s next.</em></h2></div><p>A shared lead tracker. A clear project board. The tools your team knows, connected to the next step. Choose a starting point to explore how the work could come together.</p><figure class="future-software-scene"><a href="assets/software-in-use-desk.webp" target="_blank" rel="noopener" aria-label="Open the spreadsheet and workflow scene at full size"><img src="assets/software-in-use-desk.webp" width="1672" height="941" loading="lazy" alt="A person using a laptop with an unbranded lead-tracking spreadsheet beside a tablet showing an inquiry, review and follow-up workflow." /></a><figcaption>A lead tracker and a workflow board, in the same working day.<span>Illustrative software scene · Select the image for a closer look.</span></figcaption></figure></div>
+    <div class="future-board">
+      <div class="future-topline"><span>A possible path for your business</span><span>One useful connection at a time</span></div>
+      <div class="future-layout">
+        <div id="futureChoices" class="future-choices" role="tablist" aria-label="Choose a business priority" aria-orientation="vertical">
+          <button type="button" id="futureCalls" role="tab" data-future="calls" aria-selected="true" aria-controls="futurePanel">Missed calls <span aria-hidden="true">↗</span></button>
+          <button type="button" id="futureFollowup" role="tab" data-future="followup" aria-selected="false" aria-controls="futurePanel" tabindex="-1">Slow follow-up <span aria-hidden="true">↗</span></button>
+          <button type="button" id="futureOperations" role="tab" data-future="operations" aria-selected="false" aria-controls="futurePanel" tabindex="-1">Scattered information <span aria-hidden="true">↗</span></button>
+          <button type="button" id="futureWebsite" role="tab" data-future="website" aria-selected="false" aria-controls="futurePanel" tabindex="-1">A passive website <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="future-panel" id="futurePanel" role="tabpanel" aria-labelledby="futureCalls" tabindex="0">
+          <h3 id="futureTitle">Give every caller a clear next step.</h3><p id="futureCopy">Start at the phone. Add the connections that make the conversation useful to the rest of your business.</p>
+          <ol class="future-route">
+            <li><span>Start here</span><h4 id="futureTitle0">Capture the call</h4><p id="futureCopy0">Answer common questions and collect the customer’s need, contact details and urgency.</p></li>
+            <li><span>Connect next</span><h4 id="futureTitle1">Connect the follow-through</h4><p id="futureCopy1">Link the call brief to a customer record, available appointments and a team notification.</p></li>
+            <li><span>Build toward</span><h4 id="futureTitle2">Improve with evidence</h4><p id="futureCopy2">Review call outcomes and unresolved requests to refine how the assistant helps.</p></li>
+          </ol>
+          <div class="future-control"><strong>You stay in control.</strong> <span id="futureControl">You set availability, escalation rules and the situations that need a person.</span></div>
+          <a class="text-action" id="futureAction" href="#contact" data-agent-topic="calls"><span id="futureActionLabel">Explore a voice assistant</span> <span aria-hidden="true">↗</span></a>
+          <p class="future-note">An example direction. Your priorities, existing tools and agreed scope shape the actual build.</p>
+        </div>
       </div>
+    </div>
+    <div class="studio-promise">
+      <div><h3>Your team, working with ours.</h3><p><strong>Abacoa Digital brings the design, software and AI work together.</strong> Mike leads the project with you, keeping the build connected to the people who will use it.</p></div>
+      <div><h3>Built around how you work.</h3><p>Keep the tools that serve you well. Connect the missing handoffs and build the software your team needs to move forward.</p></div>
+      <div><h3>Room to change your mind.</h3><p>Start with a clear scope, review working software and make the next decision with what you’ve learned. The system can grow with the business.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="assistant-demo" class="assistant-section">
+  <div class="container assistant-showcase">
+    <div class="assistant-copy"><span class="section-num">An easier first hello</span><h2 class="section-title">Your website can<br><em>start the conversation.</em></h2><p>A helpful assistant can guide a visitor, answer a common question and gather the context your team needs. Try a short example, then explore what would make it useful for your business.</p><div class="assistant-actions"><a class="btn btn-primary" href="#assistant-demo" data-chat-open>Try the chat example <span aria-hidden="true">↗</span></a><a class="text-action" href="tel:+15615897339">Prefer voice? Try Elliot <span aria-hidden="true">↗</span></a></div><p class="demo-explainer">Guided chat example · No live agent or booking</p></div>
+    <div class="chat-preview"><div class="chat-preview-head"><span class="studio-avatar" aria-hidden="true">AD</span><div><strong>Abacoa Digital</strong><small>An example of a helpful first conversation</small></div></div><div class="chat-bubble visitor">We’re busy with customers and keep missing calls.</div><div class="chat-bubble assistant">An AI receptionist could capture the reason for the call and prepare the next step for your team.</div><div class="chat-result-preview"><span aria-hidden="true">↳</span><div><strong>The conversation becomes useful context.</strong><span>A customer need → a lead brief → an owner decision.</span></div></div><a href="#assistant-demo" data-chat-open class="chat-preview-start">Explore your own situation <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+
+<section id="testimonials" class="testimonials-preview" aria-labelledby="testimonialsTitle">
+  <div class="container"><div class="testimonial-heading"><div><span class="section-num">Client voices · Layout preview</span><h2 class="section-title" id="testimonialsTitle">The words that<br><em>matter most.</em></h2></div><p>Testimonial placeholders. Real, approved feedback will replace these before public launch.</p></div>
+    <div class="testimonial-grid">
+      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>The working relationship.</h3><p>Space for a client’s own words about collaborating with Abacoa Digital.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
+      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>What became easier.</h3><p>Space for approved feedback about a specific improvement in the working day.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
+      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>The customer experience.</h3><p>Space for a real account of how the work helped the people using it.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
     </div>
   </div>
 </section>
@@ -873,8 +1001,8 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 <section id="pricing" class="pr-sec">
   <div class="pr-wrap reveal">
     <div class="pr-eyebrow">Pricing</div>
-    <h2 class="pr-h2">Simple plans. Real outcomes.</h2>
-    <p class="pr-lede">Start with a one-time project for a finished build, or a monthly plan for AI that runs for you. Most clients do both, and annual plans get the setup fee waived.</p>
+    <h2 class="pr-h2">A clear place to start.</h2>
+    <p class="pr-lede">Start with a one-time project for a finished build, or a monthly plan for AI that runs for you. Pair a build with ongoing support, or start with one. Annual plans get the setup fee waived.</p>
 
     <div class="pr-projects" style="margin-top:0;border-top:none;padding-top:0;margin-bottom:44px;">
       <h4>One-time projects.</h4>
@@ -888,11 +1016,11 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
     </div>
 
     <div class="pr-billing" style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px auto 30px;">
-      <div id="prToggle" style="display:inline-flex;border:1px solid var(--border,#2a3346);border-radius:999px;padding:4px;background:var(--surface,#1a2030);">
-        <button type="button" data-mode="monthly" class="on" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:#d4af37;color:#0e1218;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Monthly</button>
-        <button type="button" data-mode="annual" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:transparent;color:#c0b8a5;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Annual</button>
+      <div role="group" aria-label="Billing frequency" id="prToggle" style="display:inline-flex;border:1px solid var(--border,#2a3346);border-radius:999px;padding:4px;background:var(--surface,#1a2030);">
+        <button type="button" data-mode="monthly" aria-pressed="true" class="on" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:#d4af37;color:#0e1218;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Monthly</button>
+        <button type="button" data-mode="annual" aria-pressed="false" style="font:500 13px var(--sans,'DM Sans',system-ui,sans-serif);border:none;background:transparent;color:#c0b8a5;padding:9px 20px;border-radius:999px;cursor:pointer;transition:all .2s;">Annual</button>
       </div>
-      <span id="prSaveNote" style="font:500 11px var(--mono,'JetBrains Mono',monospace);color:#d4af37;letter-spacing:.04em;">Pay annually: 2 months free + setup waived.</span>
+      <span id="prSaveNote" style="font:500 11px var(--sans,'JetBrains Mono',monospace);color:#d4af37;letter-spacing:.04em;">Pay annually: 2 months free + setup waived.</span>
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -915,13 +1043,13 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
           : 'Pay annually: 2 months free + setup waived.';
         var term = annual ? 'annual' : 'monthly';
         [].forEach.call(document.querySelectorAll('.pr-cta[data-plan]'), function (a) {
-          a.setAttribute('href', '/start.html?plan=' + a.getAttribute('data-plan') + '&term=' + term);
+          a.setAttribute('href', 'https://abacoadigital.com/start.html?plan=' + a.getAttribute('data-plan') + '&term=' + term);
         });
       }
       t.addEventListener('click', function (e) {
         var b = e.target.closest('button[data-mode]'); if (!b) return;
-        [].forEach.call(t.children, function (x) { x.classList.remove('on'); x.style.background = 'transparent'; x.style.color = '#c0b8a5'; });
-        b.classList.add('on'); b.style.background = '#d4af37'; b.style.color = '#0e1218';
+        [].forEach.call(t.children, function (x) { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); x.style.background = 'transparent'; x.style.color = '#c0b8a5'; });
+        b.classList.add('on'); b.setAttribute('aria-pressed', 'true'); b.style.background = '#d4af37'; b.style.color = '#0e1218';
         render(b.getAttribute('data-mode') === 'annual');
       });
     });
@@ -933,16 +1061,16 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="pr-price"><span class="pr-amt">$299</span><span class="pr-per">/ mo</span></div>
         <div class="pr-setup">+ setup $179</div>
         <ul class="pr-list"><li>A live AI agent (voice or chat)</li><li>Up to 200 AI voice minutes/mo</li><li>~1 hour of changes/mo included</li><li>Includes your Google Business Profile (GBP) audit + fixes — a $149 value</li><li>Monitoring + tuning so it keeps working</li><li>Private AI you own</li></ul>
-        <a class="pr-cta ghost" data-plan="starter" href="/start.html?plan=starter&amp;term=monthly">Start here</a>
+        <a class="pr-cta ghost" data-plan="starter" href="https://abacoadigital.com/start.html?plan=starter&amp;term=monthly">Start here</a>
       </div>
       <div class="pr-plan feat" data-price-m="$599" data-price-a="$499" data-setup-m="+ setup $359" data-billed-a="Billed $5,988/yr">
-        <div class="pr-badge">Most popular</div>
+        <div class="pr-badge">For connected workflows</div>
         <h3>Growth</h3>
         <div class="pr-blurb">Agents and automations, working together.</div>
         <div class="pr-price"><span class="pr-amt">$599</span><span class="pr-per">/ mo</span></div>
         <div class="pr-setup">+ setup $359</div>
         <ul class="pr-list"><li>Multiple agents (voice and chat)</li><li>Up to 500 voice minutes/mo</li><li>~4 hours of changes/mo</li><li>Workflow automations included</li><li>Priority support</li><li>Private AI you own</li></ul>
-        <a class="pr-cta solid" data-plan="growth" href="/start.html?plan=growth&amp;term=monthly">Choose Growth</a>
+        <a class="pr-cta solid" data-plan="growth" href="https://abacoadigital.com/start.html?plan=growth&amp;term=monthly">Choose Growth</a>
       </div>
       <div class="pr-plan" data-price-m="$1,499" data-price-a="$1,249" data-setup-m="+ setup $899" data-billed-a="Billed $14,988/yr">
         <h3>Scale</h3>
@@ -950,32 +1078,48 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
         <div class="pr-price"><span class="pr-amt">$1,499</span><span class="pr-per">/ mo</span></div>
         <div class="pr-setup">+ setup $899</div>
         <ul class="pr-list"><li>Agents across voice, chat, and SMS</li><li>Up to 1,200 voice minutes/mo</li><li>~8 hours of changes/mo</li><li>Ongoing build queue (one active item at a time)</li><li>Custom integrations</li><li>Dedicated strategy + monthly review</li></ul>
-        <a class="pr-cta ghost" data-plan="scale" href="/start.html?plan=scale&amp;term=monthly">Talk to us</a>
+        <a class="pr-cta ghost" data-plan="scale" href="https://abacoadigital.com/start.html?plan=scale&amp;term=monthly">Talk to us</a>
       </div>
     </div>
     <p class="pr-fineprint" style="text-align:center;font-size:12.5px;color:var(--text-mute);margin-top:16px;max-width:640px;margin-left:auto;margin-right:auto;">Custom builds (new sites, complex integrations) quoted separately. Voice overage $0.49/min.</p>
     <div class="pr-combo">Build it once, then keep it running. Any project pairs with a managed plan, and annual plans get the setup fee waived.</div>
     <div style="margin-top:34px;text-align:center;max-width:660px;margin-left:auto;margin-right:auto;">
       <p style="font-size:15.5px;color:var(--text-dim);line-height:1.65;">
-        <strong style="color:var(--text);">Founder-led.</strong> No subcontractors, no offshore handoff — you work with the person building it. Not sure yet? The first call is a working session, and you leave with a plan whether or not we work together.
+        <strong style="color:var(--text);">Founder-led.</strong> Work with Abacoa Digital on the scope, priorities and build. Ask about a project, a managed plan, or how the two can work together.
       </p>
-      <p style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-top:14px;">Month-to-month · Cancel anytime.</p>
+      <p style="font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-top:14px;">Monthly plans: month-to-month · Annual plans: billed yearly.</p>
     </div>
+    <div class="price-guide"><div><h3>Not sure what you need yet?</h3><p>Start with the problem. We can work out the right scope together.</p></div><a class="btn btn-ghost" href="#contact" data-agent-topic="pricing">Talk it through <span aria-hidden="true">↗</span></a></div>
+    <div class="owner-faq"><div><h3>A few questions<br>before we start.</h3><p>Useful things to know when you’re deciding what belongs in your business.</p></div><div>
+      <details><summary>Can this work with the tools we already use?</summary><p>That is part of the discovery conversation. We review your CRM, calendar, forms and team tools, then confirm which connections are practical before agreeing the scope. Bring the names of the tools you want to keep.</p></details>
+      <details><summary>Will an AI assistant make decisions for me?</summary><p>You define its responsibilities. A system can answer questions, collect information and act within agreed rules, with owner review or a human handoff for the situations you choose. We work through those boundaries during the build.</p></details>
+      <details><summary>Are the businesses in the demonstrations clients?</summary><p>The homepage stories and dashboard are illustrative examples with sample data. Briar, Bramble and Polish are our own products. They show the kind of work and thinking we can bring to your project.</p></details>
+      <details><summary>Can I speak with the person building my system?</summary><p>Yes. Mike leads the project conversation, scope and build at Abacoa Digital. Our AI receptionist can capture your inquiry when you call. You can also <a href="mailto:hello@abacoadigital.com">email Mike directly</a>.</p></details>
+      <details><summary>What if I already have a project with you?</summary><p>Use the existing-client route below. Include your business, the system involved, what changed and the impact. <a href="#contact" data-agent-topic="client">Prepare a project update or support request</a>.</p></details>
+    </div></div>
   </div>
 </section>
 
-<section id="contact" class="cta">
-  <div class="container cta-inner reveal">
-    <div class="cta-eyebrow">Let's talk</div>
-    <h2 class="cta-title">Tell us what's <em>broken</em>,<br/>or what could be better.</h2>
-    <p class="cta-sub">A short qualifying form, then a real 30-minute call. No pitch deck, no pressure. You leave with a plan whether or not we end up working together.</p>
-    <a href="contact.html" class="btn btn-primary btn-lg">
-      Start a project
-      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+<section id="contact" class="cta agent-contact studio-contact">
+  <div class="container">
+    <div class="agent-contact-grid">
+      <div class="agent-contact-copy"><span class="section-num">Your next chapter, together</span><h2>Your people.<br>Your ambition.<br><em>Our kind of work.</em></h2><p>Let’s connect the parts of your business that should already work together. Bring the everyday friction, the idea you keep putting off, or the next thing you want to build.</p>
+        <div class="agent-contact-actions"><a class="btn btn-primary btn-lg" href="#contact" data-agent-topic="general">Talk to Abacoa Digital <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="https://abacoadigital.com/contact.html">Send an inquiry</a></div>
+        <p class="agent-disclosure">AI agents · Custom software · Connected workflows<br><a class="text-action" href="mailto:hello@abacoadigital.com">hello@abacoadigital.com <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <div class="receptionist-trial">
+        <div class="trial-kicker"><span class="trial-phone" aria-hidden="true">↗</span><span>Try an AI receptionist</span></div>
+        <h3>Hear what an<br><em>answered call</em> feels like.</h3><p>Meet Elliot, Abacoa Digital’s AI receptionist. Call for a trial conversation about your business and experience the first few minutes of an AI-assisted intake.</p>
+        <div class="trial-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <a class="btn btn-primary" href="tel:+15615897339">Call Elliot for a trial <span aria-hidden="true">↗</span></a><a class="trial-number" href="tel:+15615897339">(561) 589-7339</a>
+        <p class="trial-note">A real call to our AI receptionist. Your own assistant would be built around your business, knowledge and rules.</p>
+      </div>
+    </div>
+    <div class="client-lane"><div><h3>Already working with us?</h3><p>Need a change, have a question, or something needs attention? Let the team know what’s happening and which project or system is involved.</p></div><a class="text-action" href="#contact" data-agent-topic="client">Get help with your project <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 
+</main>
 <footer class="footer">
   <div class="container footer-inner">
     <div class="logo" aria-label="Abacoa Digital">
@@ -993,12 +1137,39 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
     <div class="footer-meta">
       <span>© 2026 Abacoa Digital LLC</span>
       <a href="mailto:hello@abacoadigital.com">hello@abacoadigital.com</a>
-      <a href="contact.html">Start a project</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms</a>
+      <a href="tel:+15615897339">Try our AI receptionist</a>
+      <a href="#contact" data-agent-topic="client">Client help</a>
+      <a href="https://abacoadigital.com/privacy.html">Privacy Policy</a>
+      <a href="https://abacoadigital.com/terms.html">Terms</a>
     </div>
   </div>
 </footer>
+
+<a class="studio-chat-dock" id="chatDock" href="#assistant-demo" data-chat-open aria-label="Explore the Abacoa Digital chat example"><span class="studio-avatar" aria-hidden="true">AD</span><span>Explore with Abacoa<small>Interactive chat demo</small></span><span aria-hidden="true">↗</span></a>
+<dialog class="agent-dialog" id="elliotDialog" aria-labelledby="agentDialogTitle" aria-describedby="agentDialogIntro">
+  <div class="agent-dialog-head"><div class="agent-identity"><span class="studio-avatar" aria-hidden="true">AD</span><div><strong>Abacoa Digital</strong><small>Let’s build something useful together</small></div></div><button class="agent-dialog-close" id="agentDialogClose" type="button" aria-label="Close conversation options">×</button></div>
+  <div class="agent-dialog-body">
+    <h2 id="agentDialogTitle">Start with what you want to fix.</h2><p class="agent-dialog-intro" id="agentDialogIntro">Tell us about your business and the work you want to make easier. Share a brief with the team, or call our AI receptionist to talk it through.</p>
+    <label for="agentTopic">What would you like to discuss?</label><select id="agentTopic"><option value="general">Explore a project</option><option value="calls">Answer more customer calls</option><option value="followup">Follow up with leads</option><option value="operations">Connect the work and information</option><option value="website">Build a website that does more</option><option value="pricing">Find the right starting scope</option><option value="client">Help with an existing project</option></select>
+    <div class="agent-brief-label"><label for="agentBrief">An opening note · make it yours</label><button type="button" id="agentCopy">Copy note</button></div><textarea id="agentBrief" maxlength="2500" aria-describedby="agentBriefHelp">I would like to talk about where AI or custom software could help my business. The part I want to improve is…</textarea>
+    <p class="agent-connect-note" id="agentBriefHelp">Share this with our team by email, or use it when you call. Your note is not sent automatically.</p>
+    <div class="agent-connect-options"><a class="btn btn-primary" id="agentCall" href="tel:+15615897339">Call our AI receptionist <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" id="agentEmail" href="mailto:hello@abacoadigital.com">Email our team <span aria-hidden="true">↗</span></a></div>
+    <p class="agent-connect-note">(561) 589-7339 · Opens your calling app.<br>Email opens a draft for you to review and send.</p>
+    <p class="agent-dialog-status" id="agentDialogStatus" role="status" aria-live="polite"></p>
+    <p class="agent-dialog-secondary">Prefer a form? <a href="https://abacoadigital.com/contact.html">Send a project inquiry</a>. <a href="https://abacoadigital.com/privacy.html">Privacy policy</a>.</p>
+  </div>
+</dialog>
+
+
+<dialog id="studioChat" class="studio-chat" aria-labelledby="studioChatTitle" aria-describedby="studioChatDisclosure">
+  <div class="studio-chat-head"><div><span class="studio-avatar" aria-hidden="true">AD</span><div><h2 id="studioChatTitle">Abacoa Digital</h2><p>Interactive assistant example</p></div></div><button id="chatClose" type="button" aria-label="Close chat example">×</button></div>
+  <p class="studio-chat-disclosure" id="studioChatDisclosure">Guided demo, not a live AI agent. Nothing is submitted or booked here.</p>
+  <div id="chatMessages" class="chat-messages" role="log" aria-label="Example conversation" aria-live="polite" aria-relevant="additions text"><div class="chat-bubble assistant">What would you like to make easier in your business?</div></div>
+  <div class="chat-choices" aria-label="Example questions"><button type="button" data-chat-prompt="calls">We miss calls</button><button type="button" data-chat-prompt="operations">Our tools feel disconnected</button><button type="button" data-chat-prompt="website">We need a better website</button></div>
+  <form class="chat-compose" id="chatForm"><label class="sr-only" for="chatInput">Describe a business need for the guided demo</label><input id="chatInput" type="text" maxlength="600" placeholder="Describe what gets in the way…" autocomplete="off" required /><button type="submit" aria-label="Explore your example">↑</button></form>
+  <div class="chat-next" id="chatNext" hidden><p>This could be a starting point for a conversation with our team.</p><button id="chatPrepare" type="button">Prepare a project brief <span aria-hidden="true">↗</span></button></div>
+  <div class="chat-bottom"><button id="chatReset" type="button">Start over</button><a href="tel:+15615897339">Try our voice receptionist <span aria-hidden="true">↗</span></a></div>
+</dialog>
 
 <script>
   // Optional analytics: set POSTHOG_KEY to enable. Empty disables.
@@ -1012,23 +1183,6 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
     document.head.appendChild(s);
     window.posthog = window.posthog || [];
   }
-
-  const STORAGE_KEY = 'abacoa-theme';
-  const root = document.documentElement;
-  const toggle = document.getElementById('themeToggle');
-
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'light' || stored === 'dark') {
-    root.setAttribute('data-theme', stored);
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    root.setAttribute('data-theme', 'light');
-  }
-
-  toggle.addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem(STORAGE_KEY, next);
-  });
 
   const nav = document.getElementById('nav');
   const onScroll = () => {
@@ -1048,5 +1202,12 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 </script>
+<script src="assets/neural-renderer.js" defer></script>
+<script src="obsidian.js" defer></script>
+<script src="workflow-engine.js" defer></script>
+<script src="workflow-demo.js" defer></script>
+<script src="assets/business-stories.js" defer></script>
+<script src="assets/owner-paths.js" defer></script>
+<script src="assets/studio-experience.js" defer></script>
 </body>
 </html>
