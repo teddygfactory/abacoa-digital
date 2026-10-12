@@ -42,7 +42,7 @@
     // Closed demo sections and unpublished placeholders cannot activate a circuit.
     sections = sectionElements.map((element,index) => ({
       element, index, key:element.id || 'overview', top:element.getBoundingClientRect().top + window.scrollY
-    })).filter(section => !section.element.hidden && section.element.getClientRects().length > 0);
+    })).filter(section => !section.element.closest('details:not([open]), [hidden]') && section.element.getClientRects().length > 0);
     followScroll();
     if (stopped && !document.hidden) draw();
   }
