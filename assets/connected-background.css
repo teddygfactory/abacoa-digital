@@ -1,0 +1,29 @@
+/* One continuous field: incoming signals becoming connected working paths. */
+html { --field-amber:217,177,83; --field-cool:57,112,120; --field-base:#0b1116; }
+html[data-theme='light'] { --field-amber:235,171,53; --field-cool:224,194,122; --field-base:#fbefd4; }
+body { background:var(--field-base); isolation:isolate; }
+.connected-background { position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; contain:strict; background:var(--field-base); --field-shift:0px; --field-turn:0deg; }
+.connected-atmosphere { position:absolute; inset:-15%; transform:translate3d(0,var(--field-shift),0) rotate(var(--field-turn)); background:radial-gradient(ellipse at 88% 25%,rgba(var(--field-amber),.17),transparent 41%),radial-gradient(ellipse at 4% 72%,rgba(var(--field-cool),.27),transparent 46%),radial-gradient(ellipse at 61% 110%,rgba(var(--field-amber),.08),transparent 50%); }
+.connected-background::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 0%,rgba(11,17,22,.32) 28%,rgba(11,17,22,.12) 68%,transparent 100%); }
+.connected-contours { position:absolute; inset:-6%; width:112%; height:112%; fill:none; stroke:rgba(var(--field-amber),.15); stroke-width:.6; transform:translate3d(0,calc(var(--field-shift) * -.45),0); }
+.connected-contours .cool-contour { stroke:rgba(var(--field-cool),.36); }
+#connectedField { position:absolute; inset:0; width:100%; height:100%; mask-image:linear-gradient(90deg,#000 0%,#0009 18%,#0003 38%,#0003 65%,#0009 86%,#000 100%); }
+main { position:relative; z-index:1; }
+main > .hero, main > section, main > .explore-library, .explore-library > section { background-color:transparent; background-image:none; }
+main > .launch-offer, main > .process, main > .explore-library { background:linear-gradient(110deg,color-mix(in srgb,var(--bg-2) 72%,transparent),color-mix(in srgb,var(--bg-2) 48%,transparent)); }
+main > .agent-contact, main > .studio-contact { background:linear-gradient(100deg,color-mix(in srgb,var(--bg) 55%,transparent),transparent); }
+.footer { background:color-mix(in srgb,var(--bg) 76%,transparent); }
+/* The software and forms stay on opaque surfaces; only their surroundings move. */
+.brain-detail, .service-detail, .workspace-library, .pricing-library > summary { box-shadow:0 15px 44px #00000012; }
+.hero-rail { background:linear-gradient(90deg,transparent,rgba(var(--field-amber),.045),transparent); }
+html[data-theme='light'] .connected-atmosphere { background:radial-gradient(ellipse at 92% 22%,rgba(255,183,56,.23),transparent 45%),radial-gradient(ellipse at 1% 75%,rgba(255,202,98,.36),transparent 48%),radial-gradient(ellipse at 55% 5%,rgba(255,245,210,.6),transparent 48%); }
+html[data-theme='light'] .connected-contours { stroke:rgba(168,121,32,.23); }
+html[data-theme='light'] .connected-contours .cool-contour { stroke:rgba(173,146,78,.2); }
+html[data-theme='light'] .connected-background::after { background:linear-gradient(90deg,transparent,rgba(251,239,212,.26) 30%,rgba(251,239,212,.2) 65%,transparent); }
+@media(max-width:760px) {
+  #connectedField { opacity:.75; mask-image:linear-gradient(90deg,#000 0%,#0004 27%,#0002 68%,#000 100%); }
+  .connected-contours { opacity:.8; }
+  .connected-atmosphere { background:radial-gradient(ellipse at 110% 25%,rgba(var(--field-amber),.19),transparent 56%),radial-gradient(ellipse at -15% 83%,rgba(var(--field-cool),.23),transparent 56%); }
+}
+@media(forced-colors:active) { .connected-background { display:none; } }
+@media print { .connected-background { display:none; } }

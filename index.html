@@ -645,11 +645,23 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 <link href="assets/studio-experience.css" rel="stylesheet" />
 <link href="assets/software-scenes.css" rel="stylesheet" />
 <link href="assets/launch-focus.css" rel="stylesheet" />
+<link href="assets/connected-background.css" rel="stylesheet" />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://abacoadigital.com/" />
 </head>
 
 <body>
+<div class="connected-background" id="connectedBackground" aria-hidden="true">
+  <div class="connected-atmosphere"></div>
+  <svg class="connected-contours" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <path d="M-230 60C210-120 390 110 300 350S140 690 460 860S1260 970 1640 650"/>
+    <path d="M-245 80C225-100 415 120 324 360S164 714 480 878S1280 990 1650 678"/>
+    <path d="M-260 100C240-80 440 130 348 370S188 738 500 896S1300 1010 1660 706"/>
+    <path class="cool-contour" d="M1550-150C1000-60 1160 220 960 360S520 510 680 760S1330 1000 1540 1160"/>
+    <path class="cool-contour" d="M1570-128C1025-40 1180 235 983 380S540 530 702 780S1350 1020 1560 1180"/>
+  </svg>
+  <canvas id="connectedField"></canvas>
+</div>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="nav" id="nav">
@@ -1219,5 +1231,6 @@ Timeline: within 2 weeks</textarea>
 <script src="assets/owner-paths.js" defer></script>
 <script src="assets/studio-experience.js" defer></script>
 <script src="assets/launch-focus.js" defer></script>
+<script src="assets/connected-background.js" defer></script>
 </body>
 </html>
