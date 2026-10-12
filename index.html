@@ -644,7 +644,9 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 <link href="assets/owner-paths.css" rel="stylesheet" />
 <link href="assets/studio-experience.css" rel="stylesheet" />
 <link href="assets/software-scenes.css" rel="stylesheet" />
-<meta name="robots" content="noindex,nofollow" />
+<link href="assets/launch-focus.css" rel="stylesheet" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://abacoadigital.com/" />
 </head>
 
 <body>
@@ -664,18 +666,19 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
       </span>
       <span class="logo-text">Abacoa <span>Digital</span></span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="mainNavLinks">
       <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#system-film">See it work</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#approach">Your next chapter</a></li><li><a href="#pricing">Pricing</a></li>
+      <li><a href="#pricing">Pricing</a></li><li><a href="https://abacoadigital.com/contact.html">Talk to Abacoa</a></li>
     </ul>
     <div class="nav-actions">
+<button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-controls="mainNavLinks" aria-expanded="false">Menu</button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
         <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
       </button>
-<a href="#contact" data-agent-topic="general" class="btn btn-primary nav-cta">
+<a href="https://abacoadigital.com/contact.html" class="btn btn-primary nav-cta">
         Let’s talk
         <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -686,10 +689,10 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
 <main id="main"><header class="hero">
 <div class="container hero-grid"><div class="hero-copy">
 <div class="hero-eyebrow"><span class="dot"></span>Abacoa Digital · AI &amp; software studio</div>
-<h1 class="hero-title">Buy back<br>your <span class="soft">time.</span></h1>
-<p class="hero-sub">Great businesses are built by people. We build the AI, software, and connected workflows that give your people more room to do their best work.</p>
-<div class="hero-actions"><a href="#contact" data-agent-topic="general" class="btn btn-primary btn-lg">Build with Abacoa <span aria-hidden="true">↗</span></a><a href="#software-in-use" class="btn btn-ghost">See the software <span aria-hidden="true">↓</span></a></div>
-<p class="hero-note">Your team, backed by connected systems.<br><a href="#contact" data-agent-topic="client">Already a client? Get in touch.</a></p></div>
+<h1 class="hero-title">Busy doing<br><span class="soft">the work?</span></h1>
+<p class="hero-sub">Your next customer still needs an answer. Abacoa Digital builds AI receptionists and connected software that capture the request, organize the details, and give your team a clear next step.</p>
+<div class="hero-actions"><a href="https://abacoadigital.com/contact.html" class="btn btn-primary btn-lg">Plan my first system <span aria-hidden="true">↗</span></a><a href="#system-film" class="btn btn-ghost">See it in action <span aria-hidden="true">↓</span></a></div>
+<p class="hero-note">Founder-led in Jupiter, Florida. Built around your business.<br><a href="tel:+15615897339">Try Elliot, our AI receptionist · (561) 589-7339</a></p></div>
 <div class="brain-shell">
 <div class="brain" aria-label="Explore Abacoa's connected business systems">
 <img class="brain-art" src="assets/obsidian-nexus.webp" width="1536" height="1024" alt="" fetchpriority="high" /><canvas id="brainCanvas" aria-hidden="true"></canvas>
@@ -707,24 +710,14 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   <div class="brain-detail-top"><span id="brainDetailKicker">Explore the connections</span><button id="brainReset" type="button" aria-label="Show the whole business network" hidden>Reset <span aria-hidden="true">↺</span></button></div>
   <h2 id="brainDetailTitle">One business. Connected.</h2>
   <p id="brainDetailCopy">Your calls, customer details, and daily work belong together. Explore a connection to see what we can build.</p>
-  <div class="brain-detail-links" id="brainDetailLinks"><a href="#services">Explore services <span aria-hidden="true">↗</span></a><a href="#system-film">Watch Elliot <span aria-hidden="true">↗</span></a></div>
+  <div class="brain-detail-links" id="brainDetailLinks"><a href="#services">Explore services <span aria-hidden="true">↗</span></a><a href="#system-film">Watch the story <span aria-hidden="true">↗</span></a></div>
 </div>
 <span class="sr-only" id="brainStatus" role="status" aria-live="polite"></span>
 </div></div>
 <div class="container"><div class="hero-rail"><span><strong>Jupiter, Florida</strong> / Building everywhere</span><span class="rail-middle">AI · Software · Automation</span><button id="motionToggle" class="motion-toggle" type="button" aria-pressed="false">Ⅱ Pause motion</button></div></div>
 </header>
 
-<section id="software-in-use" class="software-scenes">
-  <div class="container">
-    <div class="software-scenes-heading"><div><span class="section-num">A connected business, on screen</span><h2>Your systems.<br><em>Working together.</em></h2></div><p>The customer conversation. The lead record. The next action. Software that puts the information where your people can use it.</p></div>
-    <figure class="software-scene"><a href="assets/software-in-use-office.webp" target="_blank" rel="noopener" aria-label="Open the office software scene at full size"><img src="assets/software-in-use-office.webp" width="1672" height="941" loading="lazy" alt="A business owner working at two monitors showing an unbranded customer pipeline and email inbox." /></a><figcaption><span>Illustrative software in use · Unbranded interface concepts</span><a href="#app-workbench" data-workspace-link="crm">Explore the customer workspace <span aria-hidden="true">↗</span></a></figcaption></figure>
-    <div class="screen-outcomes">
-      <a href="#app-workbench" data-workspace-link="email"><span>01</span><h3>Every conversation, in context.</h3><p>An inquiry arrives with the customer’s question and the details your team needs.</p></a>
-      <a href="#app-workbench" data-workspace-link="crm"><span>02</span><h3>The right information, together.</h3><p>A customer record brings the request, its history and the next step into view.</p></a>
-      <a href="#app-workbench" data-workspace-link="projects"><span>03</span><h3>A clear place to act.</h3><p>The team sees what needs review and what should happen after it.</p></a>
-    </div>
-  </div>
-</section>
+
 
 <section id="system-film" class="business-stories">
   <div class="container">
@@ -786,6 +779,7 @@ section { position: relative; z-index: 2; padding: var(--section-y) 0; }
   </div>
 </section>
 
+<section id="start-here" class="launch-offer"><div class="container launch-offer-grid"><div><span class="section-num">A useful first step</span><h2 class="section-title">Start with the call.<br><em>Connect the rest.</em></h2><p>For a service business, a useful first system can be simple: handle selected overflow calls, collect the right details, and give the owner a brief they can act on.</p><div class="launch-offer-actions"><a class="btn btn-primary" href="https://abacoadigital.com/contact.html">Plan my first system <span aria-hidden="true">↗</span></a><a class="text-action" href="tel:+15615897339">Try our AI receptionist <span aria-hidden="true">↗</span></a></div><p class="launch-scope">We agree on routing, scope, price and the human handoff before building. Booking and custom integrations are scoped separately.</p></div><ol class="launch-handoff"><li><span>01</span><div><h3>A helpful first answer.</h3><p>Common questions and the reason for the call, captured around your business rules.</p></div></li><li><span>02</span><div><h3>A brief with the useful details.</h3><p>Who called, what they need, where they are, and how to reach them.</p></div></li><li><span>03</span><div><h3>Your team decides what happens next.</h3><p>Review the request and follow through. Connect your existing tools as the scope grows.</p></div></li></ol></div></section>
 <section id="owner-dashboard" class="owner-section">
   <div class="container">
     <div class="story-heading owner-screen-heading"><div><span class="section-num">The owner's side of the story</span><h2 class="section-title">The details.<br><em>Already together.</em></h2><p>A customer record at the desk. An urgent brief on your phone. Give the owner a useful view of the work, wherever the day takes them.</p></div><figure class="owner-mobile-scene"><a href="assets/software-in-use-mobile.webp" target="_blank" rel="noopener" aria-label="Open the mobile job-alert scene at full size"><img src="assets/software-in-use-mobile.webp" width="1536" height="1024" loading="lazy" alt="A business owner holding a phone with an unbranded urgent AC job alert for Maya and a confirmed 3 PM appointment." /></a><figcaption><span>Illustrative mobile workspace · Sample job details</span><a href="#deskPanel" data-story-link="home">Explore the job record <span aria-hidden="true">↗</span></a></figcaption></figure></div>
@@ -856,7 +850,8 @@ Timeline: within 2 weeks</textarea>
         <p class="section-lede">Start with the part of your business that needs help. We connect voice, software, and workflows around your team, your customers, and the way you work.</p>
       </div>
     </div>
-    <div class="app-workbench" id="app-workbench">
+    <details class="workspace-library"><summary>Explore an inquiry across six connected tools <span aria-hidden="true">+</span></summary>
+<div class="app-workbench" id="app-workbench">
       <div class="app-workbench-heading"><div><span class="small-eyebrow">Familiar tools. A connected working day.</span><h3>The work between the apps.</h3><p>Follow one inquiry from an email to the information your team needs. The tools can look familiar. The connection is what changes the day.</p></div><span class="sample-label">Interactive example · Sample data</span></div>
       <div class="app-switcher" role="tablist" aria-label="Explore the connected workspaces">
         <button type="button" role="tab" id="appEmailTab" data-workspace="email" aria-selected="true" aria-controls="workspacePanel"><span aria-hidden="true">✉</span>Email</button>
@@ -872,7 +867,8 @@ Timeline: within 2 weeks</textarea>
       </div>
       <div class="workbench-bottom"><p>Keep the tools that work for you. Let Abacoa Digital connect the missing handoffs.</p><a class="text-action" href="#contact" data-agent-topic="operations">Connect our workflow <span aria-hidden="true">↗</span></a></div>
     </div>
-    <details class="system-explainer"><summary>Explore the systems behind these connections <span aria-hidden="true">+</span></summary>
+    </details>
+<details class="system-explainer"><summary>Explore the systems behind these connections <span aria-hidden="true">+</span></summary>
     <div class="system-map">
       <div class="system-map-top"><span>The pieces, working together</span><span>Explore an example architecture</span></div>
       <div class="system-nodes" role="tablist" aria-label="Explore the connected systems">
@@ -912,7 +908,33 @@ Timeline: within 2 weeks</textarea>
   </div>
 </section>
 
-<section id="work">
+
+
+
+
+
+
+<section hidden id="testimonials" class="testimonials-preview" aria-labelledby="testimonialsTitle">
+  <div class="container"><div class="testimonial-heading"><div><span class="section-num">Client voices · Layout preview</span><h2 class="section-title" id="testimonialsTitle">The words that<br><em>matter most.</em></h2></div><p>Testimonial placeholders. Real, approved feedback will replace these before public launch.</p></div>
+    <div class="testimonial-grid">
+      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>The working relationship.</h3><p>Space for a client’s own words about collaborating with Abacoa Digital.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
+      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>What became easier.</h3><p>Space for approved feedback about a specific improvement in the working day.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
+      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>The customer experience.</h3><p>Space for a real account of how the work helped the people using it.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
+    </div>
+  </div>
+</section>
+
+<details class="explore-library" id="explore-more"><summary><span><strong>There’s more your business can do.</strong><small>Explore software on screen, our own products, and a guided chat.</small></span><span aria-hidden="true">+</span></summary><section id="software-in-use" class="software-scenes">
+  <div class="container">
+    <div class="software-scenes-heading"><div><span class="section-num">A connected business, on screen</span><h2>Your systems.<br><em>Working together.</em></h2></div><p>The customer conversation. The lead record. The next action. Software that puts the information where your people can use it.</p></div>
+    <figure class="software-scene"><a href="assets/software-in-use-office.webp" target="_blank" rel="noopener" aria-label="Open the office software scene at full size"><img src="assets/software-in-use-office.webp" width="1672" height="941" loading="lazy" alt="A business owner working at two monitors showing an unbranded customer pipeline and email inbox." /></a><figcaption><span>Illustrative software in use · Unbranded interface concepts</span><a href="#app-workbench" data-workspace-link="crm">Explore the customer workspace <span aria-hidden="true">↗</span></a></figcaption></figure>
+    <div class="screen-outcomes">
+      <a href="#app-workbench" data-workspace-link="email"><span>01</span><h3>Every conversation, in context.</h3><p>An inquiry arrives with the customer’s question and the details your team needs.</p></a>
+      <a href="#app-workbench" data-workspace-link="crm"><span>02</span><h3>The right information, together.</h3><p>A customer record brings the request, its history and the next step into view.</p></a>
+      <a href="#app-workbench" data-workspace-link="projects"><span>03</span><h3>A clear place to act.</h3><p>The team sees what needs review and what should happen after it.</p></a>
+    </div>
+  </div>
+</section><section id="work">
   <div class="container">
     <div class="section-head reveal">
       <span class="section-num">03 · Work</span>
@@ -946,9 +968,7 @@ Timeline: within 2 weeks</textarea>
     </div>
     <div class="section-action"><p>The same thinking can shape your customer portal, internal workspace or next product.</p><a class="text-action" href="#contact" data-agent-topic="operations">Discuss something built for you <span aria-hidden="true">↗</span></a></div>
   </div>
-</section>
-
-<section id="approach" class="future-section">
+</section><section id="approach" class="future-section">
   <div class="container">
     <div class="future-intro screen-future-intro"><div><span class="section-num">04 · Your next chapter</span><h2 class="section-title">Start with one win.<br><em>Build toward what’s next.</em></h2></div><p>A shared lead tracker. A clear project board. The tools your team knows, connected to the next step. Choose a starting point to explore how the work could come together.</p><figure class="future-software-scene"><a href="assets/software-in-use-desk.webp" target="_blank" rel="noopener" aria-label="Open the spreadsheet and workflow scene at full size"><img src="assets/software-in-use-desk.webp" width="1672" height="941" loading="lazy" alt="A person using a laptop with an unbranded lead-tracking spreadsheet beside a tablet showing an inquiry, review and follow-up workflow." /></a><figcaption>A lead tracker and a workflow board, in the same working day.<span>Illustrative software scene · Select the image for a closer look.</span></figcaption></figure></div>
     <div class="future-board">
@@ -979,32 +999,20 @@ Timeline: within 2 weeks</textarea>
       <div><h3>Room to change your mind.</h3><p>Start with a clear scope, review working software and make the next decision with what you’ve learned. The system can grow with the business.</p></div>
     </div>
   </div>
-</section>
-
-<section id="assistant-demo" class="assistant-section">
+</section><section id="assistant-demo" class="assistant-section">
   <div class="container assistant-showcase">
     <div class="assistant-copy"><span class="section-num">An easier first hello</span><h2 class="section-title">Your website can<br><em>start the conversation.</em></h2><p>A helpful assistant can guide a visitor, answer a common question and gather the context your team needs. Try a short example, then explore what would make it useful for your business.</p><div class="assistant-actions"><a class="btn btn-primary" href="#assistant-demo" data-chat-open>Try the chat example <span aria-hidden="true">↗</span></a><a class="text-action" href="tel:+15615897339">Prefer voice? Try Elliot <span aria-hidden="true">↗</span></a></div><p class="demo-explainer">Guided chat example · No live agent or booking</p></div>
     <div class="chat-preview"><div class="chat-preview-head"><span class="studio-avatar" aria-hidden="true">AD</span><div><strong>Abacoa Digital</strong><small>An example of a helpful first conversation</small></div></div><div class="chat-bubble visitor">We’re busy with customers and keep missing calls.</div><div class="chat-bubble assistant">An AI receptionist could capture the reason for the call and prepare the next step for your team.</div><div class="chat-result-preview"><span aria-hidden="true">↳</span><div><strong>The conversation becomes useful context.</strong><span>A customer need → a lead brief → an owner decision.</span></div></div><a href="#assistant-demo" data-chat-open class="chat-preview-start">Explore your own situation <span aria-hidden="true">↗</span></a></div>
   </div>
-</section>
-
-<section id="testimonials" class="testimonials-preview" aria-labelledby="testimonialsTitle">
-  <div class="container"><div class="testimonial-heading"><div><span class="section-num">Client voices · Layout preview</span><h2 class="section-title" id="testimonialsTitle">The words that<br><em>matter most.</em></h2></div><p>Testimonial placeholders. Real, approved feedback will replace these before public launch.</p></div>
-    <div class="testimonial-grid">
-      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>The working relationship.</h3><p>Space for a client’s own words about collaborating with Abacoa Digital.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
-      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>What became easier.</h3><p>Space for approved feedback about a specific improvement in the working day.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
-      <article class="quote-placeholder"><span class="quote-mark" aria-hidden="true">“</span><h3>The customer experience.</h3><p>Space for a real account of how the work helped the people using it.</p><div><span class="quote-avatar" aria-hidden="true">—</span><span>Client name to be added<small>Business or role · Pending quote</small></span></div></article>
-    </div>
-  </div>
-</section>
-
+</section></details>
 <section id="pricing" class="pr-sec">
   <div class="pr-wrap reveal">
     <div class="pr-eyebrow">Pricing</div>
     <h2 class="pr-h2">A clear place to start.</h2>
-    <p class="pr-lede">Start with a one-time project for a finished build, or a monthly plan for AI that runs for you. Pair a build with ongoing support, or start with one. Annual plans get the setup fee waived.</p>
+    <p class="pr-lede">A focused project or ongoing support. Start with the problem; we agree on the scope and price before work begins.</p>
 
-    <div class="pr-projects" style="margin-top:0;border-top:none;padding-top:0;margin-bottom:44px;">
+    <details class="pricing-library"><summary><span>View project and managed-plan pricing<small>Projects from $500 · Managed AI from $299/month + setup</small></span><span aria-hidden="true">+</span></summary>
+<div class="pr-projects" style="margin-top:0;border-top:none;padding-top:0;margin-bottom:44px;">
       <h4>One-time projects.</h4>
       <div class="pr-psub">The lowest-friction way to start — a website, an MVP, a one-off automation or integration, with a clear finish line.</div>
       <div class="pr-ptiers">
@@ -1097,7 +1105,8 @@ Timeline: within 2 weeks</textarea>
       <details><summary>Can I speak with the person building my system?</summary><p>Yes. Mike leads the project conversation, scope and build at Abacoa Digital. Our AI receptionist can capture your inquiry when you call. You can also <a href="mailto:hello@abacoadigital.com">email Mike directly</a>.</p></details>
       <details><summary>What if I already have a project with you?</summary><p>Use the existing-client route below. Include your business, the system involved, what changed and the impact. <a href="#contact" data-agent-topic="client">Prepare a project update or support request</a>.</p></details>
     </div></div>
-  </div>
+</details><p class="launch-price-note">Not sure where to begin? <a href="https://abacoadigital.com/contact.html">Tell us what gets in the way.</a></p>
+</div>
 </section>
 
 <section id="contact" class="cta agent-contact studio-contact">
@@ -1209,5 +1218,6 @@ Timeline: within 2 weeks</textarea>
 <script src="assets/business-stories.js" defer></script>
 <script src="assets/owner-paths.js" defer></script>
 <script src="assets/studio-experience.js" defer></script>
+<script src="assets/launch-focus.js" defer></script>
 </body>
 </html>
