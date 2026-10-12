@@ -18,6 +18,15 @@ main > .agent-contact, main > .studio-contact { background:linear-gradient(100de
 /* The software and forms stay on opaque surfaces; only their surroundings move. */
 .brain-detail, .service-detail, .workspace-library, .pricing-library > summary { box-shadow:0 15px 44px #00000012; }
 .hero-rail { background:linear-gradient(90deg,transparent,rgba(var(--field-amber),.045),transparent); }
+/* A small branch connects the active content section to the page-wide network. */
+.section-network-anchor { position:absolute; top:max(20px,calc(var(--section-y) - 22px)); left:0; width:clamp(23px,4vw,64px); height:1px; pointer-events:none; background:linear-gradient(90deg,transparent,var(--gold)); opacity:.16; transition:opacity .65s; }
+.section-network-anchor::after { content:""; position:absolute; right:-3px; top:-3px; width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(var(--field-amber),.08); transition:box-shadow .65s; }
+.network-active > .section-network-anchor { opacity:1; }
+.network-active > .section-network-anchor::after { box-shadow:0 0 12px rgba(var(--field-amber),.75),0 0 0 7px rgba(var(--field-amber),.1); animation:network-arrival 1.9s ease-out; }
+.network-active .section-num, .network-active .pr-eyebrow { text-shadow:0 0 24px rgba(var(--field-amber),.16); }
+@keyframes network-arrival { 0% { box-shadow:0 0 0 0 rgba(var(--field-amber),.5); } 100% { box-shadow:0 0 12px rgba(var(--field-amber),.75),0 0 0 18px rgba(var(--field-amber),0); } }
+.motion-paused .section-network-anchor, .motion-paused .section-network-anchor::after { transition:none; animation:none; }
+@media(prefers-reduced-motion:reduce) { .section-network-anchor, .section-network-anchor::after { transition:none; animation:none!important; } }
 html[data-theme='light'] .connected-atmosphere { background:radial-gradient(ellipse at 92% 22%,rgba(255,183,56,.23),transparent 45%),radial-gradient(ellipse at 1% 75%,rgba(255,202,98,.36),transparent 48%),radial-gradient(ellipse at 55% 5%,rgba(255,245,210,.6),transparent 48%); }
 html[data-theme='light'] .connected-contours { stroke:rgba(168,121,32,.23); }
 html[data-theme='light'] .connected-contours .cool-contour { stroke:rgba(173,146,78,.2); }
