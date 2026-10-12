@@ -10,6 +10,8 @@ body { background:var(--field-base); isolation:isolate; }
 #connectedField { position:absolute; inset:0; width:100%; height:100%; mask-image:linear-gradient(90deg,#000 0%,#0009 18%,#0003 38%,#0003 65%,#0009 86%,#000 100%); }
 main { position:relative; z-index:1; }
 main > .hero, main > section, main > .explore-library, .explore-library > section { background-color:transparent; background-image:none; }
+#system-film { background:color-mix(in srgb,var(--bg-2) 35%,transparent); }
+#owner-dashboard { background:transparent; }
 main > .launch-offer, main > .process, main > .explore-library { background:linear-gradient(110deg,color-mix(in srgb,var(--bg-2) 72%,transparent),color-mix(in srgb,var(--bg-2) 48%,transparent)); }
 main > .agent-contact, main > .studio-contact { background:linear-gradient(100deg,color-mix(in srgb,var(--bg) 55%,transparent),transparent); }
 .footer { background:color-mix(in srgb,var(--bg) 76%,transparent); }
