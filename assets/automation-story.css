@@ -3,7 +3,7 @@
 .automation-heading { display:grid; grid-template-columns:1.1fr 1fr; align-items:end; gap:50px; margin-bottom:36px; }
 .automation-heading .section-title { margin-top:17px; }
 .automation-heading p { max-width:44ch; color:var(--text-dim); font-size:16px; line-height:1.75; }
-.automation-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(32px,5vw,70px); align-items:start; }
+.automation-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(32px,5vw,70px); align-items:start; scroll-margin-top:108px; }
 .automation-steps { grid-column:1; grid-row:1; margin:0; padding:0 0 180px; list-style:none; }
 .automation-step { position:relative; min-height:245px; padding:34px 0 34px 33px; border-left:1px solid var(--border); }
 .automation-step::before { content:""; position:absolute; left:-5px; top:43px; width:9px; height:9px; border-radius:50%; border:1px solid var(--gold); background:var(--bg); }
@@ -85,7 +85,7 @@
 @keyframes machine-arrival { from { opacity:.35; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 @media(max-width:760px) {
   .automation-heading { grid-template-columns:1fr; gap:18px; }
-  .automation-layout { display:flex; flex-direction:column; gap:18px; }
+  .automation-layout { display:flex; flex-direction:column; gap:18px; scroll-margin-top:78px; }
   .automation-machine { order:0; top:78px; width:100%; z-index:3; }
   .automation-steps { order:1; width:100%; padding-bottom:0; }
   .automation-step { min-height:205px; padding:22px 0 24px 23px; }
@@ -113,7 +113,7 @@
   .machine-people img { height:140px; }
   .machine-human-title { font-size:21px!important; }
   .machine-controls { padding:9px 13px; }
-  .machine-gears { width:200px; }
+  .machine-gears { width:145px; opacity:.13; }
   .automation-outcome { grid-template-columns:1fr; }
 }
 @media(max-height:650px) { .automation-machine { position:relative; top:0; } .automation-steps { padding-bottom:0; } .automation-step { min-height:190px; } }
