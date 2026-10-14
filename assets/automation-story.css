@@ -1,0 +1,122 @@
+/* One customer request travels through the machine; people keep the important work. */
+.automation-story { border-block:1px solid var(--border); }
+.automation-heading { display:grid; grid-template-columns:1.1fr 1fr; align-items:end; gap:50px; margin-bottom:36px; }
+.automation-heading .section-title { margin-top:17px; }
+.automation-heading p { max-width:44ch; color:var(--text-dim); font-size:16px; line-height:1.75; }
+.automation-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(32px,5vw,70px); align-items:start; }
+.automation-steps { grid-column:1; grid-row:1; margin:0; padding:0 0 180px; list-style:none; }
+.automation-step { position:relative; min-height:245px; padding:34px 0 34px 33px; border-left:1px solid var(--border); }
+.automation-step::before { content:""; position:absolute; left:-5px; top:43px; width:9px; height:9px; border-radius:50%; border:1px solid var(--gold); background:var(--bg); }
+.automation-step.is-active::before { background:var(--gold); box-shadow:0 0 0 6px color-mix(in srgb,var(--gold) 12%,transparent),0 0 20px color-mix(in srgb,var(--gold) 45%,transparent); }
+.automation-step button { padding:0; border:0; background:none; color:var(--text); text-align:left; cursor:pointer; font:400 28px/1.2 var(--serif); }
+.automation-step button small { display:block; margin-bottom:13px; color:var(--gold); font:500 11px/1.5 var(--sans); letter-spacing:.13em; text-transform:uppercase; }
+.automation-step p { margin-top:14px; max-width:37ch; color:var(--text-dim); font-size:15px; line-height:1.7; }
+.automation-step.is-active button { color:var(--gold); }
+.automation-machine { grid-column:2; grid-row:1; position:sticky; top:108px; scroll-margin-top:108px; border:1px solid var(--border); border-radius:18px; overflow:hidden; background:var(--bg-2); box-shadow:0 25px 75px #0002; }
+.machine-top { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:17px 21px; border-bottom:1px solid var(--border); font-size:12px; }
+.machine-top strong { font-weight:500; letter-spacing:.03em; }
+.machine-top span { color:var(--text-mute); font-size:10px; }
+.machine-flow { display:grid; grid-template-columns:repeat(4,1fr); list-style:none; padding:20px 22px 14px; margin:0; }
+.machine-flow li { position:relative; text-align:center; color:var(--text-mute); font-size:11px; }
+.machine-flow li:not(:last-child)::after { content:""; position:absolute; top:14px; left:calc(50% + 20px); width:calc(100% - 40px); height:1px; background:var(--border); }
+.machine-flow li.is-complete::after { background:var(--gold); box-shadow:0 0 10px color-mix(in srgb,var(--gold) 50%,transparent); }
+.machine-flow span { display:grid; place-items:center; width:30px; height:30px; margin:0 auto 7px; border:1px solid var(--border); border-radius:50%; color:var(--text-dim); background:var(--bg); font-size:12px; }
+.machine-flow li.is-current, .machine-flow li.is-complete { color:var(--text); }
+.machine-flow .is-current span, .machine-flow .is-complete span { border-color:var(--gold); color:var(--gold); }
+.machine-flow .is-current span { box-shadow:0 0 0 5px color-mix(in srgb,var(--gold) 8%,transparent); }
+.machine-stage { min-height:328px; position:relative; padding:20px 25px 25px; overflow:hidden; }
+.machine-panel { position:relative; z-index:1; animation:machine-arrival .5s ease-out; }
+.machine-panel[hidden] { display:none; }
+.machine-panel h3 { font:400 25px/1.2 var(--serif); margin:0; }
+.machine-panel p { font-size:13px; line-height:1.65; color:var(--text-dim); }
+.machine-eyebrow { display:block; margin-bottom:12px; font:500 10px/1.5 var(--sans); letter-spacing:.13em; text-transform:uppercase; color:var(--gold); }
+.machine-call { max-width:310px; margin:auto; text-align:center; padding-top:9px; }
+.machine-avatar { display:grid; place-items:center; width:74px; height:74px; margin:0 auto 18px; border-radius:50%; background:radial-gradient(circle at 35% 25%,#cfb878,#655630); color:#fff5d6; font:400 36px var(--serif); position:relative; }
+.machine-avatar::after { content:""; position:absolute; inset:-8px; border:1px solid var(--gold); border-radius:50%; animation:machine-ring 2.4s ease-out infinite; }
+.machine-request { margin:13px 0 18px; padding:12px; border:1px solid var(--border); border-radius:10px; background:var(--surface); }
+.machine-route { display:inline-flex; align-items:center; gap:8px; color:var(--gold); font-size:11px; }
+.machine-route i { width:6px; height:6px; background:currentColor; border-radius:50%; }
+.machine-agent-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:17px; }
+.machine-wave { display:flex; align-items:center; gap:3px; height:27px; color:var(--gold); }
+.machine-wave i { width:3px; height:17px; border-radius:3px; background:currentColor; animation:machine-voice 1.1s ease-in-out infinite alternate; }
+.machine-wave i:nth-child(2n) { height:26px; animation-delay:-.4s; }
+.machine-wave i:nth-child(3n) { height:10px; animation-delay:-.7s; }
+.machine-bubble { max-width:94%; border:1px solid var(--border); border-radius:11px 11px 11px 0; padding:12px 14px; margin:10px 0; background:var(--surface); }
+.machine-bubble strong { display:block; font-size:10px; color:var(--gold); margin-bottom:4px; font-weight:500; }
+.machine-bubble p { margin:0; }
+.machine-bubble.customer { margin-left:auto; border-radius:11px 11px 0 11px; background:color-mix(in srgb,var(--gold) 7%,var(--bg-2)); }
+.machine-captured { display:flex; flex-wrap:wrap; gap:6px; margin-top:15px; }
+.machine-captured span { font-size:10px; padding:5px 7px; color:var(--gold); border:1px solid var(--border); border-radius:5px; background:var(--bg); }
+.machine-crm { border:1px solid var(--border); border-radius:12px; background:var(--bg); overflow:hidden; }
+.machine-crm-head { display:flex; align-items:center; justify-content:space-between; padding:13px 15px; border-bottom:1px solid var(--border); }
+.machine-crm-head h3 { font-size:21px; }
+.machine-crm-head span { font-size:10px; color:var(--gold); }
+.machine-lead-row { display:grid; grid-template-columns:32px 1fr auto; gap:10px; align-items:center; padding:17px 15px; background:color-mix(in srgb,var(--gold) 8%,var(--bg)); border-left:2px solid var(--gold); }
+.machine-lead-row > span { display:grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--surface); color:var(--gold); }
+.machine-lead-row strong { display:block; font:500 13px var(--sans); }
+.machine-lead-row small { display:block; color:var(--text-dim); font-size:11px; margin-top:4px; }
+.machine-lead-row b { font-size:10px; font-weight:500; color:var(--gold); }
+.machine-brief { padding:15px; }
+.machine-brief strong { font:500 11px var(--sans); color:var(--gold); }
+.machine-brief p { margin:8px 0 12px; }
+.machine-brief > span { display:block; border-top:1px solid var(--border); padding-top:10px; font-size:11px; color:var(--text-dim); }
+.machine-people { position:relative; margin:0; overflow:hidden; border-radius:11px; background:#10171b; }
+.machine-people img { display:block; width:100%; height:170px; object-fit:cover; }
+.machine-people figcaption { position:absolute; inset:auto 0 0; padding:18px 14px 10px; background:linear-gradient(transparent,#091017e6); color:#fff2d3; font-size:10px; }
+.machine-human-title { margin:15px 0 7px!important; font-size:23px!important; }
+.machine-human-work { display:flex; flex-wrap:wrap; gap:6px 15px; color:var(--gold); font-size:11px; }
+.machine-gears { pointer-events:none; position:absolute; right:-23px; bottom:-24px; width:245px; opacity:.2; color:var(--gold); }
+.machine-gear { transform-box:fill-box; transform-origin:center; animation:machine-turn 54s linear infinite; }
+.machine-gear.small { animation-duration:36s; animation-direction:reverse; }
+.automation-machine:not(.is-in-view) *, .automation-machine.is-page-hidden * { animation-play-state:paused!important; }
+.machine-controls { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 21px; border-top:1px solid var(--border); }
+.machine-controls > span { color:var(--text-mute); font-size:11px; }
+.machine-controls button { background:none; border:1px solid var(--border); color:var(--text); border-radius:7px; padding:8px 12px; font:500 12px var(--sans); cursor:pointer; }
+.machine-controls button:disabled { opacity:.35; cursor:default; }
+.automation-outcome { border-top:1px solid var(--border); padding-top:30px; display:grid; grid-template-columns:1fr 1fr; gap:24px 55px; align-items:center; }
+.automation-outcome h3 { font:400 28px/1.2 var(--serif); }
+.automation-outcome p { margin-top:10px; color:var(--text-dim); font-size:14px; line-height:1.7; }
+.automation-outcome .launch-offer-actions { margin-top:0; }
+.automation-story .launch-scope { max-width:85ch; }
+.automation-story button:focus-visible { outline:2px solid var(--gold); outline-offset:5px; }
+@keyframes machine-turn { to { transform:rotate(360deg); } }
+@keyframes machine-ring { from { transform:scale(.94); opacity:.65; } to { transform:scale(1.3); opacity:0; } }
+@keyframes machine-voice { to { transform:scaleY(.35); } }
+@keyframes machine-arrival { from { opacity:.35; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:760px) {
+  .automation-heading { grid-template-columns:1fr; gap:18px; }
+  .automation-layout { display:flex; flex-direction:column; gap:18px; }
+  .automation-machine { order:0; top:78px; width:100%; z-index:3; }
+  .automation-steps { order:1; width:100%; padding-bottom:0; }
+  .automation-step { min-height:205px; padding:22px 0 24px 23px; }
+  .automation-step::before { top:30px; }
+  .automation-step button { font-size:24px; }
+  .automation-step button small { margin-bottom:8px; }
+  .automation-step p { font-size:14px; margin-top:10px; }
+  .machine-top { padding:12px 14px; }
+  .machine-top span { font-size:9px; }
+  .machine-flow { padding:12px 12px 6px; }
+  .machine-flow span { width:24px; height:24px; font-size:10px; }
+  .machine-flow li:not(:last-child)::after { top:11px; }
+  .machine-stage { min-height:266px; padding:12px 15px 16px; }
+  .machine-avatar { width:52px; height:52px; font-size:28px; margin-bottom:15px; }
+  .machine-request { margin:10px 0; padding:9px; }
+  .machine-eyebrow { margin-bottom:8px; }
+  .machine-panel h3 { font-size:22px; }
+  .machine-panel p { font-size:12px; }
+  .machine-agent-head { margin-bottom:8px; }
+  .machine-bubble { padding:9px 11px; margin:7px 0; }
+  .machine-captured { margin-top:9px; }
+  .machine-captured span { padding:4px 5px; font-size:9px; }
+  .machine-brief { padding:12px; }
+  .machine-lead-row { padding:12px; }
+  .machine-people img { height:140px; }
+  .machine-human-title { font-size:21px!important; }
+  .machine-controls { padding:9px 13px; }
+  .machine-gears { width:200px; }
+  .automation-outcome { grid-template-columns:1fr; }
+}
+@media(max-height:650px) { .automation-machine { position:relative; top:0; } .automation-steps { padding-bottom:0; } .automation-step { min-height:190px; } }
+@media(prefers-reduced-motion:reduce) { .automation-story *, .automation-story *::after { animation:none!important; transition:none!important; } }
+.motion-paused .automation-story *, .motion-paused .automation-story *::after { animation:none!important; transition:none!important; }
+@media print { .automation-machine { position:static; } .machine-panel[hidden] { display:block; margin-bottom:20px; } .machine-controls { display:none; } .automation-step { min-height:0; } }

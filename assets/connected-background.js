@@ -8,7 +8,7 @@
   let width = 0, height = 0, pixelRatio = 1, raf = 0, last = 0, clock = 0;
   let progress = 0, destination = 0, stopped = false, suspended = false;
   let light = root.dataset.theme === 'light', milestones = [];
-  let sections = [], activeSection = null, burst = null;
+  let sections = [], activeSection = null, burst = null, storyStage = -1;
   const sectionElements = [...document.querySelectorAll('main > .hero, main section[id]')];
   const energy = new Float32Array(76);
   sectionElements.forEach(element => {
@@ -166,12 +166,38 @@
     }
     ctx.stroke(); ctx.restore();
   }
+  function cog(x,y,radius,teeth,rotation,charge) {
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rotation);
+    ctx.beginPath();
+    for (let i = 0; i < teeth*8; i++) {
+      const angle = i*Math.PI*2/(teeth*8);
+      const r = radius*(i%8 >= 2 && i%8 <= 5 ? 1.08 : .92);
+      if (i) ctx.lineTo(Math.cos(angle)*r,Math.sin(angle)*r);
+      else ctx.moveTo(Math.cos(angle)*r,Math.sin(angle)*r);
+    }
+    ctx.closePath();
+    ctx.fillStyle = light ? 'rgba(202,167,94,.1)' : 'rgba(73,96,105,.15)'; ctx.fill();
+    ctx.strokeStyle = machineInk(.3 + charge*.24); ctx.lineWidth = 1; ctx.stroke();
+    for (const ratio of [.63,.24]) {
+      ctx.beginPath(); ctx.arc(0,0,radius*ratio,0,Math.PI*2); ctx.stroke();
+    }
+    for (let i = 0; i < 6; i++) {
+      const angle = i*Math.PI/3;
+      ctx.beginPath(); ctx.moveTo(Math.cos(angle)*radius*.27,Math.sin(angle)*radius*.27);
+      ctx.lineTo(Math.cos(angle)*radius*.6,Math.sin(angle)*radius*.6); ctx.lineWidth=3; ctx.stroke();
+    }
+    ctx.restore();
+  }
   function automationTracks(charges) {
     const mobile = width < 760;
     const radius = Math.min(width * (mobile ? .34 : .22),280,height * .34);
     const charge = charges.reduce((sum,value) => sum + value,0) / charges.length;
     orbit(width + radius * .17,height * .27 - progress * 40,radius,1,charge);
     if (!mobile) orbit(-radius * .35,height * .79 + progress * 28,radius * .82,-1,charge);
+    const gearSize = mobile ? 25 : 44, gearX = width-gearSize*.55, gearY = height*.69;
+    const gearTurn = clock*.000055 + progress*.6;
+    cog(gearX,gearY,gearSize,18,gearTurn,charge);
+    cog(gearX-gearSize*1.67,gearY,gearSize*2/3,12,-gearTurn*1.5 + Math.PI/12,charge);
     // Three relay stations suggest voice → organized information → a completed action.
     const sides = mobile ? [1] : [0,1];
     sides.forEach(side => {
@@ -213,7 +239,8 @@
       for (let station = 0; station < 3; station++) {
         const t = .13 + station*.34, p = onTrack(t);
         const arrival = Math.exp(-Math.pow((packet-t)/.055,2));
-        relay(p.x,p.y,station,Math.max(charge*.6,arrival));
+        const storyCharge = activeSection?.key === 'start-here' && storyStage >= station ? .7 : 0;
+        relay(p.x,p.y,station,Math.max(charge*.6,arrival,storyCharge));
       }
     });
   }
@@ -293,6 +320,14 @@
   reduce.addEventListener('change',sync);
   document.addEventListener('visibilitychange',sync);
   document.addEventListener('toggle',measure,true);
+  document.addEventListener('abacoa:automation-stage',event => {
+    const index = event.detail?.index;
+    if (!Number.isInteger(index) || index < 0 || index > 3 || index === storyStage) return;
+    const direction = index < storyStage ? -1 : 1;
+    storyStage = index; field.dataset.automationStage = String(index);
+    if (!stopped && activeSection?.key === 'start-here') burst = {start:clock,direction};
+    if (stopped && !document.hidden && !suspended) draw();
+  });
   window.addEventListener('pagehide',()=>{ suspended=true; cancelAnimationFrame(raf); raf=0; });
   window.addEventListener('pageshow',()=>{ suspended=false; measure(); sync(); });
   measure(); sync();
