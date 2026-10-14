@@ -117,7 +117,7 @@
     // Nested instrument rings: engraved outer marks, segmented rotor, luminous inner rail.
     for (let ring = 0; ring < 3; ring++) {
       const r = radius - ring * 16;
-      ctx.strokeStyle = machineInk(.1 + charge * .12,ring === 1);
+      ctx.strokeStyle = machineInk(.15 + charge * .12,ring === 1);
       ctx.lineWidth = ring === 1 ? 5 : .8;
       ctx.setLineDash(ring === 1 ? [r * .24, r * .065] : []);
       ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI * 2); ctx.stroke();
@@ -145,7 +145,7 @@
     ctx.restore();
   }
   function relay(x, y, type, charge) {
-    const size = width < 760 ? 11 : 17, cut = 5;
+    const size = width < 760 ? 8 : 17, cut = 5;
     ctx.save(); ctx.translate(x,y);
     ctx.beginPath(); ctx.moveTo(-size + cut,-size); ctx.lineTo(size,-size);
     ctx.lineTo(size,size-cut); ctx.lineTo(size-cut,size); ctx.lineTo(-size,size);
@@ -175,7 +175,9 @@
     // Three relay stations suggest voice → organized information → a completed action.
     const sides = mobile ? [1] : [0,1];
     sides.forEach(side => {
-      const edge = mobile ? 18 : 30, inset = mobile ? 32 : 68;
+      // Keep the relay housings inside the page gutters, clear of headings and controls.
+      const gutter = Math.max(0,(width-1280)/2) + Math.min(48,Math.max(20,width*.04));
+      const edge = mobile ? 6 : 12, inset = mobile ? 10 : Math.min(68,Math.max(12,gutter-23));
       const mirror = x => side ? width - x : x;
       const route = [
         {x:mirror(edge),y:-30},{x:mirror(edge),y:height*.19},
