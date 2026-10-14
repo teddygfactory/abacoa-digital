@@ -7,7 +7,7 @@ body { background:var(--field-base); isolation:isolate; }
 .connected-background::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 0%,rgba(11,17,22,.32) 28%,rgba(11,17,22,.12) 68%,transparent 100%); }
 .connected-contours { position:absolute; inset:-6%; width:112%; height:112%; fill:none; stroke:rgba(var(--field-amber),.15); stroke-width:.6; transform:translate3d(0,calc(var(--field-shift) * -.45),0); }
 .connected-contours .cool-contour { stroke:rgba(var(--field-cool),.36); }
-#connectedField { position:absolute; inset:0; width:100%; height:100%; mask-image:linear-gradient(90deg,#000 0%,#0009 18%,#0003 38%,#0003 65%,#0009 86%,#000 100%); }
+#connectedField { position:absolute; inset:0; width:100%; height:100%; mask-image:linear-gradient(90deg,#000 0%,#000b 12%,#0002 32%,#0002 68%,#000b 88%,#000 100%); }
 main { position:relative; z-index:1; }
 main > .hero, main > section, main > .explore-library, .explore-library > section { background-color:transparent; background-image:none; }
 #system-film { background:color-mix(in srgb,var(--bg-2) 35%,transparent); }
@@ -19,7 +19,8 @@ main > .agent-contact, main > .studio-contact { background:linear-gradient(100de
 .brain-detail, .service-detail, .workspace-library, .pricing-library > summary { box-shadow:0 15px 44px #00000012; }
 .hero-rail { background:linear-gradient(90deg,transparent,rgba(var(--field-amber),.045),transparent); }
 /* A small branch connects the active content section to the page-wide network. */
-.section-network-anchor { position:absolute; top:max(20px,calc(var(--section-y) - 22px)); left:0; width:clamp(23px,4vw,64px); height:1px; pointer-events:none; background:linear-gradient(90deg,transparent,var(--gold)); opacity:.16; transition:opacity .65s; }
+.section-network-anchor { position:absolute; top:max(20px,calc(var(--section-y) - 22px)); left:0; width:clamp(23px,5.3vw,85px); height:1px; pointer-events:none; background:linear-gradient(90deg,transparent,var(--gold)); opacity:.16; transition:opacity .65s; }
+.section-network-anchor::before { content:""; position:absolute; right:-11px; top:-9px; width:25px; height:19px; border:1px solid rgba(var(--field-amber),.5); border-left:0; clip-path:polygon(0 0,75% 0,100% 30%,100% 100%,0 100%); }
 .section-network-anchor::after { content:""; position:absolute; right:-3px; top:-3px; width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(var(--field-amber),.08); transition:box-shadow .65s; }
 .network-active > .section-network-anchor { opacity:1; }
 .network-active > .section-network-anchor::after { box-shadow:0 0 12px rgba(var(--field-amber),.75),0 0 0 7px rgba(var(--field-amber),.1); animation:network-arrival 1.9s ease-out; }
