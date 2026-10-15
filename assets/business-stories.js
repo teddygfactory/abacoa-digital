@@ -31,11 +31,11 @@
     },
     appointments: {
       label: 'Appointments', title: 'A full salon.\nAnother customer, booked.',
-      description: 'The team is with customers when Nina looks for an appointment after hours. She can see a suitable time and book without waiting for someone to call back.',
+      description: 'Give the person in the chair your full attention. When Nina looks for her next appointment, the booking flow handles the available times and details—even after the salon closes.',
       name: 'Nina', initials: 'N', channel: 'Website booking · After hours', source: 'Website · Booking flow',
       quote: 'Could I book a haircut tomorrow afternoon?',
-      outcome: 'A clear schedule. A confident customer.', value: 'The booking, confirmation and reminder stay connected. The team starts the day with the details already in place.',
-      image: 'assets/scenario-appointments.webp', alt: 'A stylist working with a customer while another appointment takes place in a warm independent salon.', photoCaption: 'A full salon. A clear schedule.',
+      outcome: 'The appointment is organised. The customer gets your attention.', value: 'The booking, confirmation and reminder stay connected, so the stylist can stay with the person in the chair.',
+      image: 'assets/scenario-appointments-documentary.webp', alt: 'A stylist listening to a seated customer during a consultation in a neighborhood salon.', photoCaption: 'Stay with the customer. Keep the next inquiry moving.',
       request: 'Haircut & finish', location: 'In-studio appointment', priority: 'Standard booking', slot: '2:30 PM', day: 'Tomorrow', duration: '60 minutes',
       summary: 'Nina booked a haircut and finish through the website. She chose the available 2:30 PM slot tomorrow. Her confirmation is ready, and a reminder is scheduled using the studio’s settings.',
       tags: ['Website booking', 'Confirmation ready', 'Reminder scheduled'],
@@ -53,8 +53,8 @@
       description: 'While a small studio is deep in client work, Sam sends a new project inquiry. The request needs context and a thoughtful next step, without getting lost in the inbox.',
       name: 'Sam', initials: 'S', channel: 'Project inquiry · Website form', source: 'Website · Guided intake',
       quote: 'We’re opening a second location and need a new website. Where do we start?',
-      outcome: 'Useful context. A prepared first meeting.', value: 'The inquiry becomes an organised lead brief and a follow-up task. The owner can review the opportunity and decide how to move it forward.',
-      image: 'assets/scenario-professional.webp', alt: 'Two professionals discussing project plans at a desk in a warm independent design studio.', photoCaption: 'Stay in the work. Keep the next project moving.',
+      outcome: 'Less inbox sorting. More thoughtful client work.', value: 'The intake organises the new inquiry and prepares a follow-up task. The owner stays focused on the current client, then reviews the next opportunity with useful context.',
+      image: 'assets/scenario-professional-documentary.webp', alt: 'Two professionals reviewing printed project plans at a worktable in a small planning studio.', photoCaption: 'Stay in the work. Keep the next project moving.',
       request: 'Website for a second location', location: 'Discovery call · Remote', priority: 'Owner review needed', slot: '10:00 AM', day: 'Tomorrow', duration: 'Follow-up task · 30 minutes',
       summary: 'Sam’s business is opening a second location and wants a new website. The intake captures the project goal and prepares a lead brief. Budget and launch date still need clarification before the owner scopes the work.',
       tags: ['New project inquiry', 'Brief prepared', 'Owner review needed'],
@@ -97,6 +97,9 @@
     text('storyOutcome', s.outcome); text('storyValue', s.value); text('deskBusiness', s.label + ' · Example workspace');
     byId('storyHomeMedia').hidden = key !== 'home'; byId('storyPhotoMedia').hidden = key === 'home';
     if (s.image) { byId('storyPhoto').src = s.image; byId('storyPhoto').alt = s.alt; text('storyPhotoCaption', s.photoCaption); }
+    text('storyProductTitle', s.name + ' · ' + s.request);
+    text('storyProductStatus', key === 'appointments' ? 'Tomorrow · 2:30 PM · Reminder scheduled' : 'Lead brief ready · Follow-up needs review');
+    text('storyPeopleFocus', key === 'appointments' ? 'The person in your chair.' : 'The client across the table.');
     s.steps.forEach(([title, copy], i) => { text('storyStep' + i, title); text('storyStepCopy' + i, copy); });
     setStage(3, false);
     text('storyStatus', s.label + ': explore the completed example, or play the workflow step by step.');
@@ -154,6 +157,9 @@
   wireTabs(tabs, setStory, 'story');
   wireTabs(deskTabs, setView, 'deskView', true);
   byId('deskScenario').addEventListener('change', event => setStory(event.target.value));
+  byId('storyOpenRecord')?.addEventListener('click', () => {
+    stop(); setStage(3, false); setView(current === 'appointments' ? 'calendar' : 'leads');
+  });
   steps.forEach(button => button.addEventListener('click', () => { stop(); setStage(Number(button.dataset.storyStep)); }));
   byId('storyPlay').hidden = false;
   byId('storyPlay').addEventListener('click', () => {
